@@ -2,6 +2,7 @@
     const sql = require("../sql")
 
     module.exports = async (call, callback) => {
+        console.log("CALLLLLLLLLLLLL", call.request);
         const { id } = call.request
 
         try {

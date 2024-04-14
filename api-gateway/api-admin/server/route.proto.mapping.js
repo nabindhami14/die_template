@@ -1,0 +1,16 @@
+(() => {
+  const { cbs } = require('proto/bundle');
+  const clientLoader = require('client');
+
+  module.exports = {
+    '/api/v1/admin/customers/bulk-upload': {
+      POST: {
+        client: clientLoader.adminClient,
+        method: 'bulkUpload',
+        encode: cbs.admin_service.BulkUploadRequest,
+        decode: cbs.admin_service.BulkUploadResponse
+      }
+    },
+  };
+})();
+

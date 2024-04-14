@@ -18,13 +18,13 @@ module.exports = {
             packageName: 'cbs.customer_auth_service.rpc'
         }
     },
-    // customerAuthService: {
-    //     v1: {
-    //         port: process.env.AUTH_SERVICE_PORT,
-    //         host: process.env.AUTH_SERVICE_HOST,
-    //         rpcService: 'AuthenticationService',
-    //         rpcProtoFile: 'customer_auth_rpc',
-    //         packageName: 'bfi.customer_auth.rpc'
-    //     }
-    // }
+    adminService: {
+        v1: {
+            port: process.env.ADMIN_SERVICE_PORT,
+            host: process.env.ADMIN_SERVICE_HOST,
+            rpcService: 'AdminService',
+            rpcProtoFile: 'admin_rpc',
+            packageName: 'cbs.admin_service.rpc' 
+        }
+    }
 }

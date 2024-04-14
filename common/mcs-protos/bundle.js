@@ -18,6 +18,495 @@ $root.cbs = (function() {
      */
     var cbs = {};
 
+    cbs.admin_service = (function() {
+
+        /**
+         * Namespace admin_service.
+         * @memberof cbs
+         * @namespace
+         */
+        var admin_service = {};
+
+        admin_service.rpc = (function() {
+
+            /**
+             * Namespace rpc.
+             * @memberof cbs.admin_service
+             * @namespace
+             */
+            var rpc = {};
+
+            rpc.AdminService = (function() {
+
+                /**
+                 * Constructs a new AdminService service.
+                 * @memberof cbs.admin_service.rpc
+                 * @classdesc Represents an AdminService
+                 * @extends $protobuf.rpc.Service
+                 * @constructor
+                 * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                 * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                 * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                 */
+                function AdminService(rpcImpl, requestDelimited, responseDelimited) {
+                    $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+                }
+
+                (AdminService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = AdminService;
+
+                /**
+                 * Creates new AdminService service using the specified rpc implementation.
+                 * @function create
+                 * @memberof cbs.admin_service.rpc.AdminService
+                 * @static
+                 * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                 * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                 * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                 * @returns {AdminService} RPC service. Useful where requests and/or responses are streamed.
+                 */
+                AdminService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+                    return new this(rpcImpl, requestDelimited, responseDelimited);
+                };
+
+                /**
+                 * Callback as used by {@link cbs.admin_service.rpc.AdminService#bulkUpload}.
+                 * @memberof cbs.admin_service.rpc.AdminService
+                 * @typedef bulkUploadCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {cbs.admin_service.BulkUploadResponse} [response] BulkUploadResponse
+                 */
+
+                /**
+                 * Calls bulkUpload.
+                 * @function bulkUpload
+                 * @memberof cbs.admin_service.rpc.AdminService
+                 * @instance
+                 * @param {cbs.admin_service.IBulkUploadRequest} request BulkUploadRequest message or plain object
+                 * @param {cbs.admin_service.rpc.AdminService.bulkUploadCallback} callback Node-style callback called with the error, if any, and BulkUploadResponse
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(AdminService.prototype.bulkUpload = function bulkUpload(request, callback) {
+                    return this.rpcCall(bulkUpload, $root.cbs.admin_service.BulkUploadRequest, $root.cbs.admin_service.BulkUploadResponse, request, callback);
+                }, "name", { value: "bulkUpload" });
+
+                /**
+                 * Calls bulkUpload.
+                 * @function bulkUpload
+                 * @memberof cbs.admin_service.rpc.AdminService
+                 * @instance
+                 * @param {cbs.admin_service.IBulkUploadRequest} request BulkUploadRequest message or plain object
+                 * @returns {Promise<cbs.admin_service.BulkUploadResponse>} Promise
+                 * @variation 2
+                 */
+
+                return AdminService;
+            })();
+
+            return rpc;
+        })();
+
+        admin_service.BulkUploadRequest = (function() {
+
+            /**
+             * Properties of a BulkUploadRequest.
+             * @memberof cbs.admin_service
+             * @interface IBulkUploadRequest
+             * @property {number|null} [id] BulkUploadRequest id
+             */
+
+            /**
+             * Constructs a new BulkUploadRequest.
+             * @memberof cbs.admin_service
+             * @classdesc Represents a BulkUploadRequest.
+             * @implements IBulkUploadRequest
+             * @constructor
+             * @param {cbs.admin_service.IBulkUploadRequest=} [properties] Properties to set
+             */
+            function BulkUploadRequest(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * BulkUploadRequest id.
+             * @member {number} id
+             * @memberof cbs.admin_service.BulkUploadRequest
+             * @instance
+             */
+            BulkUploadRequest.prototype.id = 0;
+
+            /**
+             * Creates a new BulkUploadRequest instance using the specified properties.
+             * @function create
+             * @memberof cbs.admin_service.BulkUploadRequest
+             * @static
+             * @param {cbs.admin_service.IBulkUploadRequest=} [properties] Properties to set
+             * @returns {cbs.admin_service.BulkUploadRequest} BulkUploadRequest instance
+             */
+            BulkUploadRequest.create = function create(properties) {
+                return new BulkUploadRequest(properties);
+            };
+
+            /**
+             * Encodes the specified BulkUploadRequest message. Does not implicitly {@link cbs.admin_service.BulkUploadRequest.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.admin_service.BulkUploadRequest
+             * @static
+             * @param {cbs.admin_service.IBulkUploadRequest} message BulkUploadRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BulkUploadRequest.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified BulkUploadRequest message, length delimited. Does not implicitly {@link cbs.admin_service.BulkUploadRequest.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.admin_service.BulkUploadRequest
+             * @static
+             * @param {cbs.admin_service.IBulkUploadRequest} message BulkUploadRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BulkUploadRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a BulkUploadRequest message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.admin_service.BulkUploadRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.admin_service.BulkUploadRequest} BulkUploadRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BulkUploadRequest.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.BulkUploadRequest();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.id = reader.int32();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a BulkUploadRequest message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.admin_service.BulkUploadRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.admin_service.BulkUploadRequest} BulkUploadRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BulkUploadRequest.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a BulkUploadRequest message.
+             * @function verify
+             * @memberof cbs.admin_service.BulkUploadRequest
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            BulkUploadRequest.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                return null;
+            };
+
+            /**
+             * Creates a BulkUploadRequest message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.admin_service.BulkUploadRequest
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.admin_service.BulkUploadRequest} BulkUploadRequest
+             */
+            BulkUploadRequest.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.admin_service.BulkUploadRequest)
+                    return object;
+                var message = new $root.cbs.admin_service.BulkUploadRequest();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a BulkUploadRequest message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.admin_service.BulkUploadRequest
+             * @static
+             * @param {cbs.admin_service.BulkUploadRequest} message BulkUploadRequest
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            BulkUploadRequest.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.id = 0;
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                return object;
+            };
+
+            /**
+             * Converts this BulkUploadRequest to JSON.
+             * @function toJSON
+             * @memberof cbs.admin_service.BulkUploadRequest
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            BulkUploadRequest.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return BulkUploadRequest;
+        })();
+
+        admin_service.BulkUploadResponse = (function() {
+
+            /**
+             * Properties of a BulkUploadResponse.
+             * @memberof cbs.admin_service
+             * @interface IBulkUploadResponse
+             * @property {number|null} [status] BulkUploadResponse status
+             * @property {string|null} [message] BulkUploadResponse message
+             */
+
+            /**
+             * Constructs a new BulkUploadResponse.
+             * @memberof cbs.admin_service
+             * @classdesc Represents a BulkUploadResponse.
+             * @implements IBulkUploadResponse
+             * @constructor
+             * @param {cbs.admin_service.IBulkUploadResponse=} [properties] Properties to set
+             */
+            function BulkUploadResponse(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * BulkUploadResponse status.
+             * @member {number} status
+             * @memberof cbs.admin_service.BulkUploadResponse
+             * @instance
+             */
+            BulkUploadResponse.prototype.status = 0;
+
+            /**
+             * BulkUploadResponse message.
+             * @member {string} message
+             * @memberof cbs.admin_service.BulkUploadResponse
+             * @instance
+             */
+            BulkUploadResponse.prototype.message = "";
+
+            /**
+             * Creates a new BulkUploadResponse instance using the specified properties.
+             * @function create
+             * @memberof cbs.admin_service.BulkUploadResponse
+             * @static
+             * @param {cbs.admin_service.IBulkUploadResponse=} [properties] Properties to set
+             * @returns {cbs.admin_service.BulkUploadResponse} BulkUploadResponse instance
+             */
+            BulkUploadResponse.create = function create(properties) {
+                return new BulkUploadResponse(properties);
+            };
+
+            /**
+             * Encodes the specified BulkUploadResponse message. Does not implicitly {@link cbs.admin_service.BulkUploadResponse.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.admin_service.BulkUploadResponse
+             * @static
+             * @param {cbs.admin_service.IBulkUploadResponse} message BulkUploadResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BulkUploadResponse.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.message);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified BulkUploadResponse message, length delimited. Does not implicitly {@link cbs.admin_service.BulkUploadResponse.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.admin_service.BulkUploadResponse
+             * @static
+             * @param {cbs.admin_service.IBulkUploadResponse} message BulkUploadResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BulkUploadResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a BulkUploadResponse message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.admin_service.BulkUploadResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.admin_service.BulkUploadResponse} BulkUploadResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BulkUploadResponse.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.BulkUploadResponse();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.status = reader.int32();
+                        break;
+                    case 2:
+                        message.message = reader.string();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a BulkUploadResponse message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.admin_service.BulkUploadResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.admin_service.BulkUploadResponse} BulkUploadResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BulkUploadResponse.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a BulkUploadResponse message.
+             * @function verify
+             * @memberof cbs.admin_service.BulkUploadResponse
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            BulkUploadResponse.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                if (message.message != null && message.hasOwnProperty("message"))
+                    if (!$util.isString(message.message))
+                        return "message: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a BulkUploadResponse message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.admin_service.BulkUploadResponse
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.admin_service.BulkUploadResponse} BulkUploadResponse
+             */
+            BulkUploadResponse.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.admin_service.BulkUploadResponse)
+                    return object;
+                var message = new $root.cbs.admin_service.BulkUploadResponse();
+                if (object.status != null)
+                    message.status = object.status | 0;
+                if (object.message != null)
+                    message.message = String(object.message);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a BulkUploadResponse message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.admin_service.BulkUploadResponse
+             * @static
+             * @param {cbs.admin_service.BulkUploadResponse} message BulkUploadResponse
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            BulkUploadResponse.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.status = 0;
+                    object.message = "";
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                if (message.message != null && message.hasOwnProperty("message"))
+                    object.message = message.message;
+                return object;
+            };
+
+            /**
+             * Converts this BulkUploadResponse to JSON.
+             * @function toJSON
+             * @memberof cbs.admin_service.BulkUploadResponse
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            BulkUploadResponse.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return BulkUploadResponse;
+        })();
+
+        return admin_service;
+    })();
+
     cbs.common = (function() {
 
         /**

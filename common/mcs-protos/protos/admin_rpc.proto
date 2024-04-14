@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+import "admin.proto";
+
+package cbs.admin_service.rpc;
+
+
+service AdminService { 
+    rpc bulkUpload(cbs.admin_service.BulkUploadRequest) returns (cbs.admin_service.BulkUploadResponse);
+}
