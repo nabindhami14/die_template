@@ -14,14 +14,13 @@
             return responseHelper.sendResponse(req, '', res, payload)
         }
 
-        // try {
-        //     client.getCustomer(payload, meta, grpcClientHelper.setTimeOut(), (err, response) => {
-        //         if (err) {
-        //             return responseHelper.sendErrorResponse(err, res, req.metaData);
-        //         }
-        //         console.log(response,"RESPONSEEEEEEEEEEEEEEEEEEEEEEEEEE");
-        //         return responseHelper.sendSuccessResponse(response.status, response, cbs.common.Response, res);
-        //     });
+        try {
+            client.getCustomer(payload, meta, grpcClientHelper.setTimeOut(), (err, response) => {
+                if (err) {
+                    return responseHelper.sendErrorResponse(err, res, req.metaData);
+                }
+                return responseHelper.sendSuccessResponse(response.status, response, cbs.common.Response, res);
+            });
         } catch (err) {
             console.error(req.metaData, 'error from getting_customer_profile', err);
             return responseHelper.sendErrorResponse(err, res, req.metaData);
