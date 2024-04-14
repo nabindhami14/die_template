@@ -1,0 +1,20 @@
+{
+  "name": "linking",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "link-alias": "link-module-alias"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "_moduleAliases": {
+    "common": "common/mcs-common-service-node/server",
+    "client": "common/mcs-common-service-node/client",
+    "proto": "common/mcs-protos/"
+  },
+  "dependencies": {
+    "link-module-alias": "^1.2.0"
+  }
+}

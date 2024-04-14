@@ -1,0 +1,28 @@
+{
+  "name": "mcs-protos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "cd protos && protoc --js_out=import_style=commonjs,binary:../build  *.proto",
+    "bundle": "cd protos && ../node_modules/.bin/pbjs -t static-module -w commonjs -o ../bundle.js *.proto",
+    "bundle-win": "cd protos && ..\\node_modules\\.bin\\pbjs -t static-module -w commonjs -o ..\\bundle.js *.proto",
+    "pull:all": "git pull origin develop && git pull origin testing && git pull origin staging"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "protobufjs": "^6.8.8",
+    "google-protobuf": "^3.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "link-module-alias": "^1.2.0"
+  }
+}

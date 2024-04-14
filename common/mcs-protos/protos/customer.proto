@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package cbs.customer_auth_service;
+
+message RegisterRequest {
+    string name = 1;
+    string email = 2;
+    string address = 3;
+    string phone_number = 4;
+}
+
+message RegisterResponse {
+    string status = 1;
+    string message = 2;
+}

@@ -1,0 +1,73 @@
+syntax="proto3";
+
+package cbs.common;
+
+message ListRequest
+{
+    int32 currentPage = 1;
+    int32 perPage = 2;
+    map<string,string> filter = 3;
+    map<string,string> order = 4;
+    string exportType = 5;
+}
+
+message GetRequest
+{
+    string uuid = 1;
+}
+
+message Empty
+{
+
+}
+message Request{
+    string uniqueIdentifier =1;
+}
+message DetectChannel{
+    Request detectChannel = 1;
+}
+message Response {
+    int32 status = 1;
+    string message  = 2;
+}
+
+message MobileCommonResponse{
+    int32 status = 1;
+    string message  = 2;
+    bool registerDevice=3;
+}
+
+message Pagination {
+    int32 currentPage = 1;
+    int32 totalItem = 2;
+    int32 totalPage = 3;
+    int32 perPage = 4;
+}
+
+message Meta {
+    Pagination pagination = 1;
+    Response response = 2;
+}
+
+
+message ApproveRejectRequest
+{
+    repeated string uuid = 1;
+    string action = 2;
+    string remarks = 3;
+}
+
+message SingleApproveRejectRequest
+{
+    string uuid = 1;
+    string action = 2;
+    string remarks = 3;
+}
+
+
+message ApproveRejectBatchRequest
+{
+    string batchId = 1;
+    string action = 2;
+    string remarks = 3;
+}
