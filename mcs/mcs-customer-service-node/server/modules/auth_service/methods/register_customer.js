@@ -6,7 +6,7 @@
 
         try {
             await sql.createCustomer(name, email, address, phone_number)
-            callback(null, { status: 200, message: "WWE RAY" })
+            callback(null, { status: 200, message: "WE RAY" })
         } catch (error) {
             callback(error)
         }

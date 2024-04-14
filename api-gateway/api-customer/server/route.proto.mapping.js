@@ -11,6 +11,14 @@
         decode: cbs.customer_auth_service.RegisterResponse,
       }
     },
+    '/api/v1/customer/auth/:id': {
+      GET: {
+        client: clientLoader.customerAuthClient,
+        method: 'getCustomer',
+        encode: cbs.customer_auth_service.GetRequest,
+        decode: cbs.customer_auth_service.GetResponse,
+      }
+    },
   };
 })();
 

@@ -34,7 +34,6 @@ const trimRequestObj = (requestObj) => {
                     }
                 }
             }
-            console.info(req.metaData, '>>>>>>>>>> decoded request', req.body)
             return trimRequestObj(req.body);
         } catch (error) {
             console.log(error);

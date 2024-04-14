@@ -12,7 +12,7 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 const grpc = require('@grpc/grpc-js')
 
 // HELPERS
-const { grpcClientHelper, grpcMetaHelper,mysqlHelperReadonly } = require('common/helpers');
+const { grpcClientHelper, grpcMetaHelper, mysqlHelperReadonly } = require('common/helpers');
 
 // MODULES
 const customerAuthCtrl = require('./modules/auth_service');
@@ -30,7 +30,8 @@ const customerProto = grpcClientHelper.loadPackageForServer(config.service.custo
 
 server.addService(customerProto.cbs.customer_auth_service.rpc.CustomerAuthService.service, {
     // RegisterCustomer: customerRegistrationCtrl.registerCustomer,
-    registerCustomer: customerAuthCtrl.sayHello,
+    registerCustomer: customerAuthCtrl.regsiterCustomer,
+    getCustomer: customerAuthCtrl.customerProfile
 })
 
 server.bindAsync(
@@ -47,7 +48,7 @@ server.bindAsync(
                 //   redisHelper.init();
                 //   databaseHelper.init();
                 //   mysqlHelper.init();
-                  mysqlHelperReadonly.init();
+                mysqlHelperReadonly.init();
                 //   flushMenuHelper.flushMenuFromRedis(redisHelper);
                 //start();
                 // console.log(`listening to port ${process.env.GRPC_PORT}, host ${process.env.GRPC_HOST}, date: ${new Date()}`);

@@ -6,4 +6,5 @@ package cbs.customer_auth_service.rpc;
 
 service CustomerAuthService {
     rpc registerCustomer(cbs.customer_auth_service.RegisterRequest) returns (cbs.customer_auth_service.RegisterResponse);
+    rpc getCustomer(cbs.customer_auth_service.GetRequest) returns (cbs.customer_auth_service.GetResponse);
 }
