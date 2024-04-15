@@ -28,12 +28,12 @@ message LoginResponse {
     Tokens tokens = 2;
 }
 
-message User {
+message Customer {
     string id = 1;
     string name = 2;
     string email = 3;
     string address = 4;
-    string phoneumber = 5;
+    string phoneNumber = 5;
 }
 
 message CustomerProfileRequest {
@@ -42,5 +42,5 @@ message CustomerProfileRequest {
 
 message CustomerProfileResponse {
     int32 status = 1;
-    User data = 2;   
+    Customer customer = 2;   
 }

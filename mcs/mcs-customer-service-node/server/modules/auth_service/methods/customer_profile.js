@@ -5,18 +5,11 @@
         const { id } = call.request
 
         try {
-            const customer = await sql.getCustomer(id)
-            const message = {
-                id: customer.data.id,
-                name: customer.data.name,
-                email: customer.data.email,
-                address: customer.data.address,
-                phone_number: customer.data.phoneNumber,
-            }
+            const res = await sql.getCustomer(id)
 
             callback(null, {
                 status: 200,
-                data: message
+                customer: res.data
             })
             
         } catch (error) {

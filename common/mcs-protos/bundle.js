@@ -5682,28 +5682,28 @@ $root.cbs = (function() {
             return LoginResponse;
         })();
 
-        customer_auth_service.User = (function() {
+        customer_auth_service.Customer = (function() {
 
             /**
-             * Properties of a User.
+             * Properties of a Customer.
              * @memberof cbs.customer_auth_service
-             * @interface IUser
-             * @property {string|null} [id] User id
-             * @property {string|null} [name] User name
-             * @property {string|null} [email] User email
-             * @property {string|null} [address] User address
-             * @property {string|null} [phoneumber] User phoneumber
+             * @interface ICustomer
+             * @property {string|null} [id] Customer id
+             * @property {string|null} [name] Customer name
+             * @property {string|null} [email] Customer email
+             * @property {string|null} [address] Customer address
+             * @property {string|null} [phoneNumber] Customer phoneNumber
              */
 
             /**
-             * Constructs a new User.
+             * Constructs a new Customer.
              * @memberof cbs.customer_auth_service
-             * @classdesc Represents a User.
-             * @implements IUser
+             * @classdesc Represents a Customer.
+             * @implements ICustomer
              * @constructor
-             * @param {cbs.customer_auth_service.IUser=} [properties] Properties to set
+             * @param {cbs.customer_auth_service.ICustomer=} [properties] Properties to set
              */
-            function User(properties) {
+            function Customer(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -5711,67 +5711,67 @@ $root.cbs = (function() {
             }
 
             /**
-             * User id.
+             * Customer id.
              * @member {string} id
-             * @memberof cbs.customer_auth_service.User
+             * @memberof cbs.customer_auth_service.Customer
              * @instance
              */
-            User.prototype.id = "";
+            Customer.prototype.id = "";
 
             /**
-             * User name.
+             * Customer name.
              * @member {string} name
-             * @memberof cbs.customer_auth_service.User
+             * @memberof cbs.customer_auth_service.Customer
              * @instance
              */
-            User.prototype.name = "";
+            Customer.prototype.name = "";
 
             /**
-             * User email.
+             * Customer email.
              * @member {string} email
-             * @memberof cbs.customer_auth_service.User
+             * @memberof cbs.customer_auth_service.Customer
              * @instance
              */
-            User.prototype.email = "";
+            Customer.prototype.email = "";
 
             /**
-             * User address.
+             * Customer address.
              * @member {string} address
-             * @memberof cbs.customer_auth_service.User
+             * @memberof cbs.customer_auth_service.Customer
              * @instance
              */
-            User.prototype.address = "";
+            Customer.prototype.address = "";
 
             /**
-             * User phoneumber.
-             * @member {string} phoneumber
-             * @memberof cbs.customer_auth_service.User
+             * Customer phoneNumber.
+             * @member {string} phoneNumber
+             * @memberof cbs.customer_auth_service.Customer
              * @instance
              */
-            User.prototype.phoneumber = "";
+            Customer.prototype.phoneNumber = "";
 
             /**
-             * Creates a new User instance using the specified properties.
+             * Creates a new Customer instance using the specified properties.
              * @function create
-             * @memberof cbs.customer_auth_service.User
+             * @memberof cbs.customer_auth_service.Customer
              * @static
-             * @param {cbs.customer_auth_service.IUser=} [properties] Properties to set
-             * @returns {cbs.customer_auth_service.User} User instance
+             * @param {cbs.customer_auth_service.ICustomer=} [properties] Properties to set
+             * @returns {cbs.customer_auth_service.Customer} Customer instance
              */
-            User.create = function create(properties) {
-                return new User(properties);
+            Customer.create = function create(properties) {
+                return new Customer(properties);
             };
 
             /**
-             * Encodes the specified User message. Does not implicitly {@link cbs.customer_auth_service.User.verify|verify} messages.
+             * Encodes the specified Customer message. Does not implicitly {@link cbs.customer_auth_service.Customer.verify|verify} messages.
              * @function encode
-             * @memberof cbs.customer_auth_service.User
+             * @memberof cbs.customer_auth_service.Customer
              * @static
-             * @param {cbs.customer_auth_service.IUser} message User message or plain object to encode
+             * @param {cbs.customer_auth_service.ICustomer} message Customer message or plain object to encode
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            User.encode = function encode(message, writer) {
+            Customer.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.id != null && Object.hasOwnProperty.call(message, "id"))
@@ -5782,39 +5782,39 @@ $root.cbs = (function() {
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.email);
                 if (message.address != null && Object.hasOwnProperty.call(message, "address"))
                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.address);
-                if (message.phoneumber != null && Object.hasOwnProperty.call(message, "phoneumber"))
-                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.phoneumber);
+                if (message.phoneNumber != null && Object.hasOwnProperty.call(message, "phoneNumber"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.phoneNumber);
                 return writer;
             };
 
             /**
-             * Encodes the specified User message, length delimited. Does not implicitly {@link cbs.customer_auth_service.User.verify|verify} messages.
+             * Encodes the specified Customer message, length delimited. Does not implicitly {@link cbs.customer_auth_service.Customer.verify|verify} messages.
              * @function encodeDelimited
-             * @memberof cbs.customer_auth_service.User
+             * @memberof cbs.customer_auth_service.Customer
              * @static
-             * @param {cbs.customer_auth_service.IUser} message User message or plain object to encode
+             * @param {cbs.customer_auth_service.ICustomer} message Customer message or plain object to encode
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            User.encodeDelimited = function encodeDelimited(message, writer) {
+            Customer.encodeDelimited = function encodeDelimited(message, writer) {
                 return this.encode(message, writer).ldelim();
             };
 
             /**
-             * Decodes a User message from the specified reader or buffer.
+             * Decodes a Customer message from the specified reader or buffer.
              * @function decode
-             * @memberof cbs.customer_auth_service.User
+             * @memberof cbs.customer_auth_service.Customer
              * @static
              * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
              * @param {number} [length] Message length if known beforehand
-             * @returns {cbs.customer_auth_service.User} User
+             * @returns {cbs.customer_auth_service.Customer} Customer
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            User.decode = function decode(reader, length) {
+            Customer.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.User();
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.Customer();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
@@ -5831,7 +5831,7 @@ $root.cbs = (function() {
                         message.address = reader.string();
                         break;
                     case 5:
-                        message.phoneumber = reader.string();
+                        message.phoneNumber = reader.string();
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -5842,30 +5842,30 @@ $root.cbs = (function() {
             };
 
             /**
-             * Decodes a User message from the specified reader or buffer, length delimited.
+             * Decodes a Customer message from the specified reader or buffer, length delimited.
              * @function decodeDelimited
-             * @memberof cbs.customer_auth_service.User
+             * @memberof cbs.customer_auth_service.Customer
              * @static
              * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {cbs.customer_auth_service.User} User
+             * @returns {cbs.customer_auth_service.Customer} Customer
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            User.decodeDelimited = function decodeDelimited(reader) {
+            Customer.decodeDelimited = function decodeDelimited(reader) {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, reader.uint32());
             };
 
             /**
-             * Verifies a User message.
+             * Verifies a Customer message.
              * @function verify
-             * @memberof cbs.customer_auth_service.User
+             * @memberof cbs.customer_auth_service.Customer
              * @static
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            User.verify = function verify(message) {
+            Customer.verify = function verify(message) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
                 if (message.id != null && message.hasOwnProperty("id"))
@@ -5880,24 +5880,24 @@ $root.cbs = (function() {
                 if (message.address != null && message.hasOwnProperty("address"))
                     if (!$util.isString(message.address))
                         return "address: string expected";
-                if (message.phoneumber != null && message.hasOwnProperty("phoneumber"))
-                    if (!$util.isString(message.phoneumber))
-                        return "phoneumber: string expected";
+                if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+                    if (!$util.isString(message.phoneNumber))
+                        return "phoneNumber: string expected";
                 return null;
             };
 
             /**
-             * Creates a User message from a plain object. Also converts values to their respective internal types.
+             * Creates a Customer message from a plain object. Also converts values to their respective internal types.
              * @function fromObject
-             * @memberof cbs.customer_auth_service.User
+             * @memberof cbs.customer_auth_service.Customer
              * @static
              * @param {Object.<string,*>} object Plain object
-             * @returns {cbs.customer_auth_service.User} User
+             * @returns {cbs.customer_auth_service.Customer} Customer
              */
-            User.fromObject = function fromObject(object) {
-                if (object instanceof $root.cbs.customer_auth_service.User)
+            Customer.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.customer_auth_service.Customer)
                     return object;
-                var message = new $root.cbs.customer_auth_service.User();
+                var message = new $root.cbs.customer_auth_service.Customer();
                 if (object.id != null)
                     message.id = String(object.id);
                 if (object.name != null)
@@ -5906,21 +5906,21 @@ $root.cbs = (function() {
                     message.email = String(object.email);
                 if (object.address != null)
                     message.address = String(object.address);
-                if (object.phoneumber != null)
-                    message.phoneumber = String(object.phoneumber);
+                if (object.phoneNumber != null)
+                    message.phoneNumber = String(object.phoneNumber);
                 return message;
             };
 
             /**
-             * Creates a plain object from a User message. Also converts values to other types if specified.
+             * Creates a plain object from a Customer message. Also converts values to other types if specified.
              * @function toObject
-             * @memberof cbs.customer_auth_service.User
+             * @memberof cbs.customer_auth_service.Customer
              * @static
-             * @param {cbs.customer_auth_service.User} message User
+             * @param {cbs.customer_auth_service.Customer} message Customer
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            User.toObject = function toObject(message, options) {
+            Customer.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
                 var object = {};
@@ -5929,7 +5929,7 @@ $root.cbs = (function() {
                     object.name = "";
                     object.email = "";
                     object.address = "";
-                    object.phoneumber = "";
+                    object.phoneNumber = "";
                 }
                 if (message.id != null && message.hasOwnProperty("id"))
                     object.id = message.id;
@@ -5939,23 +5939,23 @@ $root.cbs = (function() {
                     object.email = message.email;
                 if (message.address != null && message.hasOwnProperty("address"))
                     object.address = message.address;
-                if (message.phoneumber != null && message.hasOwnProperty("phoneumber"))
-                    object.phoneumber = message.phoneumber;
+                if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+                    object.phoneNumber = message.phoneNumber;
                 return object;
             };
 
             /**
-             * Converts this User to JSON.
+             * Converts this Customer to JSON.
              * @function toJSON
-             * @memberof cbs.customer_auth_service.User
+             * @memberof cbs.customer_auth_service.Customer
              * @instance
              * @returns {Object.<string,*>} JSON object
              */
-            User.prototype.toJSON = function toJSON() {
+            Customer.prototype.toJSON = function toJSON() {
                 return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
             };
 
-            return User;
+            return Customer;
         })();
 
         customer_auth_service.CustomerProfileRequest = (function() {
@@ -6152,7 +6152,7 @@ $root.cbs = (function() {
              * @memberof cbs.customer_auth_service
              * @interface ICustomerProfileResponse
              * @property {number|null} [status] CustomerProfileResponse status
-             * @property {cbs.customer_auth_service.IUser|null} [data] CustomerProfileResponse data
+             * @property {cbs.customer_auth_service.ICustomer|null} [customer] CustomerProfileResponse customer
              */
 
             /**
@@ -6179,12 +6179,12 @@ $root.cbs = (function() {
             CustomerProfileResponse.prototype.status = 0;
 
             /**
-             * CustomerProfileResponse data.
-             * @member {cbs.customer_auth_service.IUser|null|undefined} data
+             * CustomerProfileResponse customer.
+             * @member {cbs.customer_auth_service.ICustomer|null|undefined} customer
              * @memberof cbs.customer_auth_service.CustomerProfileResponse
              * @instance
              */
-            CustomerProfileResponse.prototype.data = null;
+            CustomerProfileResponse.prototype.customer = null;
 
             /**
              * Creates a new CustomerProfileResponse instance using the specified properties.
@@ -6212,8 +6212,8 @@ $root.cbs = (function() {
                     writer = $Writer.create();
                 if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
-                if (message.data != null && Object.hasOwnProperty.call(message, "data"))
-                    $root.cbs.customer_auth_service.User.encode(message.data, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.customer != null && Object.hasOwnProperty.call(message, "customer"))
+                    $root.cbs.customer_auth_service.Customer.encode(message.customer, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
 
@@ -6252,7 +6252,7 @@ $root.cbs = (function() {
                         message.status = reader.int32();
                         break;
                     case 2:
-                        message.data = $root.cbs.customer_auth_service.User.decode(reader, reader.uint32());
+                        message.customer = $root.cbs.customer_auth_service.Customer.decode(reader, reader.uint32());
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -6292,10 +6292,10 @@ $root.cbs = (function() {
                 if (message.status != null && message.hasOwnProperty("status"))
                     if (!$util.isInteger(message.status))
                         return "status: integer expected";
-                if (message.data != null && message.hasOwnProperty("data")) {
-                    var error = $root.cbs.customer_auth_service.User.verify(message.data);
+                if (message.customer != null && message.hasOwnProperty("customer")) {
+                    var error = $root.cbs.customer_auth_service.Customer.verify(message.customer);
                     if (error)
-                        return "data." + error;
+                        return "customer." + error;
                 }
                 return null;
             };
@@ -6314,10 +6314,10 @@ $root.cbs = (function() {
                 var message = new $root.cbs.customer_auth_service.CustomerProfileResponse();
                 if (object.status != null)
                     message.status = object.status | 0;
-                if (object.data != null) {
-                    if (typeof object.data !== "object")
-                        throw TypeError(".cbs.customer_auth_service.CustomerProfileResponse.data: object expected");
-                    message.data = $root.cbs.customer_auth_service.User.fromObject(object.data);
+                if (object.customer != null) {
+                    if (typeof object.customer !== "object")
+                        throw TypeError(".cbs.customer_auth_service.CustomerProfileResponse.customer: object expected");
+                    message.customer = $root.cbs.customer_auth_service.Customer.fromObject(object.customer);
                 }
                 return message;
             };
@@ -6337,12 +6337,12 @@ $root.cbs = (function() {
                 var object = {};
                 if (options.defaults) {
                     object.status = 0;
-                    object.data = null;
+                    object.customer = null;
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = message.status;
-                if (message.data != null && message.hasOwnProperty("data"))
-                    object.data = $root.cbs.customer_auth_service.User.toObject(message.data, options);
+                if (message.customer != null && message.hasOwnProperty("customer"))
+                    object.customer = $root.cbs.customer_auth_service.Customer.toObject(message.customer, options);
                 return object;
             };
 

@@ -11,7 +11,7 @@
         // req.body.id = req.user.id;
 
         const payload = requestHelper(req, res, cbs.customer_auth_service.CustomerProfileRequest)
-        
+
         // THIS WORKS
         payload.id = req.user.id;
         if (payload.status) {
@@ -23,6 +23,7 @@
                 if (err) {
                     return responseHelper.sendErrorResponse(err, res, req.metaData);
                 }
+
                 return responseHelper.sendSuccessResponse(response.status, response, cbs.common.Response, res);
             });
         } catch (err) {
