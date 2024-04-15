@@ -27,6 +27,14 @@
         decode: cbs.customer_auth_service.GetResponse,
       }
     },
+    '/api/v1/customer/auth/me': {
+      GET: {
+        client: clientLoader.customerAuthClient,
+        method: 'customerProfile',
+        encode: cbs.customer_auth_service.CustomerProfileRequest,
+        decode: cbs.customer_auth_service.CustomerProfileResponse,
+      }
+    },
   };
 })();
 

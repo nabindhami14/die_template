@@ -32,7 +32,8 @@ server.addService(customerProto.cbs.customer_auth_service.rpc.CustomerAuthServic
     // RegisterCustomer: customerRegistrationCtrl.registerCustomer,
     registerCustomer: customerAuthCtrl.regsiterCustomer,
     loginCustomer: customerAuthCtrl.loginCustomer,
-    getCustomer: customerAuthCtrl.customerProfile
+    getCustomer: customerAuthCtrl.customerProfile,
+    customerProfile: customerAuthCtrl.customerProfile
 })
 
 server.bindAsync(

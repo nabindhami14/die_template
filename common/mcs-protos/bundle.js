@@ -3370,6 +3370,39 @@ $root.cbs = (function() {
                  * @variation 2
                  */
 
+                /**
+                 * Callback as used by {@link cbs.customer_auth_service.rpc.CustomerAuthService#customerProfile}.
+                 * @memberof cbs.customer_auth_service.rpc.CustomerAuthService
+                 * @typedef customerProfileCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {cbs.customer_auth_service.CustomerProfileResponse} [response] CustomerProfileResponse
+                 */
+
+                /**
+                 * Calls customerProfile.
+                 * @function customerProfile
+                 * @memberof cbs.customer_auth_service.rpc.CustomerAuthService
+                 * @instance
+                 * @param {cbs.customer_auth_service.ICustomerProfileRequest} request CustomerProfileRequest message or plain object
+                 * @param {cbs.customer_auth_service.rpc.CustomerAuthService.customerProfileCallback} callback Node-style callback called with the error, if any, and CustomerProfileResponse
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(CustomerAuthService.prototype.customerProfile = function customerProfile(request, callback) {
+                    return this.rpcCall(customerProfile, $root.cbs.customer_auth_service.CustomerProfileRequest, $root.cbs.customer_auth_service.CustomerProfileResponse, request, callback);
+                }, "name", { value: "customerProfile" });
+
+                /**
+                 * Calls customerProfile.
+                 * @function customerProfile
+                 * @memberof cbs.customer_auth_service.rpc.CustomerAuthService
+                 * @instance
+                 * @param {cbs.customer_auth_service.ICustomerProfileRequest} request CustomerProfileRequest message or plain object
+                 * @returns {Promise<cbs.customer_auth_service.CustomerProfileResponse>} Promise
+                 * @variation 2
+                 */
+
                 return CustomerAuthService;
             })();
 
@@ -5173,6 +5206,408 @@ $root.cbs = (function() {
             };
 
             return GetResponse;
+        })();
+
+        customer_auth_service.CustomerProfileRequest = (function() {
+
+            /**
+             * Properties of a CustomerProfileRequest.
+             * @memberof cbs.customer_auth_service
+             * @interface ICustomerProfileRequest
+             * @property {string|null} [id] CustomerProfileRequest id
+             */
+
+            /**
+             * Constructs a new CustomerProfileRequest.
+             * @memberof cbs.customer_auth_service
+             * @classdesc Represents a CustomerProfileRequest.
+             * @implements ICustomerProfileRequest
+             * @constructor
+             * @param {cbs.customer_auth_service.ICustomerProfileRequest=} [properties] Properties to set
+             */
+            function CustomerProfileRequest(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * CustomerProfileRequest id.
+             * @member {string} id
+             * @memberof cbs.customer_auth_service.CustomerProfileRequest
+             * @instance
+             */
+            CustomerProfileRequest.prototype.id = "";
+
+            /**
+             * Creates a new CustomerProfileRequest instance using the specified properties.
+             * @function create
+             * @memberof cbs.customer_auth_service.CustomerProfileRequest
+             * @static
+             * @param {cbs.customer_auth_service.ICustomerProfileRequest=} [properties] Properties to set
+             * @returns {cbs.customer_auth_service.CustomerProfileRequest} CustomerProfileRequest instance
+             */
+            CustomerProfileRequest.create = function create(properties) {
+                return new CustomerProfileRequest(properties);
+            };
+
+            /**
+             * Encodes the specified CustomerProfileRequest message. Does not implicitly {@link cbs.customer_auth_service.CustomerProfileRequest.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.customer_auth_service.CustomerProfileRequest
+             * @static
+             * @param {cbs.customer_auth_service.ICustomerProfileRequest} message CustomerProfileRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CustomerProfileRequest.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified CustomerProfileRequest message, length delimited. Does not implicitly {@link cbs.customer_auth_service.CustomerProfileRequest.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.customer_auth_service.CustomerProfileRequest
+             * @static
+             * @param {cbs.customer_auth_service.ICustomerProfileRequest} message CustomerProfileRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CustomerProfileRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a CustomerProfileRequest message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.customer_auth_service.CustomerProfileRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.customer_auth_service.CustomerProfileRequest} CustomerProfileRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CustomerProfileRequest.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.CustomerProfileRequest();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.id = reader.string();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a CustomerProfileRequest message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.customer_auth_service.CustomerProfileRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.customer_auth_service.CustomerProfileRequest} CustomerProfileRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CustomerProfileRequest.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a CustomerProfileRequest message.
+             * @function verify
+             * @memberof cbs.customer_auth_service.CustomerProfileRequest
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            CustomerProfileRequest.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isString(message.id))
+                        return "id: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a CustomerProfileRequest message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.customer_auth_service.CustomerProfileRequest
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.customer_auth_service.CustomerProfileRequest} CustomerProfileRequest
+             */
+            CustomerProfileRequest.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.customer_auth_service.CustomerProfileRequest)
+                    return object;
+                var message = new $root.cbs.customer_auth_service.CustomerProfileRequest();
+                if (object.id != null)
+                    message.id = String(object.id);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a CustomerProfileRequest message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.customer_auth_service.CustomerProfileRequest
+             * @static
+             * @param {cbs.customer_auth_service.CustomerProfileRequest} message CustomerProfileRequest
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            CustomerProfileRequest.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.id = "";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                return object;
+            };
+
+            /**
+             * Converts this CustomerProfileRequest to JSON.
+             * @function toJSON
+             * @memberof cbs.customer_auth_service.CustomerProfileRequest
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            CustomerProfileRequest.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return CustomerProfileRequest;
+        })();
+
+        customer_auth_service.CustomerProfileResponse = (function() {
+
+            /**
+             * Properties of a CustomerProfileResponse.
+             * @memberof cbs.customer_auth_service
+             * @interface ICustomerProfileResponse
+             * @property {number|null} [status] CustomerProfileResponse status
+             * @property {cbs.customer_auth_service.IUser|null} [data] CustomerProfileResponse data
+             */
+
+            /**
+             * Constructs a new CustomerProfileResponse.
+             * @memberof cbs.customer_auth_service
+             * @classdesc Represents a CustomerProfileResponse.
+             * @implements ICustomerProfileResponse
+             * @constructor
+             * @param {cbs.customer_auth_service.ICustomerProfileResponse=} [properties] Properties to set
+             */
+            function CustomerProfileResponse(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * CustomerProfileResponse status.
+             * @member {number} status
+             * @memberof cbs.customer_auth_service.CustomerProfileResponse
+             * @instance
+             */
+            CustomerProfileResponse.prototype.status = 0;
+
+            /**
+             * CustomerProfileResponse data.
+             * @member {cbs.customer_auth_service.IUser|null|undefined} data
+             * @memberof cbs.customer_auth_service.CustomerProfileResponse
+             * @instance
+             */
+            CustomerProfileResponse.prototype.data = null;
+
+            /**
+             * Creates a new CustomerProfileResponse instance using the specified properties.
+             * @function create
+             * @memberof cbs.customer_auth_service.CustomerProfileResponse
+             * @static
+             * @param {cbs.customer_auth_service.ICustomerProfileResponse=} [properties] Properties to set
+             * @returns {cbs.customer_auth_service.CustomerProfileResponse} CustomerProfileResponse instance
+             */
+            CustomerProfileResponse.create = function create(properties) {
+                return new CustomerProfileResponse(properties);
+            };
+
+            /**
+             * Encodes the specified CustomerProfileResponse message. Does not implicitly {@link cbs.customer_auth_service.CustomerProfileResponse.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.customer_auth_service.CustomerProfileResponse
+             * @static
+             * @param {cbs.customer_auth_service.ICustomerProfileResponse} message CustomerProfileResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CustomerProfileResponse.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+                if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                    $root.cbs.customer_auth_service.User.encode(message.data, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified CustomerProfileResponse message, length delimited. Does not implicitly {@link cbs.customer_auth_service.CustomerProfileResponse.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.customer_auth_service.CustomerProfileResponse
+             * @static
+             * @param {cbs.customer_auth_service.ICustomerProfileResponse} message CustomerProfileResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CustomerProfileResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a CustomerProfileResponse message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.customer_auth_service.CustomerProfileResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.customer_auth_service.CustomerProfileResponse} CustomerProfileResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CustomerProfileResponse.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.CustomerProfileResponse();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.status = reader.int32();
+                        break;
+                    case 2:
+                        message.data = $root.cbs.customer_auth_service.User.decode(reader, reader.uint32());
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a CustomerProfileResponse message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.customer_auth_service.CustomerProfileResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.customer_auth_service.CustomerProfileResponse} CustomerProfileResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CustomerProfileResponse.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a CustomerProfileResponse message.
+             * @function verify
+             * @memberof cbs.customer_auth_service.CustomerProfileResponse
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            CustomerProfileResponse.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                if (message.data != null && message.hasOwnProperty("data")) {
+                    var error = $root.cbs.customer_auth_service.User.verify(message.data);
+                    if (error)
+                        return "data." + error;
+                }
+                return null;
+            };
+
+            /**
+             * Creates a CustomerProfileResponse message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.customer_auth_service.CustomerProfileResponse
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.customer_auth_service.CustomerProfileResponse} CustomerProfileResponse
+             */
+            CustomerProfileResponse.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.customer_auth_service.CustomerProfileResponse)
+                    return object;
+                var message = new $root.cbs.customer_auth_service.CustomerProfileResponse();
+                if (object.status != null)
+                    message.status = object.status | 0;
+                if (object.data != null) {
+                    if (typeof object.data !== "object")
+                        throw TypeError(".cbs.customer_auth_service.CustomerProfileResponse.data: object expected");
+                    message.data = $root.cbs.customer_auth_service.User.fromObject(object.data);
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a CustomerProfileResponse message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.customer_auth_service.CustomerProfileResponse
+             * @static
+             * @param {cbs.customer_auth_service.CustomerProfileResponse} message CustomerProfileResponse
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            CustomerProfileResponse.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.status = 0;
+                    object.data = null;
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                if (message.data != null && message.hasOwnProperty("data"))
+                    object.data = $root.cbs.customer_auth_service.User.toObject(message.data, options);
+                return object;
+            };
+
+            /**
+             * Converts this CustomerProfileResponse to JSON.
+             * @function toJSON
+             * @memberof cbs.customer_auth_service.CustomerProfileResponse
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            CustomerProfileResponse.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return CustomerProfileResponse;
         })();
 
         return customer_auth_service;

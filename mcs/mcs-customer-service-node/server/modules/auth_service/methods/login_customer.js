@@ -13,6 +13,7 @@
                 return callback(null, { status: 400, access_token: "INVALID", refresh_token: "INVALID" })
             }
             const { access_token, refresh_token } = await jwtHelper.generateTokens({ id: response.data.id, email: response.data.email })
+            console.log(access_token);
 
             callback(null, { status: 200, access_token, refresh_token })
         } catch (error) {
