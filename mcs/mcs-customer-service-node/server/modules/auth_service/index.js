@@ -6,6 +6,7 @@
         // clearLoginSessionByProfileId: require('./methods/logout_by_profile'),
         // customerLoginStatus: require('./methods/customer_login_status')
         regsiterCustomer: require("./methods/register_customer"),
+        loginCustomer: require("./methods/login_customer"),
         customerProfile: require("./methods/customer_profile")
     };
 })();

@@ -18,6 +18,10 @@ module.exports = {
     // logger: getLogger(),
     // databaseHelper: require("./mysql.database.helper"),
     mysqlHelper: require("./mysql.database.helper"),
-    mysqlHelperReadonly:require("./mysql.database.helper.readOnly"),
-    keyHelper : require("./object_key_helper")
+    mysqlHelperReadonly: require("./mysql.database.helper.readOnly"),
+    keyHelper: require("./object_key_helper"),
+
+    // UTILITIES
+    passwordHelper: require("./password_helper"),
+    jwtHelper: require("./jwt_helper")
 };

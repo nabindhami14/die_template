@@ -2,13 +2,11 @@
 
 
 const { mysqlHelperReadonly, keyHelper } = require('common/helpers');
-
-
-module.exports = async (id) => {
+module.exports = async (email) => {
 
     try {
         let response = { data: {} };
-        const query = mysqlHelperReadonly.format(`select * from customers where id = ?`, id)
+        const query = mysqlHelperReadonly.format(`select * from customers where email = ?`, email)
 
         let [dbResponse] = await mysqlHelperReadonly.query(query);
         if (dbResponse && dbResponse.length > 0) {

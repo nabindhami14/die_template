@@ -5,19 +5,34 @@ package cbs.customer_auth_service;
 message RegisterRequest {
     string name = 1;
     string email = 2;
-    string address = 3;
-    string phone_number = 4;
+    string password = 3;
+    string address = 4;
+    string phone_number = 5;
 }
-
 message RegisterResponse {
     string status = 1;
     string message = 2;
 }
 
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+message Tokens {
+    string access_token = 1;
+    string refresh_token = 2;
+}
+message LoginResponse {
+    int32 status = 1;
+    Tokens tokens = 2;
+}
+
+
+
 message GetRequest {
     string id = 1;
 }
-
 message User {
     string id = 1;
     string name = 2;
@@ -25,7 +40,6 @@ message User {
     string address = 4;
     string phone_number = 5;
 }
-
 message GetResponse {
     int32 status = 1;
     User data = 2;

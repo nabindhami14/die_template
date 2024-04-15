@@ -14,6 +14,8 @@
     // getUserDetailByUsername: require('./get_user_by_username'),
     // deleteLoginSessionByUserId: require('./delete_login_session_by_userId')
     createCustomer: require("./create_customer"),
+    loginCustomer: require("./login_customer"),
     getCustomer: require("./get_customer"),
+    getCustomerByEmail:require("./get_customer_by_email")
   };
 })();

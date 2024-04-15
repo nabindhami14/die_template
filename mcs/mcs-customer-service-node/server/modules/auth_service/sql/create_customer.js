@@ -1,15 +1,16 @@
 'use strict';
 
 
-const { mysqlHelperReadonly, keyHelper } = require('common/helpers');
+const { mysqlHelperReadonly, keyHelper, passwordHelper } = require('common/helpers');
 
 
-module.exports = async (name, email, adress, phone_number) => {
+module.exports = async (name, email, adress, phone_number, password) => {
 
     try {
         let response = { data: {} };
-        // TODO : NEED TO CALL FROM CLIENT
-        const query = mysqlHelperReadonly.format(`insert into customer (name,email,address,phone_number) values (?,?,?,?)`, [name, email, adress, phone_number])
+        const hashedPassword = await passwordHelper.generateHashPassword(password)
+
+        const query = mysqlHelperReadonly.format(`insert into customers (name,email,address,phone_number,password) values (?,?,?,?,?)`, [name, email, adress, phone_number, hashedPassword])
 
         let [dbResponse] = await mysqlHelperReadonly.query(query);
         if (dbResponse && dbResponse.length > 0) {

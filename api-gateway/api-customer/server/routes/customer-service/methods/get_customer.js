@@ -22,7 +22,7 @@
                 return responseHelper.sendSuccessResponse(response.status, response, cbs.common.Response, res);
             });
         } catch (err) {
-            console.error(req.metaData, 'error from getting_customer_profile', err);
+            console.error(req.metaData, '[CUSTOMER GET PROFILE]', err);
             return responseHelper.sendErrorResponse(err, res, req.metaData);
         }
     }
