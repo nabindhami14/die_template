@@ -14,7 +14,6 @@
                 phone_number: customer.data.phoneNumber,
             }
 
-            console.log(message);
             callback(null, {
                 status: 200,
                 data: message
