@@ -11,6 +11,14 @@
         decode: cbs.admin_service.BulkUploadResponse
       }
     },
+    '/api/v1/admin/customer': {
+      POST: {
+        client: clientLoader.adminClient,
+        method: 'getCustomer',
+        encode: cbs.admin_service.GetCustomerRequest,
+        decode: cbs.admin_service.GetCustomerResponse
+      }
+    },
     '/api/v1/admin/customers': {
       POST: {
         client: clientLoader.adminClient,

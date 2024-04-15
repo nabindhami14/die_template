@@ -18,6 +18,16 @@ message Customer {
     string address = 4;
     string phoneNumber = 5;
 }
+message GetCustomerRequest {
+    int32 id = 1;
+    int32 customerId = 2;
+}
+message GetCustomerResponse {
+    int32 status = 1;
+    Customer customer = 2;
+}
+
+
 message GetCustomersRequest {
     int32 id = 1;
 }

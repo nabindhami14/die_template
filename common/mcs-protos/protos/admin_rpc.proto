@@ -7,5 +7,6 @@ package cbs.admin_service.rpc;
 
 service AdminService { 
     rpc bulkUpload(cbs.admin_service.BulkUploadRequest) returns (cbs.admin_service.BulkUploadResponse);
+    rpc getCustomer(cbs.admin_service.GetCustomerRequest) returns (cbs.admin_service.GetCustomerResponse);
     rpc getCustomers(cbs.admin_service.GetCustomersRequest) returns (cbs.admin_service.GetCustomersResponse);
 }
