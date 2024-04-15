@@ -6,6 +6,10 @@
     const customerRouter = express.Router();
     const customerRouterCtrl = require(".")
 
+    const { authMiddleware } = require("common/helpers")
+
+
+    customerRouter.route("/").get(authMiddleware, customerRouterCtrl.GetCustomers)
     customerRouter.route("/bulk-upload").get(customerRouterCtrl.BulkUpload)
 
     module.exports = customerRouter

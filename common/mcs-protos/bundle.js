@@ -101,6 +101,39 @@ $root.cbs = (function() {
                  * @variation 2
                  */
 
+                /**
+                 * Callback as used by {@link cbs.admin_service.rpc.AdminService#getCustomers}.
+                 * @memberof cbs.admin_service.rpc.AdminService
+                 * @typedef getCustomersCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {cbs.admin_service.GetCustomersResponse} [response] GetCustomersResponse
+                 */
+
+                /**
+                 * Calls getCustomers.
+                 * @function getCustomers
+                 * @memberof cbs.admin_service.rpc.AdminService
+                 * @instance
+                 * @param {cbs.admin_service.IGetCustomersRequest} request GetCustomersRequest message or plain object
+                 * @param {cbs.admin_service.rpc.AdminService.getCustomersCallback} callback Node-style callback called with the error, if any, and GetCustomersResponse
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(AdminService.prototype.getCustomers = function getCustomers(request, callback) {
+                    return this.rpcCall(getCustomers, $root.cbs.admin_service.GetCustomersRequest, $root.cbs.admin_service.GetCustomersResponse, request, callback);
+                }, "name", { value: "getCustomers" });
+
+                /**
+                 * Calls getCustomers.
+                 * @function getCustomers
+                 * @memberof cbs.admin_service.rpc.AdminService
+                 * @instance
+                 * @param {cbs.admin_service.IGetCustomersRequest} request GetCustomersRequest message or plain object
+                 * @returns {Promise<cbs.admin_service.GetCustomersResponse>} Promise
+                 * @variation 2
+                 */
+
                 return AdminService;
             })();
 
@@ -502,6 +535,700 @@ $root.cbs = (function() {
             };
 
             return BulkUploadResponse;
+        })();
+
+        admin_service.Customer = (function() {
+
+            /**
+             * Properties of a Customer.
+             * @memberof cbs.admin_service
+             * @interface ICustomer
+             * @property {string|null} [id] Customer id
+             * @property {string|null} [name] Customer name
+             * @property {string|null} [email] Customer email
+             * @property {string|null} [address] Customer address
+             * @property {string|null} [phoneNumber] Customer phoneNumber
+             */
+
+            /**
+             * Constructs a new Customer.
+             * @memberof cbs.admin_service
+             * @classdesc Represents a Customer.
+             * @implements ICustomer
+             * @constructor
+             * @param {cbs.admin_service.ICustomer=} [properties] Properties to set
+             */
+            function Customer(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * Customer id.
+             * @member {string} id
+             * @memberof cbs.admin_service.Customer
+             * @instance
+             */
+            Customer.prototype.id = "";
+
+            /**
+             * Customer name.
+             * @member {string} name
+             * @memberof cbs.admin_service.Customer
+             * @instance
+             */
+            Customer.prototype.name = "";
+
+            /**
+             * Customer email.
+             * @member {string} email
+             * @memberof cbs.admin_service.Customer
+             * @instance
+             */
+            Customer.prototype.email = "";
+
+            /**
+             * Customer address.
+             * @member {string} address
+             * @memberof cbs.admin_service.Customer
+             * @instance
+             */
+            Customer.prototype.address = "";
+
+            /**
+             * Customer phoneNumber.
+             * @member {string} phoneNumber
+             * @memberof cbs.admin_service.Customer
+             * @instance
+             */
+            Customer.prototype.phoneNumber = "";
+
+            /**
+             * Creates a new Customer instance using the specified properties.
+             * @function create
+             * @memberof cbs.admin_service.Customer
+             * @static
+             * @param {cbs.admin_service.ICustomer=} [properties] Properties to set
+             * @returns {cbs.admin_service.Customer} Customer instance
+             */
+            Customer.create = function create(properties) {
+                return new Customer(properties);
+            };
+
+            /**
+             * Encodes the specified Customer message. Does not implicitly {@link cbs.admin_service.Customer.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.admin_service.Customer
+             * @static
+             * @param {cbs.admin_service.ICustomer} message Customer message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Customer.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+                if (message.email != null && Object.hasOwnProperty.call(message, "email"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.email);
+                if (message.address != null && Object.hasOwnProperty.call(message, "address"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.address);
+                if (message.phoneNumber != null && Object.hasOwnProperty.call(message, "phoneNumber"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.phoneNumber);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified Customer message, length delimited. Does not implicitly {@link cbs.admin_service.Customer.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.admin_service.Customer
+             * @static
+             * @param {cbs.admin_service.ICustomer} message Customer message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Customer.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a Customer message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.admin_service.Customer
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.admin_service.Customer} Customer
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Customer.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.Customer();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.id = reader.string();
+                        break;
+                    case 2:
+                        message.name = reader.string();
+                        break;
+                    case 3:
+                        message.email = reader.string();
+                        break;
+                    case 4:
+                        message.address = reader.string();
+                        break;
+                    case 5:
+                        message.phoneNumber = reader.string();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a Customer message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.admin_service.Customer
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.admin_service.Customer} Customer
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Customer.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a Customer message.
+             * @function verify
+             * @memberof cbs.admin_service.Customer
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Customer.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isString(message.id))
+                        return "id: string expected";
+                if (message.name != null && message.hasOwnProperty("name"))
+                    if (!$util.isString(message.name))
+                        return "name: string expected";
+                if (message.email != null && message.hasOwnProperty("email"))
+                    if (!$util.isString(message.email))
+                        return "email: string expected";
+                if (message.address != null && message.hasOwnProperty("address"))
+                    if (!$util.isString(message.address))
+                        return "address: string expected";
+                if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+                    if (!$util.isString(message.phoneNumber))
+                        return "phoneNumber: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a Customer message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.admin_service.Customer
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.admin_service.Customer} Customer
+             */
+            Customer.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.admin_service.Customer)
+                    return object;
+                var message = new $root.cbs.admin_service.Customer();
+                if (object.id != null)
+                    message.id = String(object.id);
+                if (object.name != null)
+                    message.name = String(object.name);
+                if (object.email != null)
+                    message.email = String(object.email);
+                if (object.address != null)
+                    message.address = String(object.address);
+                if (object.phoneNumber != null)
+                    message.phoneNumber = String(object.phoneNumber);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a Customer message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.admin_service.Customer
+             * @static
+             * @param {cbs.admin_service.Customer} message Customer
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Customer.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.id = "";
+                    object.name = "";
+                    object.email = "";
+                    object.address = "";
+                    object.phoneNumber = "";
+                }
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                if (message.name != null && message.hasOwnProperty("name"))
+                    object.name = message.name;
+                if (message.email != null && message.hasOwnProperty("email"))
+                    object.email = message.email;
+                if (message.address != null && message.hasOwnProperty("address"))
+                    object.address = message.address;
+                if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+                    object.phoneNumber = message.phoneNumber;
+                return object;
+            };
+
+            /**
+             * Converts this Customer to JSON.
+             * @function toJSON
+             * @memberof cbs.admin_service.Customer
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Customer.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return Customer;
+        })();
+
+        admin_service.GetCustomersRequest = (function() {
+
+            /**
+             * Properties of a GetCustomersRequest.
+             * @memberof cbs.admin_service
+             * @interface IGetCustomersRequest
+             * @property {number|null} [id] GetCustomersRequest id
+             */
+
+            /**
+             * Constructs a new GetCustomersRequest.
+             * @memberof cbs.admin_service
+             * @classdesc Represents a GetCustomersRequest.
+             * @implements IGetCustomersRequest
+             * @constructor
+             * @param {cbs.admin_service.IGetCustomersRequest=} [properties] Properties to set
+             */
+            function GetCustomersRequest(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * GetCustomersRequest id.
+             * @member {number} id
+             * @memberof cbs.admin_service.GetCustomersRequest
+             * @instance
+             */
+            GetCustomersRequest.prototype.id = 0;
+
+            /**
+             * Creates a new GetCustomersRequest instance using the specified properties.
+             * @function create
+             * @memberof cbs.admin_service.GetCustomersRequest
+             * @static
+             * @param {cbs.admin_service.IGetCustomersRequest=} [properties] Properties to set
+             * @returns {cbs.admin_service.GetCustomersRequest} GetCustomersRequest instance
+             */
+            GetCustomersRequest.create = function create(properties) {
+                return new GetCustomersRequest(properties);
+            };
+
+            /**
+             * Encodes the specified GetCustomersRequest message. Does not implicitly {@link cbs.admin_service.GetCustomersRequest.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.admin_service.GetCustomersRequest
+             * @static
+             * @param {cbs.admin_service.IGetCustomersRequest} message GetCustomersRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            GetCustomersRequest.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified GetCustomersRequest message, length delimited. Does not implicitly {@link cbs.admin_service.GetCustomersRequest.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.admin_service.GetCustomersRequest
+             * @static
+             * @param {cbs.admin_service.IGetCustomersRequest} message GetCustomersRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            GetCustomersRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a GetCustomersRequest message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.admin_service.GetCustomersRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.admin_service.GetCustomersRequest} GetCustomersRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            GetCustomersRequest.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.GetCustomersRequest();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.id = reader.int32();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a GetCustomersRequest message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.admin_service.GetCustomersRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.admin_service.GetCustomersRequest} GetCustomersRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            GetCustomersRequest.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a GetCustomersRequest message.
+             * @function verify
+             * @memberof cbs.admin_service.GetCustomersRequest
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            GetCustomersRequest.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                return null;
+            };
+
+            /**
+             * Creates a GetCustomersRequest message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.admin_service.GetCustomersRequest
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.admin_service.GetCustomersRequest} GetCustomersRequest
+             */
+            GetCustomersRequest.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.admin_service.GetCustomersRequest)
+                    return object;
+                var message = new $root.cbs.admin_service.GetCustomersRequest();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a GetCustomersRequest message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.admin_service.GetCustomersRequest
+             * @static
+             * @param {cbs.admin_service.GetCustomersRequest} message GetCustomersRequest
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            GetCustomersRequest.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.id = 0;
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                return object;
+            };
+
+            /**
+             * Converts this GetCustomersRequest to JSON.
+             * @function toJSON
+             * @memberof cbs.admin_service.GetCustomersRequest
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            GetCustomersRequest.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return GetCustomersRequest;
+        })();
+
+        admin_service.GetCustomersResponse = (function() {
+
+            /**
+             * Properties of a GetCustomersResponse.
+             * @memberof cbs.admin_service
+             * @interface IGetCustomersResponse
+             * @property {number|null} [status] GetCustomersResponse status
+             * @property {Array.<cbs.admin_service.ICustomer>|null} [customers] GetCustomersResponse customers
+             */
+
+            /**
+             * Constructs a new GetCustomersResponse.
+             * @memberof cbs.admin_service
+             * @classdesc Represents a GetCustomersResponse.
+             * @implements IGetCustomersResponse
+             * @constructor
+             * @param {cbs.admin_service.IGetCustomersResponse=} [properties] Properties to set
+             */
+            function GetCustomersResponse(properties) {
+                this.customers = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * GetCustomersResponse status.
+             * @member {number} status
+             * @memberof cbs.admin_service.GetCustomersResponse
+             * @instance
+             */
+            GetCustomersResponse.prototype.status = 0;
+
+            /**
+             * GetCustomersResponse customers.
+             * @member {Array.<cbs.admin_service.ICustomer>} customers
+             * @memberof cbs.admin_service.GetCustomersResponse
+             * @instance
+             */
+            GetCustomersResponse.prototype.customers = $util.emptyArray;
+
+            /**
+             * Creates a new GetCustomersResponse instance using the specified properties.
+             * @function create
+             * @memberof cbs.admin_service.GetCustomersResponse
+             * @static
+             * @param {cbs.admin_service.IGetCustomersResponse=} [properties] Properties to set
+             * @returns {cbs.admin_service.GetCustomersResponse} GetCustomersResponse instance
+             */
+            GetCustomersResponse.create = function create(properties) {
+                return new GetCustomersResponse(properties);
+            };
+
+            /**
+             * Encodes the specified GetCustomersResponse message. Does not implicitly {@link cbs.admin_service.GetCustomersResponse.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.admin_service.GetCustomersResponse
+             * @static
+             * @param {cbs.admin_service.IGetCustomersResponse} message GetCustomersResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            GetCustomersResponse.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+                if (message.customers != null && message.customers.length)
+                    for (var i = 0; i < message.customers.length; ++i)
+                        $root.cbs.admin_service.Customer.encode(message.customers[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified GetCustomersResponse message, length delimited. Does not implicitly {@link cbs.admin_service.GetCustomersResponse.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.admin_service.GetCustomersResponse
+             * @static
+             * @param {cbs.admin_service.IGetCustomersResponse} message GetCustomersResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            GetCustomersResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a GetCustomersResponse message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.admin_service.GetCustomersResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.admin_service.GetCustomersResponse} GetCustomersResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            GetCustomersResponse.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.GetCustomersResponse();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.status = reader.int32();
+                        break;
+                    case 2:
+                        if (!(message.customers && message.customers.length))
+                            message.customers = [];
+                        message.customers.push($root.cbs.admin_service.Customer.decode(reader, reader.uint32()));
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a GetCustomersResponse message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.admin_service.GetCustomersResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.admin_service.GetCustomersResponse} GetCustomersResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            GetCustomersResponse.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a GetCustomersResponse message.
+             * @function verify
+             * @memberof cbs.admin_service.GetCustomersResponse
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            GetCustomersResponse.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                if (message.customers != null && message.hasOwnProperty("customers")) {
+                    if (!Array.isArray(message.customers))
+                        return "customers: array expected";
+                    for (var i = 0; i < message.customers.length; ++i) {
+                        var error = $root.cbs.admin_service.Customer.verify(message.customers[i]);
+                        if (error)
+                            return "customers." + error;
+                    }
+                }
+                return null;
+            };
+
+            /**
+             * Creates a GetCustomersResponse message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.admin_service.GetCustomersResponse
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.admin_service.GetCustomersResponse} GetCustomersResponse
+             */
+            GetCustomersResponse.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.admin_service.GetCustomersResponse)
+                    return object;
+                var message = new $root.cbs.admin_service.GetCustomersResponse();
+                if (object.status != null)
+                    message.status = object.status | 0;
+                if (object.customers) {
+                    if (!Array.isArray(object.customers))
+                        throw TypeError(".cbs.admin_service.GetCustomersResponse.customers: array expected");
+                    message.customers = [];
+                    for (var i = 0; i < object.customers.length; ++i) {
+                        if (typeof object.customers[i] !== "object")
+                            throw TypeError(".cbs.admin_service.GetCustomersResponse.customers: object expected");
+                        message.customers[i] = $root.cbs.admin_service.Customer.fromObject(object.customers[i]);
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a GetCustomersResponse message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.admin_service.GetCustomersResponse
+             * @static
+             * @param {cbs.admin_service.GetCustomersResponse} message GetCustomersResponse
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            GetCustomersResponse.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.customers = [];
+                if (options.defaults)
+                    object.status = 0;
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                if (message.customers && message.customers.length) {
+                    object.customers = [];
+                    for (var j = 0; j < message.customers.length; ++j)
+                        object.customers[j] = $root.cbs.admin_service.Customer.toObject(message.customers[j], options);
+                }
+                return object;
+            };
+
+            /**
+             * Converts this GetCustomersResponse to JSON.
+             * @function toJSON
+             * @memberof cbs.admin_service.GetCustomersResponse
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            GetCustomersResponse.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return GetCustomersResponse;
         })();
 
         return admin_service;
