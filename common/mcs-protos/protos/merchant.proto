@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package cbs.merchant_service;
+
+
+enum AuthType {
+    BASIC = 0;
+    OAUTH2 = 1;
+    JWT = 2;
+} 
+
+message BasicAuth {
+    string username = 1;
+    string password = 2;
+}
+
+message OAuth2Auth {
+    string access_token = 1;
+}
+
+message JwtAuth {
+    string token = 1;
+}
+
+message Merchant {
+    string name = 1;
+
+    AuthType auth_type = 2;
+
+    BasicAuth basic_auth = 3;
+    OAuth2Auth oauth2_auth = 4;
+    JwtAuth jwt_auth = 5;
+
+    string senderId = 6;
+    string receiverId = 7;
+    double amount = 8;
+    string remark = 9;
+}
+
+message CreateMerchantRequest {
+    Merchant merchant = 1;
+}
+
+message CreateMerchantResponse {
+    int32 status = 1;
+    bool success = 2;
+}
+
+message GetMerchantsRequest {
+    int32 id = 1;
+}
+message GetMerchantsResponse {
+    int32 status = 1;
+    repeated Merchant merchants = 2;
+}
+
+message GetMerchantRequest {
+    int32 id = 1;
+    int32 merchantId = 2;
+}
+message GetMerchantResponse {
+    bool success = 1;
+    Merchant merchant = 2;
+}

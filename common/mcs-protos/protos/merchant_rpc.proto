@@ -1,0 +1,12 @@
+
+syntax = "proto3";
+
+import "merchant.proto";
+
+package cbs.merchant_service.rpc;
+
+service MerchantService {
+    rpc createMerchant(cbs.merchant_service.CreateMerchantRequest) returns (cbs.merchant_service.CreateMerchantResponse);
+    rpc getMerchants(cbs.merchant_service.GetMerchantsRequest) returns (cbs.merchant_service.GetMerchantsResponse);
+    rpc getMerchant(cbs.merchant_service.GetMerchantRequest) returns (cbs.merchant_service.GetMerchantResponse);
+}

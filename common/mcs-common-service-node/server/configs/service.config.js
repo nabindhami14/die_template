@@ -26,5 +26,14 @@ module.exports = {
             rpcProtoFile: 'admin_rpc',
             packageName: 'cbs.admin_service.rpc' 
         }
+    },
+    merchantService: {
+        v1: {
+            port: process.env.MERCHANT_SERVICE_PORT,
+            host: process.env.MERCHANT_SERVICE_HOST,
+            rpcService: 'MerchantService',
+            rpcProtoFile: 'merchant_rpc',
+            packageName: 'cbs.merchant_service.rpc' 
+        }
     }
 }
