@@ -13,8 +13,8 @@
             fs.createReadStream(csvPath)
                 .pipe(csv())
                 .on('data', async (row) => {
-                    const { name, email, adress, phone_number, password } = row
-                    await sql.createCustomer(name, email, adress, phone_number, password)
+                    const { name, email, address, phone_number, password } = row
+                    await sql.createCustomer(name, email, address, phone_number, password)
                 })
                 .on('end', () => {
                     console.log('BULK UPLOAD SUCCESSFULL.');
