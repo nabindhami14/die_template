@@ -12,7 +12,7 @@
         const payload = requestHelper(req, res, cbs.admin_service.GetCustomersRequest)
         
         // THIS WORKS
-        payload.id = req.user.id;
+        // payload.id = req.user.id;
 
         if (payload.status) {
             return responseHelper.sendResponse(req, '', res, payload)
@@ -23,6 +23,7 @@
                 if (err) {
                     return responseHelper.sendErrorResponse(err, res, req.metaData);
                 }
+
 
                 return responseHelper.sendSuccessResponse(response.status, response, cbs.common.Response, res);
             });

@@ -13,7 +13,7 @@
         const payload = requestHelper(req, res, cbs.admin_service.GetCustomersRequest)
         
         // THIS WORKS
-        payload.id = req.user.id;
+        // payload.id = req.user.id;
 
         if (payload.status) {
             return responseHelper.sendResponse(req, '', res, payload)

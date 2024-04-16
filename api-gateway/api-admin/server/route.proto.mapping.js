@@ -11,7 +11,7 @@
         decode: cbs.admin_service.BulkUploadResponse
       }
     },
-    '/api/v1/admin/customer': {
+    '/api/v1/admin/customer/:customerId': {
       POST: {
         client: clientLoader.adminClient,
         method: 'getCustomer',
