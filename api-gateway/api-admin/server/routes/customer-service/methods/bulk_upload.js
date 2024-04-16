@@ -9,6 +9,7 @@
         const meta = grpcMetaHelper.setMetadata(req.metaData)
 
         const payload = requestHelper(req, res, cbs.admin_service.BulkUploadRequest)
+        payload.filePath = req.file.filename
 
         if (payload.status) {
             return responseHelper.sendResponse(req, '', res, payload)

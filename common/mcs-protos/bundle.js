@@ -180,6 +180,7 @@ $root.cbs = (function() {
              * @memberof cbs.admin_service
              * @interface IBulkUploadRequest
              * @property {number|null} [id] BulkUploadRequest id
+             * @property {string|null} [filePath] BulkUploadRequest filePath
              */
 
             /**
@@ -204,6 +205,14 @@ $root.cbs = (function() {
              * @instance
              */
             BulkUploadRequest.prototype.id = 0;
+
+            /**
+             * BulkUploadRequest filePath.
+             * @member {string} filePath
+             * @memberof cbs.admin_service.BulkUploadRequest
+             * @instance
+             */
+            BulkUploadRequest.prototype.filePath = "";
 
             /**
              * Creates a new BulkUploadRequest instance using the specified properties.
@@ -231,6 +240,8 @@ $root.cbs = (function() {
                     writer = $Writer.create();
                 if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                if (message.filePath != null && Object.hasOwnProperty.call(message, "filePath"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.filePath);
                 return writer;
             };
 
@@ -267,6 +278,9 @@ $root.cbs = (function() {
                     switch (tag >>> 3) {
                     case 1:
                         message.id = reader.int32();
+                        break;
+                    case 2:
+                        message.filePath = reader.string();
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -306,6 +320,9 @@ $root.cbs = (function() {
                 if (message.id != null && message.hasOwnProperty("id"))
                     if (!$util.isInteger(message.id))
                         return "id: integer expected";
+                if (message.filePath != null && message.hasOwnProperty("filePath"))
+                    if (!$util.isString(message.filePath))
+                        return "filePath: string expected";
                 return null;
             };
 
@@ -323,6 +340,8 @@ $root.cbs = (function() {
                 var message = new $root.cbs.admin_service.BulkUploadRequest();
                 if (object.id != null)
                     message.id = object.id | 0;
+                if (object.filePath != null)
+                    message.filePath = String(object.filePath);
                 return message;
             };
 
@@ -339,10 +358,14 @@ $root.cbs = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.defaults)
+                if (options.defaults) {
                     object.id = 0;
+                    object.filePath = "";
+                }
                 if (message.id != null && message.hasOwnProperty("id"))
                     object.id = message.id;
+                if (message.filePath != null && message.hasOwnProperty("filePath"))
+                    object.filePath = message.filePath;
                 return object;
             };
 
@@ -7298,7 +7321,7 @@ $root.cbs = (function() {
              * @property {string|null} [name] GMerchant name
              * @property {cbs.merchant_service.AuthType|null} [authType] GMerchant authType
              * @property {string|null} [createdAt] GMerchant createdAt
-             * @property {string|null} [updated] GMerchant updated
+             * @property {string|null} [updatedAt] GMerchant updatedAt
              */
 
             /**
@@ -7349,12 +7372,12 @@ $root.cbs = (function() {
             GMerchant.prototype.createdAt = "";
 
             /**
-             * GMerchant updated.
-             * @member {string} updated
+             * GMerchant updatedAt.
+             * @member {string} updatedAt
              * @memberof cbs.merchant_service.GMerchant
              * @instance
              */
-            GMerchant.prototype.updated = "";
+            GMerchant.prototype.updatedAt = "";
 
             /**
              * Creates a new GMerchant instance using the specified properties.
@@ -7388,8 +7411,8 @@ $root.cbs = (function() {
                     writer.uint32(/* id 3, wireType 0 =*/24).int32(message.authType);
                 if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.createdAt);
-                if (message.updated != null && Object.hasOwnProperty.call(message, "updated"))
-                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.updated);
+                if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.updatedAt);
                 return writer;
             };
 
@@ -7437,7 +7460,7 @@ $root.cbs = (function() {
                         message.createdAt = reader.string();
                         break;
                     case 5:
-                        message.updated = reader.string();
+                        message.updatedAt = reader.string();
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -7492,9 +7515,9 @@ $root.cbs = (function() {
                 if (message.createdAt != null && message.hasOwnProperty("createdAt"))
                     if (!$util.isString(message.createdAt))
                         return "createdAt: string expected";
-                if (message.updated != null && message.hasOwnProperty("updated"))
-                    if (!$util.isString(message.updated))
-                        return "updated: string expected";
+                if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                    if (!$util.isString(message.updatedAt))
+                        return "updatedAt: string expected";
                 return null;
             };
 
@@ -7530,8 +7553,8 @@ $root.cbs = (function() {
                 }
                 if (object.createdAt != null)
                     message.createdAt = String(object.createdAt);
-                if (object.updated != null)
-                    message.updated = String(object.updated);
+                if (object.updatedAt != null)
+                    message.updatedAt = String(object.updatedAt);
                 return message;
             };
 
@@ -7553,7 +7576,7 @@ $root.cbs = (function() {
                     object.name = "";
                     object.authType = options.enums === String ? "BASIC" : 0;
                     object.createdAt = "";
-                    object.updated = "";
+                    object.updatedAt = "";
                 }
                 if (message.id != null && message.hasOwnProperty("id"))
                     object.id = message.id;
@@ -7563,8 +7586,8 @@ $root.cbs = (function() {
                     object.authType = options.enums === String ? $root.cbs.merchant_service.AuthType[message.authType] : message.authType;
                 if (message.createdAt != null && message.hasOwnProperty("createdAt"))
                     object.createdAt = message.createdAt;
-                if (message.updated != null && message.hasOwnProperty("updated"))
-                    object.updated = message.updated;
+                if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                    object.updatedAt = message.updatedAt;
                 return object;
             };
 

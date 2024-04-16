@@ -4,6 +4,7 @@ package cbs.admin_service;
 
 message BulkUploadRequest {
     int32 id = 1;
+    string filePath = 2;
 }
 
 message BulkUploadResponse {

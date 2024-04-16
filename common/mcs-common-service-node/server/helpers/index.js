@@ -24,5 +24,10 @@ module.exports = {
     // UTILITIES
     passwordHelper: require("./password_helper"),
     jwtHelper: require("./jwt_helper"),
-    authMiddleware: require("./auth_middleware_helper")
+    authMiddleware: require("./auth_middleware_helper"),
+
+    // 
+    fileUploadHelper: require("./file_upload_helper"),
+    fileUploadMiddleware: require("./file_upload_middleware"),
+
 };
