@@ -1,12 +1,12 @@
 (() => {
     const sql = require("../sql")
     module.exports = async (call, callback) => {
-        const { id } = call.request
+        const { merchantId } = call.request
 
 
         try {
-            const res = await sql.getMerchant(1)
-            callback(null, { status: 200, merchants: res.data })
+            const res = await sql.getMerchant(merchantId)
+            callback(null, { status: 200, merchant: res.data })
         } catch (error) {
             callback(error)
         }

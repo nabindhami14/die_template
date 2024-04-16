@@ -6,6 +6,7 @@
 
         try {
             const res = await sql.getMerchants()
+
             callback(null, { status: 200, merchants: res.data })
         } catch (error) {
             callback(error)

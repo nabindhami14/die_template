@@ -6534,590 +6534,6 @@ $root.cbs = (function() {
             return values;
         })();
 
-        merchant_service.BasicAuth = (function() {
-
-            /**
-             * Properties of a BasicAuth.
-             * @memberof cbs.merchant_service
-             * @interface IBasicAuth
-             * @property {string|null} [username] BasicAuth username
-             * @property {string|null} [password] BasicAuth password
-             */
-
-            /**
-             * Constructs a new BasicAuth.
-             * @memberof cbs.merchant_service
-             * @classdesc Represents a BasicAuth.
-             * @implements IBasicAuth
-             * @constructor
-             * @param {cbs.merchant_service.IBasicAuth=} [properties] Properties to set
-             */
-            function BasicAuth(properties) {
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * BasicAuth username.
-             * @member {string} username
-             * @memberof cbs.merchant_service.BasicAuth
-             * @instance
-             */
-            BasicAuth.prototype.username = "";
-
-            /**
-             * BasicAuth password.
-             * @member {string} password
-             * @memberof cbs.merchant_service.BasicAuth
-             * @instance
-             */
-            BasicAuth.prototype.password = "";
-
-            /**
-             * Creates a new BasicAuth instance using the specified properties.
-             * @function create
-             * @memberof cbs.merchant_service.BasicAuth
-             * @static
-             * @param {cbs.merchant_service.IBasicAuth=} [properties] Properties to set
-             * @returns {cbs.merchant_service.BasicAuth} BasicAuth instance
-             */
-            BasicAuth.create = function create(properties) {
-                return new BasicAuth(properties);
-            };
-
-            /**
-             * Encodes the specified BasicAuth message. Does not implicitly {@link cbs.merchant_service.BasicAuth.verify|verify} messages.
-             * @function encode
-             * @memberof cbs.merchant_service.BasicAuth
-             * @static
-             * @param {cbs.merchant_service.IBasicAuth} message BasicAuth message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            BasicAuth.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.username != null && Object.hasOwnProperty.call(message, "username"))
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.username);
-                if (message.password != null && Object.hasOwnProperty.call(message, "password"))
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.password);
-                return writer;
-            };
-
-            /**
-             * Encodes the specified BasicAuth message, length delimited. Does not implicitly {@link cbs.merchant_service.BasicAuth.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof cbs.merchant_service.BasicAuth
-             * @static
-             * @param {cbs.merchant_service.IBasicAuth} message BasicAuth message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            BasicAuth.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a BasicAuth message from the specified reader or buffer.
-             * @function decode
-             * @memberof cbs.merchant_service.BasicAuth
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {cbs.merchant_service.BasicAuth} BasicAuth
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            BasicAuth.decode = function decode(reader, length) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.BasicAuth();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    switch (tag >>> 3) {
-                    case 1:
-                        message.username = reader.string();
-                        break;
-                    case 2:
-                        message.password = reader.string();
-                        break;
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes a BasicAuth message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof cbs.merchant_service.BasicAuth
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {cbs.merchant_service.BasicAuth} BasicAuth
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            BasicAuth.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a BasicAuth message.
-             * @function verify
-             * @memberof cbs.merchant_service.BasicAuth
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            BasicAuth.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (message.username != null && message.hasOwnProperty("username"))
-                    if (!$util.isString(message.username))
-                        return "username: string expected";
-                if (message.password != null && message.hasOwnProperty("password"))
-                    if (!$util.isString(message.password))
-                        return "password: string expected";
-                return null;
-            };
-
-            /**
-             * Creates a BasicAuth message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof cbs.merchant_service.BasicAuth
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {cbs.merchant_service.BasicAuth} BasicAuth
-             */
-            BasicAuth.fromObject = function fromObject(object) {
-                if (object instanceof $root.cbs.merchant_service.BasicAuth)
-                    return object;
-                var message = new $root.cbs.merchant_service.BasicAuth();
-                if (object.username != null)
-                    message.username = String(object.username);
-                if (object.password != null)
-                    message.password = String(object.password);
-                return message;
-            };
-
-            /**
-             * Creates a plain object from a BasicAuth message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof cbs.merchant_service.BasicAuth
-             * @static
-             * @param {cbs.merchant_service.BasicAuth} message BasicAuth
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            BasicAuth.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.defaults) {
-                    object.username = "";
-                    object.password = "";
-                }
-                if (message.username != null && message.hasOwnProperty("username"))
-                    object.username = message.username;
-                if (message.password != null && message.hasOwnProperty("password"))
-                    object.password = message.password;
-                return object;
-            };
-
-            /**
-             * Converts this BasicAuth to JSON.
-             * @function toJSON
-             * @memberof cbs.merchant_service.BasicAuth
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            BasicAuth.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            return BasicAuth;
-        })();
-
-        merchant_service.OAuth2Auth = (function() {
-
-            /**
-             * Properties of a OAuth2Auth.
-             * @memberof cbs.merchant_service
-             * @interface IOAuth2Auth
-             * @property {string|null} [accessToken] OAuth2Auth accessToken
-             */
-
-            /**
-             * Constructs a new OAuth2Auth.
-             * @memberof cbs.merchant_service
-             * @classdesc Represents a OAuth2Auth.
-             * @implements IOAuth2Auth
-             * @constructor
-             * @param {cbs.merchant_service.IOAuth2Auth=} [properties] Properties to set
-             */
-            function OAuth2Auth(properties) {
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * OAuth2Auth accessToken.
-             * @member {string} accessToken
-             * @memberof cbs.merchant_service.OAuth2Auth
-             * @instance
-             */
-            OAuth2Auth.prototype.accessToken = "";
-
-            /**
-             * Creates a new OAuth2Auth instance using the specified properties.
-             * @function create
-             * @memberof cbs.merchant_service.OAuth2Auth
-             * @static
-             * @param {cbs.merchant_service.IOAuth2Auth=} [properties] Properties to set
-             * @returns {cbs.merchant_service.OAuth2Auth} OAuth2Auth instance
-             */
-            OAuth2Auth.create = function create(properties) {
-                return new OAuth2Auth(properties);
-            };
-
-            /**
-             * Encodes the specified OAuth2Auth message. Does not implicitly {@link cbs.merchant_service.OAuth2Auth.verify|verify} messages.
-             * @function encode
-             * @memberof cbs.merchant_service.OAuth2Auth
-             * @static
-             * @param {cbs.merchant_service.IOAuth2Auth} message OAuth2Auth message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            OAuth2Auth.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.accessToken != null && Object.hasOwnProperty.call(message, "accessToken"))
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.accessToken);
-                return writer;
-            };
-
-            /**
-             * Encodes the specified OAuth2Auth message, length delimited. Does not implicitly {@link cbs.merchant_service.OAuth2Auth.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof cbs.merchant_service.OAuth2Auth
-             * @static
-             * @param {cbs.merchant_service.IOAuth2Auth} message OAuth2Auth message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            OAuth2Auth.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a OAuth2Auth message from the specified reader or buffer.
-             * @function decode
-             * @memberof cbs.merchant_service.OAuth2Auth
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {cbs.merchant_service.OAuth2Auth} OAuth2Auth
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            OAuth2Auth.decode = function decode(reader, length) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.OAuth2Auth();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    switch (tag >>> 3) {
-                    case 1:
-                        message.accessToken = reader.string();
-                        break;
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes a OAuth2Auth message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof cbs.merchant_service.OAuth2Auth
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {cbs.merchant_service.OAuth2Auth} OAuth2Auth
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            OAuth2Auth.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a OAuth2Auth message.
-             * @function verify
-             * @memberof cbs.merchant_service.OAuth2Auth
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            OAuth2Auth.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (message.accessToken != null && message.hasOwnProperty("accessToken"))
-                    if (!$util.isString(message.accessToken))
-                        return "accessToken: string expected";
-                return null;
-            };
-
-            /**
-             * Creates a OAuth2Auth message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof cbs.merchant_service.OAuth2Auth
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {cbs.merchant_service.OAuth2Auth} OAuth2Auth
-             */
-            OAuth2Auth.fromObject = function fromObject(object) {
-                if (object instanceof $root.cbs.merchant_service.OAuth2Auth)
-                    return object;
-                var message = new $root.cbs.merchant_service.OAuth2Auth();
-                if (object.accessToken != null)
-                    message.accessToken = String(object.accessToken);
-                return message;
-            };
-
-            /**
-             * Creates a plain object from a OAuth2Auth message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof cbs.merchant_service.OAuth2Auth
-             * @static
-             * @param {cbs.merchant_service.OAuth2Auth} message OAuth2Auth
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            OAuth2Auth.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.defaults)
-                    object.accessToken = "";
-                if (message.accessToken != null && message.hasOwnProperty("accessToken"))
-                    object.accessToken = message.accessToken;
-                return object;
-            };
-
-            /**
-             * Converts this OAuth2Auth to JSON.
-             * @function toJSON
-             * @memberof cbs.merchant_service.OAuth2Auth
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            OAuth2Auth.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            return OAuth2Auth;
-        })();
-
-        merchant_service.JwtAuth = (function() {
-
-            /**
-             * Properties of a JwtAuth.
-             * @memberof cbs.merchant_service
-             * @interface IJwtAuth
-             * @property {string|null} [token] JwtAuth token
-             */
-
-            /**
-             * Constructs a new JwtAuth.
-             * @memberof cbs.merchant_service
-             * @classdesc Represents a JwtAuth.
-             * @implements IJwtAuth
-             * @constructor
-             * @param {cbs.merchant_service.IJwtAuth=} [properties] Properties to set
-             */
-            function JwtAuth(properties) {
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * JwtAuth token.
-             * @member {string} token
-             * @memberof cbs.merchant_service.JwtAuth
-             * @instance
-             */
-            JwtAuth.prototype.token = "";
-
-            /**
-             * Creates a new JwtAuth instance using the specified properties.
-             * @function create
-             * @memberof cbs.merchant_service.JwtAuth
-             * @static
-             * @param {cbs.merchant_service.IJwtAuth=} [properties] Properties to set
-             * @returns {cbs.merchant_service.JwtAuth} JwtAuth instance
-             */
-            JwtAuth.create = function create(properties) {
-                return new JwtAuth(properties);
-            };
-
-            /**
-             * Encodes the specified JwtAuth message. Does not implicitly {@link cbs.merchant_service.JwtAuth.verify|verify} messages.
-             * @function encode
-             * @memberof cbs.merchant_service.JwtAuth
-             * @static
-             * @param {cbs.merchant_service.IJwtAuth} message JwtAuth message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            JwtAuth.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.token != null && Object.hasOwnProperty.call(message, "token"))
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.token);
-                return writer;
-            };
-
-            /**
-             * Encodes the specified JwtAuth message, length delimited. Does not implicitly {@link cbs.merchant_service.JwtAuth.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof cbs.merchant_service.JwtAuth
-             * @static
-             * @param {cbs.merchant_service.IJwtAuth} message JwtAuth message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            JwtAuth.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a JwtAuth message from the specified reader or buffer.
-             * @function decode
-             * @memberof cbs.merchant_service.JwtAuth
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {cbs.merchant_service.JwtAuth} JwtAuth
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            JwtAuth.decode = function decode(reader, length) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.JwtAuth();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    switch (tag >>> 3) {
-                    case 1:
-                        message.token = reader.string();
-                        break;
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes a JwtAuth message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof cbs.merchant_service.JwtAuth
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {cbs.merchant_service.JwtAuth} JwtAuth
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            JwtAuth.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a JwtAuth message.
-             * @function verify
-             * @memberof cbs.merchant_service.JwtAuth
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            JwtAuth.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (message.token != null && message.hasOwnProperty("token"))
-                    if (!$util.isString(message.token))
-                        return "token: string expected";
-                return null;
-            };
-
-            /**
-             * Creates a JwtAuth message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof cbs.merchant_service.JwtAuth
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {cbs.merchant_service.JwtAuth} JwtAuth
-             */
-            JwtAuth.fromObject = function fromObject(object) {
-                if (object instanceof $root.cbs.merchant_service.JwtAuth)
-                    return object;
-                var message = new $root.cbs.merchant_service.JwtAuth();
-                if (object.token != null)
-                    message.token = String(object.token);
-                return message;
-            };
-
-            /**
-             * Creates a plain object from a JwtAuth message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof cbs.merchant_service.JwtAuth
-             * @static
-             * @param {cbs.merchant_service.JwtAuth} message JwtAuth
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            JwtAuth.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.defaults)
-                    object.token = "";
-                if (message.token != null && message.hasOwnProperty("token"))
-                    object.token = message.token;
-                return object;
-            };
-
-            /**
-             * Converts this JwtAuth to JSON.
-             * @function toJSON
-             * @memberof cbs.merchant_service.JwtAuth
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            JwtAuth.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            return JwtAuth;
-        })();
-
         merchant_service.Merchant = (function() {
 
             /**
@@ -7126,13 +6542,10 @@ $root.cbs = (function() {
              * @interface IMerchant
              * @property {string|null} [name] Merchant name
              * @property {cbs.merchant_service.AuthType|null} [authType] Merchant authType
-             * @property {cbs.merchant_service.IBasicAuth|null} [basicAuth] Merchant basicAuth
-             * @property {cbs.merchant_service.IOAuth2Auth|null} [oauth2Auth] Merchant oauth2Auth
-             * @property {cbs.merchant_service.IJwtAuth|null} [jwtAuth] Merchant jwtAuth
-             * @property {string|null} [senderId] Merchant senderId
-             * @property {string|null} [receiverId] Merchant receiverId
-             * @property {number|null} [amount] Merchant amount
-             * @property {string|null} [remark] Merchant remark
+             * @property {string|null} [username] Merchant username
+             * @property {string|null} [password] Merchant password
+             * @property {string|null} [accessToken] Merchant accessToken
+             * @property {string|null} [token] Merchant token
              */
 
             /**
@@ -7167,60 +6580,36 @@ $root.cbs = (function() {
             Merchant.prototype.authType = 0;
 
             /**
-             * Merchant basicAuth.
-             * @member {cbs.merchant_service.IBasicAuth|null|undefined} basicAuth
+             * Merchant username.
+             * @member {string} username
              * @memberof cbs.merchant_service.Merchant
              * @instance
              */
-            Merchant.prototype.basicAuth = null;
+            Merchant.prototype.username = "";
 
             /**
-             * Merchant oauth2Auth.
-             * @member {cbs.merchant_service.IOAuth2Auth|null|undefined} oauth2Auth
+             * Merchant password.
+             * @member {string} password
              * @memberof cbs.merchant_service.Merchant
              * @instance
              */
-            Merchant.prototype.oauth2Auth = null;
+            Merchant.prototype.password = "";
 
             /**
-             * Merchant jwtAuth.
-             * @member {cbs.merchant_service.IJwtAuth|null|undefined} jwtAuth
+             * Merchant accessToken.
+             * @member {string} accessToken
              * @memberof cbs.merchant_service.Merchant
              * @instance
              */
-            Merchant.prototype.jwtAuth = null;
+            Merchant.prototype.accessToken = "";
 
             /**
-             * Merchant senderId.
-             * @member {string} senderId
+             * Merchant token.
+             * @member {string} token
              * @memberof cbs.merchant_service.Merchant
              * @instance
              */
-            Merchant.prototype.senderId = "";
-
-            /**
-             * Merchant receiverId.
-             * @member {string} receiverId
-             * @memberof cbs.merchant_service.Merchant
-             * @instance
-             */
-            Merchant.prototype.receiverId = "";
-
-            /**
-             * Merchant amount.
-             * @member {number} amount
-             * @memberof cbs.merchant_service.Merchant
-             * @instance
-             */
-            Merchant.prototype.amount = 0;
-
-            /**
-             * Merchant remark.
-             * @member {string} remark
-             * @memberof cbs.merchant_service.Merchant
-             * @instance
-             */
-            Merchant.prototype.remark = "";
+            Merchant.prototype.token = "";
 
             /**
              * Creates a new Merchant instance using the specified properties.
@@ -7250,20 +6639,14 @@ $root.cbs = (function() {
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
                 if (message.authType != null && Object.hasOwnProperty.call(message, "authType"))
                     writer.uint32(/* id 2, wireType 0 =*/16).int32(message.authType);
-                if (message.basicAuth != null && Object.hasOwnProperty.call(message, "basicAuth"))
-                    $root.cbs.merchant_service.BasicAuth.encode(message.basicAuth, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-                if (message.oauth2Auth != null && Object.hasOwnProperty.call(message, "oauth2Auth"))
-                    $root.cbs.merchant_service.OAuth2Auth.encode(message.oauth2Auth, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                if (message.jwtAuth != null && Object.hasOwnProperty.call(message, "jwtAuth"))
-                    $root.cbs.merchant_service.JwtAuth.encode(message.jwtAuth, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
-                if (message.senderId != null && Object.hasOwnProperty.call(message, "senderId"))
-                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.senderId);
-                if (message.receiverId != null && Object.hasOwnProperty.call(message, "receiverId"))
-                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.receiverId);
-                if (message.amount != null && Object.hasOwnProperty.call(message, "amount"))
-                    writer.uint32(/* id 8, wireType 1 =*/65).double(message.amount);
-                if (message.remark != null && Object.hasOwnProperty.call(message, "remark"))
-                    writer.uint32(/* id 9, wireType 2 =*/74).string(message.remark);
+                if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.username);
+                if (message.password != null && Object.hasOwnProperty.call(message, "password"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.password);
+                if (message.accessToken != null && Object.hasOwnProperty.call(message, "accessToken"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.accessToken);
+                if (message.token != null && Object.hasOwnProperty.call(message, "token"))
+                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.token);
                 return writer;
             };
 
@@ -7305,25 +6688,16 @@ $root.cbs = (function() {
                         message.authType = reader.int32();
                         break;
                     case 3:
-                        message.basicAuth = $root.cbs.merchant_service.BasicAuth.decode(reader, reader.uint32());
+                        message.username = reader.string();
                         break;
                     case 4:
-                        message.oauth2Auth = $root.cbs.merchant_service.OAuth2Auth.decode(reader, reader.uint32());
+                        message.password = reader.string();
                         break;
                     case 5:
-                        message.jwtAuth = $root.cbs.merchant_service.JwtAuth.decode(reader, reader.uint32());
+                        message.accessToken = reader.string();
                         break;
                     case 6:
-                        message.senderId = reader.string();
-                        break;
-                    case 7:
-                        message.receiverId = reader.string();
-                        break;
-                    case 8:
-                        message.amount = reader.double();
-                        break;
-                    case 9:
-                        message.remark = reader.string();
+                        message.token = reader.string();
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -7372,33 +6746,18 @@ $root.cbs = (function() {
                     case 2:
                         break;
                     }
-                if (message.basicAuth != null && message.hasOwnProperty("basicAuth")) {
-                    var error = $root.cbs.merchant_service.BasicAuth.verify(message.basicAuth);
-                    if (error)
-                        return "basicAuth." + error;
-                }
-                if (message.oauth2Auth != null && message.hasOwnProperty("oauth2Auth")) {
-                    var error = $root.cbs.merchant_service.OAuth2Auth.verify(message.oauth2Auth);
-                    if (error)
-                        return "oauth2Auth." + error;
-                }
-                if (message.jwtAuth != null && message.hasOwnProperty("jwtAuth")) {
-                    var error = $root.cbs.merchant_service.JwtAuth.verify(message.jwtAuth);
-                    if (error)
-                        return "jwtAuth." + error;
-                }
-                if (message.senderId != null && message.hasOwnProperty("senderId"))
-                    if (!$util.isString(message.senderId))
-                        return "senderId: string expected";
-                if (message.receiverId != null && message.hasOwnProperty("receiverId"))
-                    if (!$util.isString(message.receiverId))
-                        return "receiverId: string expected";
-                if (message.amount != null && message.hasOwnProperty("amount"))
-                    if (typeof message.amount !== "number")
-                        return "amount: number expected";
-                if (message.remark != null && message.hasOwnProperty("remark"))
-                    if (!$util.isString(message.remark))
-                        return "remark: string expected";
+                if (message.username != null && message.hasOwnProperty("username"))
+                    if (!$util.isString(message.username))
+                        return "username: string expected";
+                if (message.password != null && message.hasOwnProperty("password"))
+                    if (!$util.isString(message.password))
+                        return "password: string expected";
+                if (message.accessToken != null && message.hasOwnProperty("accessToken"))
+                    if (!$util.isString(message.accessToken))
+                        return "accessToken: string expected";
+                if (message.token != null && message.hasOwnProperty("token"))
+                    if (!$util.isString(message.token))
+                        return "token: string expected";
                 return null;
             };
 
@@ -7430,29 +6789,14 @@ $root.cbs = (function() {
                     message.authType = 2;
                     break;
                 }
-                if (object.basicAuth != null) {
-                    if (typeof object.basicAuth !== "object")
-                        throw TypeError(".cbs.merchant_service.Merchant.basicAuth: object expected");
-                    message.basicAuth = $root.cbs.merchant_service.BasicAuth.fromObject(object.basicAuth);
-                }
-                if (object.oauth2Auth != null) {
-                    if (typeof object.oauth2Auth !== "object")
-                        throw TypeError(".cbs.merchant_service.Merchant.oauth2Auth: object expected");
-                    message.oauth2Auth = $root.cbs.merchant_service.OAuth2Auth.fromObject(object.oauth2Auth);
-                }
-                if (object.jwtAuth != null) {
-                    if (typeof object.jwtAuth !== "object")
-                        throw TypeError(".cbs.merchant_service.Merchant.jwtAuth: object expected");
-                    message.jwtAuth = $root.cbs.merchant_service.JwtAuth.fromObject(object.jwtAuth);
-                }
-                if (object.senderId != null)
-                    message.senderId = String(object.senderId);
-                if (object.receiverId != null)
-                    message.receiverId = String(object.receiverId);
-                if (object.amount != null)
-                    message.amount = Number(object.amount);
-                if (object.remark != null)
-                    message.remark = String(object.remark);
+                if (object.username != null)
+                    message.username = String(object.username);
+                if (object.password != null)
+                    message.password = String(object.password);
+                if (object.accessToken != null)
+                    message.accessToken = String(object.accessToken);
+                if (object.token != null)
+                    message.token = String(object.token);
                 return message;
             };
 
@@ -7472,32 +6816,23 @@ $root.cbs = (function() {
                 if (options.defaults) {
                     object.name = "";
                     object.authType = options.enums === String ? "BASIC" : 0;
-                    object.basicAuth = null;
-                    object.oauth2Auth = null;
-                    object.jwtAuth = null;
-                    object.senderId = "";
-                    object.receiverId = "";
-                    object.amount = 0;
-                    object.remark = "";
+                    object.username = "";
+                    object.password = "";
+                    object.accessToken = "";
+                    object.token = "";
                 }
                 if (message.name != null && message.hasOwnProperty("name"))
                     object.name = message.name;
                 if (message.authType != null && message.hasOwnProperty("authType"))
                     object.authType = options.enums === String ? $root.cbs.merchant_service.AuthType[message.authType] : message.authType;
-                if (message.basicAuth != null && message.hasOwnProperty("basicAuth"))
-                    object.basicAuth = $root.cbs.merchant_service.BasicAuth.toObject(message.basicAuth, options);
-                if (message.oauth2Auth != null && message.hasOwnProperty("oauth2Auth"))
-                    object.oauth2Auth = $root.cbs.merchant_service.OAuth2Auth.toObject(message.oauth2Auth, options);
-                if (message.jwtAuth != null && message.hasOwnProperty("jwtAuth"))
-                    object.jwtAuth = $root.cbs.merchant_service.JwtAuth.toObject(message.jwtAuth, options);
-                if (message.senderId != null && message.hasOwnProperty("senderId"))
-                    object.senderId = message.senderId;
-                if (message.receiverId != null && message.hasOwnProperty("receiverId"))
-                    object.receiverId = message.receiverId;
-                if (message.amount != null && message.hasOwnProperty("amount"))
-                    object.amount = options.json && !isFinite(message.amount) ? String(message.amount) : message.amount;
-                if (message.remark != null && message.hasOwnProperty("remark"))
-                    object.remark = message.remark;
+                if (message.username != null && message.hasOwnProperty("username"))
+                    object.username = message.username;
+                if (message.password != null && message.hasOwnProperty("password"))
+                    object.password = message.password;
+                if (message.accessToken != null && message.hasOwnProperty("accessToken"))
+                    object.accessToken = message.accessToken;
+                if (message.token != null && message.hasOwnProperty("token"))
+                    object.token = message.token;
                 return object;
             };
 
@@ -7953,6 +7288,300 @@ $root.cbs = (function() {
             return CreateMerchantResponse;
         })();
 
+        merchant_service.GMerchant = (function() {
+
+            /**
+             * Properties of a GMerchant.
+             * @memberof cbs.merchant_service
+             * @interface IGMerchant
+             * @property {number|null} [id] GMerchant id
+             * @property {string|null} [name] GMerchant name
+             * @property {cbs.merchant_service.AuthType|null} [authType] GMerchant authType
+             * @property {string|null} [createdAt] GMerchant createdAt
+             * @property {string|null} [updated] GMerchant updated
+             */
+
+            /**
+             * Constructs a new GMerchant.
+             * @memberof cbs.merchant_service
+             * @classdesc Represents a GMerchant.
+             * @implements IGMerchant
+             * @constructor
+             * @param {cbs.merchant_service.IGMerchant=} [properties] Properties to set
+             */
+            function GMerchant(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * GMerchant id.
+             * @member {number} id
+             * @memberof cbs.merchant_service.GMerchant
+             * @instance
+             */
+            GMerchant.prototype.id = 0;
+
+            /**
+             * GMerchant name.
+             * @member {string} name
+             * @memberof cbs.merchant_service.GMerchant
+             * @instance
+             */
+            GMerchant.prototype.name = "";
+
+            /**
+             * GMerchant authType.
+             * @member {cbs.merchant_service.AuthType} authType
+             * @memberof cbs.merchant_service.GMerchant
+             * @instance
+             */
+            GMerchant.prototype.authType = 0;
+
+            /**
+             * GMerchant createdAt.
+             * @member {string} createdAt
+             * @memberof cbs.merchant_service.GMerchant
+             * @instance
+             */
+            GMerchant.prototype.createdAt = "";
+
+            /**
+             * GMerchant updated.
+             * @member {string} updated
+             * @memberof cbs.merchant_service.GMerchant
+             * @instance
+             */
+            GMerchant.prototype.updated = "";
+
+            /**
+             * Creates a new GMerchant instance using the specified properties.
+             * @function create
+             * @memberof cbs.merchant_service.GMerchant
+             * @static
+             * @param {cbs.merchant_service.IGMerchant=} [properties] Properties to set
+             * @returns {cbs.merchant_service.GMerchant} GMerchant instance
+             */
+            GMerchant.create = function create(properties) {
+                return new GMerchant(properties);
+            };
+
+            /**
+             * Encodes the specified GMerchant message. Does not implicitly {@link cbs.merchant_service.GMerchant.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.merchant_service.GMerchant
+             * @static
+             * @param {cbs.merchant_service.IGMerchant} message GMerchant message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            GMerchant.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+                if (message.authType != null && Object.hasOwnProperty.call(message, "authType"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.authType);
+                if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.createdAt);
+                if (message.updated != null && Object.hasOwnProperty.call(message, "updated"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.updated);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified GMerchant message, length delimited. Does not implicitly {@link cbs.merchant_service.GMerchant.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.merchant_service.GMerchant
+             * @static
+             * @param {cbs.merchant_service.IGMerchant} message GMerchant message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            GMerchant.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a GMerchant message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.merchant_service.GMerchant
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.merchant_service.GMerchant} GMerchant
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            GMerchant.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.GMerchant();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.id = reader.int32();
+                        break;
+                    case 2:
+                        message.name = reader.string();
+                        break;
+                    case 3:
+                        message.authType = reader.int32();
+                        break;
+                    case 4:
+                        message.createdAt = reader.string();
+                        break;
+                    case 5:
+                        message.updated = reader.string();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a GMerchant message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.merchant_service.GMerchant
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.merchant_service.GMerchant} GMerchant
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            GMerchant.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a GMerchant message.
+             * @function verify
+             * @memberof cbs.merchant_service.GMerchant
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            GMerchant.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                if (message.name != null && message.hasOwnProperty("name"))
+                    if (!$util.isString(message.name))
+                        return "name: string expected";
+                if (message.authType != null && message.hasOwnProperty("authType"))
+                    switch (message.authType) {
+                    default:
+                        return "authType: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                        break;
+                    }
+                if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                    if (!$util.isString(message.createdAt))
+                        return "createdAt: string expected";
+                if (message.updated != null && message.hasOwnProperty("updated"))
+                    if (!$util.isString(message.updated))
+                        return "updated: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a GMerchant message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.merchant_service.GMerchant
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.merchant_service.GMerchant} GMerchant
+             */
+            GMerchant.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.merchant_service.GMerchant)
+                    return object;
+                var message = new $root.cbs.merchant_service.GMerchant();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                if (object.name != null)
+                    message.name = String(object.name);
+                switch (object.authType) {
+                case "BASIC":
+                case 0:
+                    message.authType = 0;
+                    break;
+                case "OAUTH2":
+                case 1:
+                    message.authType = 1;
+                    break;
+                case "JWT":
+                case 2:
+                    message.authType = 2;
+                    break;
+                }
+                if (object.createdAt != null)
+                    message.createdAt = String(object.createdAt);
+                if (object.updated != null)
+                    message.updated = String(object.updated);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a GMerchant message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.merchant_service.GMerchant
+             * @static
+             * @param {cbs.merchant_service.GMerchant} message GMerchant
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            GMerchant.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.id = 0;
+                    object.name = "";
+                    object.authType = options.enums === String ? "BASIC" : 0;
+                    object.createdAt = "";
+                    object.updated = "";
+                }
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                if (message.name != null && message.hasOwnProperty("name"))
+                    object.name = message.name;
+                if (message.authType != null && message.hasOwnProperty("authType"))
+                    object.authType = options.enums === String ? $root.cbs.merchant_service.AuthType[message.authType] : message.authType;
+                if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                    object.createdAt = message.createdAt;
+                if (message.updated != null && message.hasOwnProperty("updated"))
+                    object.updated = message.updated;
+                return object;
+            };
+
+            /**
+             * Converts this GMerchant to JSON.
+             * @function toJSON
+             * @memberof cbs.merchant_service.GMerchant
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            GMerchant.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return GMerchant;
+        })();
+
         merchant_service.GetMerchantsRequest = (function() {
 
             /**
@@ -8147,7 +7776,7 @@ $root.cbs = (function() {
              * @memberof cbs.merchant_service
              * @interface IGetMerchantsResponse
              * @property {number|null} [status] GetMerchantsResponse status
-             * @property {Array.<cbs.merchant_service.IMerchant>|null} [merchants] GetMerchantsResponse merchants
+             * @property {Array.<cbs.merchant_service.IGMerchant>|null} [merchants] GetMerchantsResponse merchants
              */
 
             /**
@@ -8176,7 +7805,7 @@ $root.cbs = (function() {
 
             /**
              * GetMerchantsResponse merchants.
-             * @member {Array.<cbs.merchant_service.IMerchant>} merchants
+             * @member {Array.<cbs.merchant_service.IGMerchant>} merchants
              * @memberof cbs.merchant_service.GetMerchantsResponse
              * @instance
              */
@@ -8210,7 +7839,7 @@ $root.cbs = (function() {
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
                 if (message.merchants != null && message.merchants.length)
                     for (var i = 0; i < message.merchants.length; ++i)
-                        $root.cbs.merchant_service.Merchant.encode(message.merchants[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                        $root.cbs.merchant_service.GMerchant.encode(message.merchants[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
 
@@ -8251,7 +7880,7 @@ $root.cbs = (function() {
                     case 2:
                         if (!(message.merchants && message.merchants.length))
                             message.merchants = [];
-                        message.merchants.push($root.cbs.merchant_service.Merchant.decode(reader, reader.uint32()));
+                        message.merchants.push($root.cbs.merchant_service.GMerchant.decode(reader, reader.uint32()));
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -8295,7 +7924,7 @@ $root.cbs = (function() {
                     if (!Array.isArray(message.merchants))
                         return "merchants: array expected";
                     for (var i = 0; i < message.merchants.length; ++i) {
-                        var error = $root.cbs.merchant_service.Merchant.verify(message.merchants[i]);
+                        var error = $root.cbs.merchant_service.GMerchant.verify(message.merchants[i]);
                         if (error)
                             return "merchants." + error;
                     }
@@ -8324,7 +7953,7 @@ $root.cbs = (function() {
                     for (var i = 0; i < object.merchants.length; ++i) {
                         if (typeof object.merchants[i] !== "object")
                             throw TypeError(".cbs.merchant_service.GetMerchantsResponse.merchants: object expected");
-                        message.merchants[i] = $root.cbs.merchant_service.Merchant.fromObject(object.merchants[i]);
+                        message.merchants[i] = $root.cbs.merchant_service.GMerchant.fromObject(object.merchants[i]);
                     }
                 }
                 return message;
@@ -8352,7 +7981,7 @@ $root.cbs = (function() {
                 if (message.merchants && message.merchants.length) {
                     object.merchants = [];
                     for (var j = 0; j < message.merchants.length; ++j)
-                        object.merchants[j] = $root.cbs.merchant_service.Merchant.toObject(message.merchants[j], options);
+                        object.merchants[j] = $root.cbs.merchant_service.GMerchant.toObject(message.merchants[j], options);
                 }
                 return object;
             };
@@ -8587,8 +8216,8 @@ $root.cbs = (function() {
              * Properties of a GetMerchantResponse.
              * @memberof cbs.merchant_service
              * @interface IGetMerchantResponse
-             * @property {boolean|null} [success] GetMerchantResponse success
-             * @property {cbs.merchant_service.IMerchant|null} [merchant] GetMerchantResponse merchant
+             * @property {number|null} [status] GetMerchantResponse status
+             * @property {cbs.merchant_service.IGMerchant|null} [merchant] GetMerchantResponse merchant
              */
 
             /**
@@ -8607,16 +8236,16 @@ $root.cbs = (function() {
             }
 
             /**
-             * GetMerchantResponse success.
-             * @member {boolean} success
+             * GetMerchantResponse status.
+             * @member {number} status
              * @memberof cbs.merchant_service.GetMerchantResponse
              * @instance
              */
-            GetMerchantResponse.prototype.success = false;
+            GetMerchantResponse.prototype.status = 0;
 
             /**
              * GetMerchantResponse merchant.
-             * @member {cbs.merchant_service.IMerchant|null|undefined} merchant
+             * @member {cbs.merchant_service.IGMerchant|null|undefined} merchant
              * @memberof cbs.merchant_service.GetMerchantResponse
              * @instance
              */
@@ -8646,10 +8275,10 @@ $root.cbs = (function() {
             GetMerchantResponse.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.success != null && Object.hasOwnProperty.call(message, "success"))
-                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.success);
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
                 if (message.merchant != null && Object.hasOwnProperty.call(message, "merchant"))
-                    $root.cbs.merchant_service.Merchant.encode(message.merchant, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    $root.cbs.merchant_service.GMerchant.encode(message.merchant, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
 
@@ -8685,10 +8314,10 @@ $root.cbs = (function() {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
-                        message.success = reader.bool();
+                        message.status = reader.int32();
                         break;
                     case 2:
-                        message.merchant = $root.cbs.merchant_service.Merchant.decode(reader, reader.uint32());
+                        message.merchant = $root.cbs.merchant_service.GMerchant.decode(reader, reader.uint32());
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -8725,11 +8354,11 @@ $root.cbs = (function() {
             GetMerchantResponse.verify = function verify(message) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
-                if (message.success != null && message.hasOwnProperty("success"))
-                    if (typeof message.success !== "boolean")
-                        return "success: boolean expected";
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
                 if (message.merchant != null && message.hasOwnProperty("merchant")) {
-                    var error = $root.cbs.merchant_service.Merchant.verify(message.merchant);
+                    var error = $root.cbs.merchant_service.GMerchant.verify(message.merchant);
                     if (error)
                         return "merchant." + error;
                 }
@@ -8748,12 +8377,12 @@ $root.cbs = (function() {
                 if (object instanceof $root.cbs.merchant_service.GetMerchantResponse)
                     return object;
                 var message = new $root.cbs.merchant_service.GetMerchantResponse();
-                if (object.success != null)
-                    message.success = Boolean(object.success);
+                if (object.status != null)
+                    message.status = object.status | 0;
                 if (object.merchant != null) {
                     if (typeof object.merchant !== "object")
                         throw TypeError(".cbs.merchant_service.GetMerchantResponse.merchant: object expected");
-                    message.merchant = $root.cbs.merchant_service.Merchant.fromObject(object.merchant);
+                    message.merchant = $root.cbs.merchant_service.GMerchant.fromObject(object.merchant);
                 }
                 return message;
             };
@@ -8772,13 +8401,13 @@ $root.cbs = (function() {
                     options = {};
                 var object = {};
                 if (options.defaults) {
-                    object.success = false;
+                    object.status = 0;
                     object.merchant = null;
                 }
-                if (message.success != null && message.hasOwnProperty("success"))
-                    object.success = message.success;
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
                 if (message.merchant != null && message.hasOwnProperty("merchant"))
-                    object.merchant = $root.cbs.merchant_service.Merchant.toObject(message.merchant, options);
+                    object.merchant = $root.cbs.merchant_service.GMerchant.toObject(message.merchant, options);
                 return object;
             };
 
