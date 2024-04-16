@@ -7521,7 +7521,8 @@ $root.cbs = (function() {
              * Properties of a CreateMerchantRequest.
              * @memberof cbs.merchant_service
              * @interface ICreateMerchantRequest
-             * @property {cbs.merchant_service.IMerchant|null} [merchant] CreateMerchantRequest merchant
+             * @property {string|null} [name] CreateMerchantRequest name
+             * @property {cbs.merchant_service.AuthType|null} [authType] CreateMerchantRequest authType
              */
 
             /**
@@ -7540,12 +7541,20 @@ $root.cbs = (function() {
             }
 
             /**
-             * CreateMerchantRequest merchant.
-             * @member {cbs.merchant_service.IMerchant|null|undefined} merchant
+             * CreateMerchantRequest name.
+             * @member {string} name
              * @memberof cbs.merchant_service.CreateMerchantRequest
              * @instance
              */
-            CreateMerchantRequest.prototype.merchant = null;
+            CreateMerchantRequest.prototype.name = "";
+
+            /**
+             * CreateMerchantRequest authType.
+             * @member {cbs.merchant_service.AuthType} authType
+             * @memberof cbs.merchant_service.CreateMerchantRequest
+             * @instance
+             */
+            CreateMerchantRequest.prototype.authType = 0;
 
             /**
              * Creates a new CreateMerchantRequest instance using the specified properties.
@@ -7571,8 +7580,10 @@ $root.cbs = (function() {
             CreateMerchantRequest.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.merchant != null && Object.hasOwnProperty.call(message, "merchant"))
-                    $root.cbs.merchant_service.Merchant.encode(message.merchant, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                if (message.authType != null && Object.hasOwnProperty.call(message, "authType"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.authType);
                 return writer;
             };
 
@@ -7608,7 +7619,10 @@ $root.cbs = (function() {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
-                        message.merchant = $root.cbs.merchant_service.Merchant.decode(reader, reader.uint32());
+                        message.name = reader.string();
+                        break;
+                    case 2:
+                        message.authType = reader.int32();
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -7645,11 +7659,18 @@ $root.cbs = (function() {
             CreateMerchantRequest.verify = function verify(message) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
-                if (message.merchant != null && message.hasOwnProperty("merchant")) {
-                    var error = $root.cbs.merchant_service.Merchant.verify(message.merchant);
-                    if (error)
-                        return "merchant." + error;
-                }
+                if (message.name != null && message.hasOwnProperty("name"))
+                    if (!$util.isString(message.name))
+                        return "name: string expected";
+                if (message.authType != null && message.hasOwnProperty("authType"))
+                    switch (message.authType) {
+                    default:
+                        return "authType: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                        break;
+                    }
                 return null;
             };
 
@@ -7665,10 +7686,21 @@ $root.cbs = (function() {
                 if (object instanceof $root.cbs.merchant_service.CreateMerchantRequest)
                     return object;
                 var message = new $root.cbs.merchant_service.CreateMerchantRequest();
-                if (object.merchant != null) {
-                    if (typeof object.merchant !== "object")
-                        throw TypeError(".cbs.merchant_service.CreateMerchantRequest.merchant: object expected");
-                    message.merchant = $root.cbs.merchant_service.Merchant.fromObject(object.merchant);
+                if (object.name != null)
+                    message.name = String(object.name);
+                switch (object.authType) {
+                case "BASIC":
+                case 0:
+                    message.authType = 0;
+                    break;
+                case "OAUTH2":
+                case 1:
+                    message.authType = 1;
+                    break;
+                case "JWT":
+                case 2:
+                    message.authType = 2;
+                    break;
                 }
                 return message;
             };
@@ -7686,10 +7718,14 @@ $root.cbs = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.defaults)
-                    object.merchant = null;
-                if (message.merchant != null && message.hasOwnProperty("merchant"))
-                    object.merchant = $root.cbs.merchant_service.Merchant.toObject(message.merchant, options);
+                if (options.defaults) {
+                    object.name = "";
+                    object.authType = options.enums === String ? "BASIC" : 0;
+                }
+                if (message.name != null && message.hasOwnProperty("name"))
+                    object.name = message.name;
+                if (message.authType != null && message.hasOwnProperty("authType"))
+                    object.authType = options.enums === String ? $root.cbs.merchant_service.AuthType[message.authType] : message.authType;
                 return object;
             };
 

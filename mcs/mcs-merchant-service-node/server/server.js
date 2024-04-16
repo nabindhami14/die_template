@@ -9,7 +9,7 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 const grpc = require('@grpc/grpc-js')
 
 // HELPERS
-const { grpcClientHelper, grpcMetaHelper, mysqlHelperReadonly } = require('common/helpers');
+const { grpcClientHelper, grpcMetaHelper, mysqlHelperReadonly,mysqlHelper } = require('common/helpers');
 
 // MODULES
 const mrerchantCtrl = require('./modules/merchant_service');
@@ -41,6 +41,7 @@ server.bindAsync(
             server.start();
             if (server.started) {
                 mysqlHelperReadonly.init();
+                mysqlHelper.init();
                 console.log(`http://localhost:${process.env.GRPC_PORT}`);
             }
         }

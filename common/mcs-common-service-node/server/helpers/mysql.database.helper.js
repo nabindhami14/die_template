@@ -21,17 +21,19 @@ const mysql = require('mysql2/promise');
     try {
       if (!dbClient) {
         dbClient = await mysql.createPool({
-          user: process.env.MYSQL_DB_USER,
-          password: process.env.MYSQL_DB_PASSWORD,
-          host: process.env.MYSQL_DB_HOST,
-          port: process.env.MYSQL_DB_MIGRATION_PORT,
-          database: process.env.MYSQL_DB_NAME,
+          user: process.env.MYSQL_DB_USER || "root",
+          password: process.env.MYSQL_DB_PASSWORD || "passowrd",
+          host: process.env.MYSQL_DB_HOST || "localhost",
+          port: process.env.MYSQL_DB_MIGRATION_PORT || 3306,
+          database: process.env.MYSQL_DB_NAME || "cbs",
           waitForConnections: true,
           connectionLimit: 1000,
           dateStrings: true,
           queueLimit: 0
         });
       }
+
+      console.log("MYSQL HELPER CONNECTED");
       return dbClient;
     } catch (error) {
       console.error('Error at mysql.database.helper.js connection.init', error);

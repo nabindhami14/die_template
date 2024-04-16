@@ -38,7 +38,8 @@ message Merchant {
 }
 
 message CreateMerchantRequest {
-    Merchant merchant = 1;
+    string name = 1;
+    AuthType auth_type = 2;
 }
 
 message CreateMerchantResponse {

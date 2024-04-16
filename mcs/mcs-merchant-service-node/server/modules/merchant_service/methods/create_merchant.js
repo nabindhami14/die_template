@@ -1,21 +1,34 @@
 (() => {
-    // const sql = require("../sql")
+    const sql = require("../sql")
     module.exports = async (call, callback) => {
 
-        const { name, senderId, receiverId, amount, remark, auth_type, basic_auth, oauth2_auth, jwt_auth } = call.request.merchant;
+        const { name, auth_type } = call.request;
+
+        const authPayloadMap = {
+            0 :"BASIC",
+            1 : "OAUTH2",
+            2 : "JWT"
+        }
 
         try {
             if (auth_type === 0) {
-                const { username, password } = basic_auth;
-                console.log("BASIC AUTH", name, senderId, receiverId, amount, remark, "CREDENTIALS", username, password);
+                const authPayload = `username VARCHAR(255), password VARCHAR(255)`
+
+                await sql.createMerchantTable(name, authPayload)
+                await sql.createMerchant(name, authPayloadMap[0])
+
                 return callback(null, { status: 200, success: true });
-            } else  if (auth_type === 1) {
-                const { access_token } = oauth2_auth;
-                console.log("OAUTH2", name, senderId, receiverId, amount, remark, "ACCESS_TOKEN", access_token);
+            } else if (auth_type === 1) {
+                const authPayload = `access_token VARCHAR(255)`
+
+                await sql.createMerchantTable(name, authPayload)
+                await sql.createMerchant(name, authPayloadMap[1])
                 return callback(null, { status: 200, success: true });
             } else {
-                const { token } = jwt_auth;
-                console.log("JWT AUTH", name, senderId, receiverId, amount, remark, "JWT_TOKEN", token);
+                const authPayload = `token VARCHAR(255)`
+
+                await sql.createMerchantTable(name, authPayload)
+                await sql.createMerchant(name, authPayloadMap[2])
                 return callback(null, { status: 200, success: true });
             }
         } catch (error) {
