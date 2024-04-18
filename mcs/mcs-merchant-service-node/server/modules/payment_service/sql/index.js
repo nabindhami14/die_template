@@ -2,6 +2,8 @@
 
 (() => {
     module.exports = {
-      createPayment:require("./create_payment")
+      getCustomer:require("./get_customer"),
+      createPayment:require("./create_payment"),
+      moneyOperation:require("./money_operation")
     };
   })();

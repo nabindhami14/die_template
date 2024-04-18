@@ -2,12 +2,6 @@
     const sql = require("../sql");
     const db = require("../../merchant_service/sql");
 
-    const authPayloadMap = {
-        0: "BASIC",
-        1: "OAUTH2",
-        2: "JWT"
-    };
-
     module.exports = async (call, callback) => {
         try {
             const { merchant_id, auth_type, payment_details, credentials } = call.request;
@@ -20,7 +14,7 @@
             switch (auth_type) {
                 case 0: // BASIC
                     columns = "username,password";
-                    values = [username, password]; // Enclose values in an array
+                    values = [username, password];
                     break;
                 case 1: // OAUTH2
                     columns = "access_token";
@@ -34,10 +28,18 @@
                     throw new Error("Invalid auth_type");
             }
 
-            const res = await sql.createPayment(merchant.data.name, sender_id, receiver_id, amount, remark, columns, values);
-            console.log(res);
+            const sender = await sql.getCustomer(sender_id)
+            const receiver = await sql.getCustomer(receiver_id)
 
-            callback(null, { status: 200, success: true });
+            if (sender.data && receiver.data && +sender.data.money > +amount) {
+                await sql.moneyOperation(sender_id, amount)
+                await sql.moneyOperation(receiver_id, amount, "add")
+                await sql.createPayment(merchant.data.name, sender_id, receiver_id, amount, remark, columns, values);
+
+                callback(null, { status: 200, success: true });
+            } else {
+                callback({ message: "Insufficient amount of money!!" })
+            }
         } catch (error) {
             callback(error);
         }
