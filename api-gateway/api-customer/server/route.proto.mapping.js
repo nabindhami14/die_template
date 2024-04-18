@@ -27,6 +27,24 @@
         decode: cbs.customer_auth_service.CustomerProfileResponse,
       }
     },
+
+    // MERCHANTS
+    '/api/v1/customers/merchants': {
+      GET: {
+        client: clientLoader.merchantClient,
+        method: 'getMerchants',
+        encode: cbs.merchant_service.GetMerchantsRequest,
+        decode: cbs.merchant_service.GetMerchantsResponse
+      }
+    },
+    '/api/v1/customers/merchants/:merchantId': {
+      GET: {
+        client: clientLoader.merchantClient,
+        method: 'getMerchant',
+        encode: cbs.merchant_service.GetMerchantRequest,
+        decode: cbs.merchant_service.GetMerchantsResponse
+      }
+    },
   };
 })();
 
