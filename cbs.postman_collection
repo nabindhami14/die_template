@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "361dde4a-7d27-4fc0-b875-5d9d9eda3454",
+		"name": "CBS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34116869"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "merchant",
+					"item": [
+						{
+							"name": "get-merchant",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3019/api/v1/admin/merchants/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3019",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"merchants",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create-merchant",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"socialpay\", \r\n    \"auth_type\":2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3019/api/v1/admin/merchants",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3019",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"merchants"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-merchants",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3019/api/v1/admin/merchants",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3019",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"merchants"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "bulk-upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/nabin.dhami/Desktop/die/customers.csv"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3019/api/v1/admin/customers/bulk-upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3019",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"customers",
+								"bulk-upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3019/api/v1/admin/customers/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3019",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"customers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-customers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJuYWJpbmRoYW1pMTRAZ21haWwuY29tIiwiaWF0IjoxNzEzMTcwMDQ5LCJleHAiOjE3MTMyNTY0NDl9.vDQlCJGq-bjSmMpeWOHHPR5rlbC7vtj3G_iQGwtWSqw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3019/api/v1/admin/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3019",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "customers",
+			"item": [
+				{
+					"name": "merchants",
+					"item": [
+						{
+							"name": "get-merchant",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http:///localhost:3018/api/v1/customer/merchants/1",
+									"protocol": "http",
+									"path": [
+										"localhost:3018",
+										"api",
+										"v1",
+										"customer",
+										"merchants",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-merchants",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http:///localhost:3018/api/v1/customer/merchants",
+									"protocol": "http",
+									"path": [
+										"localhost:3018",
+										"api",
+										"v1",
+										"customer",
+										"merchants"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "customer-register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Biplov Kattel\",\r\n  \"email\": \"shitwani14@gmail.com\",\r\n  \"address\": \"Chitwan\",\r\n  \"phone_number\": \"98658586941\",\r\n  \"password\":\"hi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http:///localhost:3018/api/v1/customer/auth/register",
+							"protocol": "http",
+							"path": [
+								"localhost:3018",
+								"api",
+								"v1",
+								"customer",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer-login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"nabindhami14@gmail.com\",\r\n  \"password\":\"hello\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http:///localhost:3018/api/v1/customer/auth/login",
+							"protocol": "http",
+							"path": [
+								"localhost:3018",
+								"api",
+								"v1",
+								"customer",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http:///localhost:3018/api/v1/customer/auth/2",
+							"protocol": "http",
+							"path": [
+								"localhost:3018",
+								"api",
+								"v1",
+								"customer",
+								"auth",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer-profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJuYWJpbmRoYW1pMTRAZ21haWwuY29tIiwiaWF0IjoxNzEzMTcwMDQ5LCJleHAiOjE3MTMyNTY0NDl9.vDQlCJGq-bjSmMpeWOHHPR5rlbC7vtj3G_iQGwtWSqw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http:///localhost:3018/api/v1/customer/auth/me",
+							"protocol": "http",
+							"path": [
+								"localhost:3018",
+								"api",
+								"v1",
+								"customer",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
