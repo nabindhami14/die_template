@@ -3,6 +3,14 @@
   const clientLoader = require('client');
 
   module.exports = {
+    '/api/v1/admin/customers': {
+      POST: {
+        client: clientLoader.adminClient,
+        method: 'createCustomer',
+        encode: cbs.admin_service.CreateCustomerRequest,
+        decode: cbs.admin_service.CreateCustomerResponse
+      }
+    },
     '/api/v1/admin/customers/bulk-upload': {
       POST: {
         client: clientLoader.adminClient,

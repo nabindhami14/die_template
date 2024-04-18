@@ -1,7 +1,6 @@
 (() => {
     module.exports = {
-        Register: require("./methods/register_customer"),
-        Login: require("./methods/login_customer"),
+        Login: require("./methods/customer_login"),
         Profile: require("./methods/customer_profile")
     }
 })()

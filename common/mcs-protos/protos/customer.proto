@@ -2,19 +2,6 @@ syntax = "proto3";
 
 package cbs.customer_auth_service;
 
-message RegisterRequest {
-    string name = 1;
-    string email = 2;
-    string password = 3;
-    string address = 4;
-    string phone_number = 5;
-}
-message RegisterResponse {
-    string status = 1;
-    string message = 2;
-}
-
-
 message LoginRequest {
     string email = 1;
     string password = 2;
@@ -34,6 +21,7 @@ message Customer {
     string email = 3;
     string address = 4;
     string phoneNumber = 5;
+    string money = 6;
 }
 
 message CustomerProfileRequest {

@@ -1,11 +1,11 @@
-name,email,password,phone_number,address
-"Mr. John Doe","john.doe@example.com","P@ssw0rd123","+1-123-456-7890","123 Main Street"
-"Ms. Jane Smith","jane.smith@example.net","SecurePwd987","555-555-5555","456 Elm Avenue Apt. 101"
-"Dr. Alex Johnson","alex.johnson@example.org","Passw0rd!","123-456-7890","789 Oak Street Suite 202"
-"Mrs. Emily Brown","emily.brown@example.com","MyPwd123","555.123.4567","321 Maple Lane"
-"Mr. Michael Davis","michael.davis@example.net","Password321","555-789-1234","987 Pine Road Apt. 303"
-"Miss Sarah Wilson","sarah.wilson@example.org","Secret123","555.987.6543","654 Cedar Court"
-"Ms. Jessica Taylor","jessica.taylor@example.com","Pa$$w0rd!","555-456-7890","147 Oak Street"
-"Mr. Christopher Martinez","chris.martinez@example.net","SecurePwd123","555-321-9876","369 Maple Avenue Suite 505"
-"Miss Amanda White","amanda.white@example.org","MySecurePassword","555.789.4567","852 Pine Street Apt. 707"
-"Mrs. Jennifer Lee","jennifer.lee@example.com","Password!","555-987-6543","753 Elm Street"
+name,email,password,phone_number,address,money
+"Mr. John Doe","john.doe@example.com","P@ssw0rd123","+1-123-456-7890","123 Main Street",7854.23
+"Ms. Jane Smith","jane.smith@example.net","SecurePwd987","555-555-5555","456 Elm Avenue Apt. 101",2319.45
+"Dr. Alex Johnson","alex.johnson@example.org","Passw0rd!","123-456-7890","789 Oak Street Suite 202",5426.71
+"Mrs. Emily Brown","emily.brown@example.com","MyPwd123","555.123.4567","321 Maple Lane",1689.33
+"Mr. Michael Davis","michael.davis@example.net","Password321","555-789-1234","987 Pine Road Apt. 303",7995.12
+"Miss Sarah Wilson","sarah.wilson@example.org","Secret123","555.987.6543","654 Cedar Court",6423.89
+"Ms. Jessica Taylor","jessica.taylor@example.com","Pa$$w0rd!","555-456-7890","147 Oak Street",3841.55
+"Mr. Christopher Martinez","chris.martinez@example.net","SecurePwd123","555-321-9876","369 Maple Avenue Suite 505",2768.91
+"Miss Amanda White","amanda.white@example.org","MySecurePassword","555.789.4567","852 Pine Street Apt. 707",9157.64
+"Mrs. Jennifer Lee","jennifer.lee@example.com","Password!","555-987-6543","753 Elm Street",1175.28

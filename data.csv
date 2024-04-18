@@ -1,33 +1,33 @@
-name,email,password,phone_number,address
-"Miss Maribel Feest","tracy10@example.net","lZXw2b9Pq8mZMFS","+1-102-762-4139 x7347","74744 Roob Isle Apt. 763"
-"Mrs. Karine Sipes","kohler.erika@example.net","v7RWU6FugOcVHuN","1-538-418-2319","69307 Renner Trafficway Apt. 119"
-"Ms. Liza Schumm","qkilback@example.org","6k1QfC26n02fO7D","+1-273-992-6511 x450","27677 Watsica Row"
-"Miss Alda Prosacco","sipes.pink@example.com","qeh0Tnt3NfOU7IF","659.884.5835 x2005","25533 Emmerich Forge Suite 943"
-"Mrs. Delphine Mertz","tremaine.roberts@example.com","pRV9FaLFpKgXQ3y","1-654-900-0231 x202","0040 Albertha Overpass"
-"Miss Winifred Fisher","julian07@example.net","i7o5QyzW1XnafMB","857.825.9149 x92311","12732 Olen Mews Apt. 677"
-"Mr. Gennaro O'Conner","deckow.jaqueline@example.com","oFbQ5o6xwCwz9En","+1-286-463-7859 x980","88210 Marquardt Heights Apt. 833"
-"Dr. Doyle Douglas","langosh.maurice@example.net","9DPN7kbJfSgITxV","686-146-0861","636 Beer Circle Suite 103"
-"Miss Christy Spinka","goyette.jacinthe@example.org","Am2XjDyGF4toIHC","+1-972-571-3846","19266 Streich Field Apt. 119"
-"Ms. Kiana Mann","langworth.alaina@example.com","0TKdGkT9fuSLtWZ","033-985-4261 x869","89619 Yost Plaza Suite 983"
-"Mrs. Lulu Corwin","joelle69@example.net","LSF9r5G8Rm3eblQ","+1-952-674-5292 x9797","0832 McCullough Station Apt. 218"
-"Miss Ardith Williamson","mccullough.adela@example.com","Iw5DoEgNOu6PVEB","1-407-634-9915 x9175","0983 Daugherty Ridge Apt. 240"
-"Mr. Cole Beer","wyman.astrid@example.org","ub0bEdWHol0IbFc","+1-378-244-5260 x316","44205 Kiehn Ridge Suite 384"
-"Ms. Marge Schmidt","charles39@example.net","Xi4dDJKb75HE8hw","282.241.9409","56477 Estrella Cliffs Apt. 383"
-"Ms. Adell Doyle","avis.hickle@example.com","77SeIx4UEy6mF8s","1-838-285-0286 x157","052 Kayley Brook Apt. 684"
-"Mrs. Audra Hauck","hane.moses@example.net","dOi52b8pF3vPrDC","+1-976-675-0358 x14735","8537 Casper Motorway Suite 950"
-"Dr. Berry Reinger","xbrakus@example.org","dyMjTfRNRkbCMf3","+1-314-328-0347 x3583","7635 Cartwright Highway Apt. 329"
-"Mr. Emory Schaden","garth.bahringer@example.com","7cTbnMfKmKjONJg","+1-328-453-1854 x456","452 Koss Lodge"
-"Mrs. Marisa Herzog","bruen.jonathan@example.net","S2p6sDwyWuAdJhO","1-756-975-8434 x01751","7165 Kovacek Village"
-"Ms. Greta O'Reilly","gleason.leo@example.com","XFGwMTxEqxFoxep","846-432-1358 x421","800 Lueilwitz Crest"
-"Mr. Antwan Marks","ykautzer@example.org","5nmXHzLhHDNjVRE","1-784-305-3163 x967","290 Hartmann Cove Apt. 772"
-"Mr. Logan Zulauf","marian12@example.net","oapRhTXPwZVQ5sA","+1-382-370-0145 x57807","1662 Schulist Forks"
-"Ms. Araceli Langworth","jalen.bahringer@example.com","PGj4xtfIFomlgLP","1-871-835-6529","52453 Zieme Harbor Suite 469"
-"Dr. Orlo Hayes","zemlak.roger@example.net","xgh2KZY1EzEqhHg","419-876-2170","84242 Aurore Well Apt. 520"
-"Dr. Lafayette Cremin","prudence.klocko@example.com","Ephmgj4Vn2eBR5y","1-853-289-2698 x862","4817 Leffler Islands"
-"Mrs. Kellie D'Amore","piper14@example.org","yXUaMgHEdA5lPO9","946.634.9641 x010","47596 Beahan Hills Apt. 630"
-"Mr. Jordan Schimmel","gutkowski.ethelyn@example.net","IY5j2fog0XMrA9J","+1-360-406-5647 x69271","1062 Sipes Prairie Suite 053"
-"Dr. Annamarie Bahringer","jamarcus66@example.com","dPQ8Zy8EsYJsW07","761-769-7202 x2146","514 Kautzer Orchard Apt. 779"
-"Dr. Zane Shields","wlehner@example.org","tKZQWPh1MBGim6c","1-340-823-0248","1710 Schaden Valleys Suite 662"
-"Dr. Marty Effertz","victor.bosco@example.com","v4uyI6nJxcL4Kgm","986-084-7133 x9643","0357 Douglas Trace Suite 187"
-"Ms. Marilie McDermott","murphy.gerry@example.net","SHsyDfpJabHzo6m","1-387-152-2958 x15616","377 Walsh Vista Suite 451"
-"Miss Alvina Ondricka","korey97@example.org","MZcGzPhw0SD8i7N","1-641-513
+name,email,password,phone_number,address,money
+"Miss Maribel Feest","tracy10@example.net","lZXw2b9Pq8mZMFS","+1-102-762-4139 x7347","74744 Roob Isle Apt. 763",6582.77
+"Mrs. Karine Sipes","kohler.erika@example.net","v7RWU6FugOcVHuN","1-538-418-2319","69307 Renner Trafficway Apt. 119",2531.68
+"Ms. Liza Schumm","qkilback@example.org","6k1QfC26n02fO7D","+1-273-992-6511 x450","27677 Watsica Row",8945.12
+"Miss Alda Prosacco","sipes.pink@example.com","qeh0Tnt3NfOU7IF","659.884.5835 x2005","25533 Emmerich Forge Suite 943",4138.29
+"Mrs. Delphine Mertz","tremaine.roberts@example.com","pRV9FaLFpKgXQ3y","1-654-900-0231 x202","0040 Albertha Overpass",7261.44
+"Miss Winifred Fisher","julian07@example.net","i7o5QyzW1XnafMB","857.825.9149 x92311","12732 Olen Mews Apt. 677",1398.75
+"Mr. Gennaro O'Conner","deckow.jaqueline@example.com","oFbQ5o6xwCwz9En","+1-286-463-7859 x980","88210 Marquardt Heights Apt. 833",5874.92
+"Dr. Doyle Douglas","langosh.maurice@example.net","9DPN7kbJfSgITxV","686-146-0861","636 Beer Circle Suite 103",9275.61
+"Miss Christy Spinka","goyette.jacinthe@example.org","Am2XjDyGF4toIHC","+1-972-571-3846","19266 Streich Field Apt. 119",3124.36
+"Ms. Kiana Mann","langworth.alaina@example.com","0TKdGkT9fuSLtWZ","033-985-4261 x869","89619 Yost Plaza Suite 983",6487.22
+"Mrs. Lulu Corwin","joelle69@example.net","LSF9r5G8Rm3eblQ","+1-952-674-5292 x9797","0832 McCullough Station Apt. 218",7853.09
+"Miss Ardith Williamson","mccullough.adela@example.com","Iw5DoEgNOu6PVEB","1-407-634-9915 x9175","0983 Daugherty Ridge Apt. 240",2047.93
+"Mr. Cole Beer","wyman.astrid@example.org","ub0bEdWHol0IbFc","+1-378-244-5260 x316","44205 Kiehn Ridge Suite 384",5169.78
+"Ms. Marge Schmidt","charles39@example.net","Xi4dDJKb75HE8hw","282.241.9409","56477 Estrella Cliffs Apt. 383",9723.85
+"Ms. Adell Doyle","avis.hickle@example.com","77SeIx4UEy6mF8s","1-838-285-0286 x157","052 Kayley Brook Apt. 684",3741.25
+"Mrs. Audra Hauck","hane.moses@example.net","dOi52b8pF3vPrDC","+1-976-675-0358 x14735","8537 Casper Motorway Suite 950",6892.41
+"Dr. Berry Reinger","xbrakus@example.org","dyMjTfRNRkbCMf3","+1-314-328-0347 x3583","7635 Cartwright Highway Apt. 329",1256.49
+"Mr. Emory Schaden","garth.bahringer@example.com","7cTbnMfKmKjONJg","+1-328-453-1854 x456","452 Koss Lodge",8924.37
+"Mrs. Marisa Herzog","bruen.jonathan@example.net","S2p6sDwyWuAdJhO","1-756-975-8434 x01751","7165 Kovacek Village",4378.52
+"Ms. Greta O'Reilly","gleason.leo@example.com","XFGwMTxEqxFoxep","846-432-1358 x421","800 Lueilwitz Crest",3612.18
+"Mr. Antwan Marks","ykautzer@example.org","5nmXHzLhHDNjVRE","1-784-305-3163 x967","290 Hartmann Cove Apt. 772",5983.27
+"Mr. Logan Zulauf","marian12@example.net","oapRhTXPwZVQ5sA","+1-382-370-0145 x57807","1662 Schulist Forks",7845.94
+"Ms. Araceli Langworth","jalen.bahringer@example.com","PGj4xtfIFomlgLP","1-871-835-6529","52453 Zieme Harbor Suite 469",1425.38
+"Dr. Orlo Hayes","zemlak.roger@example.net","xgh2KZY1EzEqhHg","419-876-2170","84242 Aurore Well Apt. 520",9637.75
+"Dr. Lafayette Cremin","prudence.klocko@example.com","Ephmgj4Vn2eBR5y","1-853-289-2698 x862","4817 Leffler Islands",2578.91
+"Mrs. Kellie D'Amore","piper14@example.org","yXUaMgHEdA5lPO9","946.634.9641 x010","47596 Beahan Hills Apt. 630",7853.27
+"Mr. Jordan Schimmel","gutkowski.ethelyn@example.net","IY5j2fog0XMrA9J","+1-360-406-5647 x69271","1062 Sipes Prairie Suite 053",6914.75
+"Dr. Annamarie Bahringer","jamarcus66@example.com","dPQ8Zy8EsYJsW07","761-769-7202 x2146","514 Kautzer Orchard Apt. 779",3156.82
+"Dr. Zane Shields","wlehner@example.org","tKZQWPh1MBGim6c","1-340-823-0248","1710 Schaden Valleys Suite 662",4829.63
+"Dr. Marty Effertz","victor.bosco@example.com","v4uyI6nJxcL4Kgm","986-084-7133 x9643","0357 Douglas Trace Suite 187",6951.27
+"Ms. Marilie McDermott","murphy.gerry@example.net","SHsyDfpJabHzo6m","1-387-152-2958 x15616","377 Walsh Vista Suite 451",1743.59
+"Miss Alvina Ondricka","korey97@example.org","MZcGzPhw0SD8i7N","1-641-513-7542 x32041","102 Hidden Fields",8573.84

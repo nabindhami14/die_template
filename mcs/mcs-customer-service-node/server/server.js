@@ -29,7 +29,6 @@ const server = new grpc.Server(null, preHook, postHook)
 const customerProto = grpcClientHelper.loadPackageForServer(config.service.customerService);
 
 server.addService(customerProto.cbs.customer_auth_service.rpc.CustomerAuthService.service, {
-    registerCustomer: customerAuthCtrl.regsiterCustomer,
     loginCustomer: customerAuthCtrl.loginCustomer,
     customerProfile: customerAuthCtrl.customerProfile
 })

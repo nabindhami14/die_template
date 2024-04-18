@@ -20,8 +20,6 @@
                     return responseHelper.sendErrorResponse(err, res, req.metaData);
                 }
 
-                console.log(response);
-
                 return responseHelper.sendSuccessResponse(response.status, response, cbs.common.Response, res);
             });
         } catch (err) {

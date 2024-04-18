@@ -26,7 +26,9 @@ const server = new grpc.Server(null, preHook, postHook)
 const customerProto = grpcClientHelper.loadPackageForServer(config.service.adminService);
 
 server.addService(customerProto.cbs.admin_service.rpc.AdminService.service, {
+    createCustomer: customerCtrl.createCustomer,
     bulkUpload: customerCtrl.customerBulkUpload,
+    
     getCustomer: customerCtrl.getCustomer,
     getCustomers: customerCtrl.getCustomers
 })

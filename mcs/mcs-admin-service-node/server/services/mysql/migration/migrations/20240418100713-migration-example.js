@@ -24,6 +24,9 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
+      money: {
+        type: Sequelize.DECIMAL
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -35,8 +38,34 @@ module.exports = {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
       }
     });
+    await queryInterface.createTable('Merchants', {
+      id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+      },
+      name: {
+        type: Sequelize.STRING(255),
+        allowNull: false
+      },
+      authType: {
+        type: Sequelize.ENUM('BASIC', 'OAUTH2', 'JWT'),
+        allowNull: false
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+        allowNull: false
+      }
+    });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Customers');
+    await queryInterface.dropTable('Merchants');
   }
 };

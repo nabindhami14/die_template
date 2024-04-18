@@ -4,7 +4,7 @@
 const { mysqlHelperReadonly, keyHelper } = require('common/helpers');
 
 
-module.exports = async (email, password, name, adress, phone_number) => {
+module.exports = async (email) => {
 
     try {
         let response = { data: {} };

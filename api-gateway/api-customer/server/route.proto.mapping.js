@@ -3,14 +3,6 @@
   const clientLoader = require('client');
 
   module.exports = {
-    '/api/v1/customers/auth/register': {
-      POST: {
-        client: clientLoader.customerAuthClient,
-        method: 'registerCustomer',
-        encode: cbs.customer_auth_service.RegisterRequest,
-        decode: cbs.customer_auth_service.RegisterResponse,
-      }
-    },
     '/api/v1/customers/auth/login': {
       POST: {
         client: clientLoader.customerAuthClient,
