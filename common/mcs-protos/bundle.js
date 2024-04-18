@@ -6535,6 +6535,39 @@ $root.cbs = (function() {
                  * @variation 2
                  */
 
+                /**
+                 * Callback as used by {@link cbs.merchant_service.rpc.MerchantService#createPayment}.
+                 * @memberof cbs.merchant_service.rpc.MerchantService
+                 * @typedef createPaymentCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {cbs.merchant_service.CreatePaymentResponse} [response] CreatePaymentResponse
+                 */
+
+                /**
+                 * Calls createPayment.
+                 * @function createPayment
+                 * @memberof cbs.merchant_service.rpc.MerchantService
+                 * @instance
+                 * @param {cbs.merchant_service.ICreatePaymentRequest} request CreatePaymentRequest message or plain object
+                 * @param {cbs.merchant_service.rpc.MerchantService.createPaymentCallback} callback Node-style callback called with the error, if any, and CreatePaymentResponse
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(MerchantService.prototype.createPayment = function createPayment(request, callback) {
+                    return this.rpcCall(createPayment, $root.cbs.merchant_service.CreatePaymentRequest, $root.cbs.merchant_service.CreatePaymentResponse, request, callback);
+                }, "name", { value: "createPayment" });
+
+                /**
+                 * Calls createPayment.
+                 * @function createPayment
+                 * @memberof cbs.merchant_service.rpc.MerchantService
+                 * @instance
+                 * @param {cbs.merchant_service.ICreatePaymentRequest} request CreatePaymentRequest message or plain object
+                 * @returns {Promise<cbs.merchant_service.CreatePaymentResponse>} Promise
+                 * @variation 2
+                 */
+
                 return MerchantService;
             })();
 
@@ -8446,6 +8479,1006 @@ $root.cbs = (function() {
             };
 
             return GetMerchantResponse;
+        })();
+
+        merchant_service.PaymentDetails = (function() {
+
+            /**
+             * Properties of a PaymentDetails.
+             * @memberof cbs.merchant_service
+             * @interface IPaymentDetails
+             * @property {number|null} [senderId] PaymentDetails senderId
+             * @property {number|null} [receiverId] PaymentDetails receiverId
+             * @property {number|null} [amount] PaymentDetails amount
+             * @property {string|null} [remark] PaymentDetails remark
+             */
+
+            /**
+             * Constructs a new PaymentDetails.
+             * @memberof cbs.merchant_service
+             * @classdesc Represents a PaymentDetails.
+             * @implements IPaymentDetails
+             * @constructor
+             * @param {cbs.merchant_service.IPaymentDetails=} [properties] Properties to set
+             */
+            function PaymentDetails(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * PaymentDetails senderId.
+             * @member {number} senderId
+             * @memberof cbs.merchant_service.PaymentDetails
+             * @instance
+             */
+            PaymentDetails.prototype.senderId = 0;
+
+            /**
+             * PaymentDetails receiverId.
+             * @member {number} receiverId
+             * @memberof cbs.merchant_service.PaymentDetails
+             * @instance
+             */
+            PaymentDetails.prototype.receiverId = 0;
+
+            /**
+             * PaymentDetails amount.
+             * @member {number} amount
+             * @memberof cbs.merchant_service.PaymentDetails
+             * @instance
+             */
+            PaymentDetails.prototype.amount = 0;
+
+            /**
+             * PaymentDetails remark.
+             * @member {string} remark
+             * @memberof cbs.merchant_service.PaymentDetails
+             * @instance
+             */
+            PaymentDetails.prototype.remark = "";
+
+            /**
+             * Creates a new PaymentDetails instance using the specified properties.
+             * @function create
+             * @memberof cbs.merchant_service.PaymentDetails
+             * @static
+             * @param {cbs.merchant_service.IPaymentDetails=} [properties] Properties to set
+             * @returns {cbs.merchant_service.PaymentDetails} PaymentDetails instance
+             */
+            PaymentDetails.create = function create(properties) {
+                return new PaymentDetails(properties);
+            };
+
+            /**
+             * Encodes the specified PaymentDetails message. Does not implicitly {@link cbs.merchant_service.PaymentDetails.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.merchant_service.PaymentDetails
+             * @static
+             * @param {cbs.merchant_service.IPaymentDetails} message PaymentDetails message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PaymentDetails.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.senderId != null && Object.hasOwnProperty.call(message, "senderId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.senderId);
+                if (message.receiverId != null && Object.hasOwnProperty.call(message, "receiverId"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.receiverId);
+                if (message.amount != null && Object.hasOwnProperty.call(message, "amount"))
+                    writer.uint32(/* id 3, wireType 1 =*/25).double(message.amount);
+                if (message.remark != null && Object.hasOwnProperty.call(message, "remark"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.remark);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified PaymentDetails message, length delimited. Does not implicitly {@link cbs.merchant_service.PaymentDetails.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.merchant_service.PaymentDetails
+             * @static
+             * @param {cbs.merchant_service.IPaymentDetails} message PaymentDetails message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PaymentDetails.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a PaymentDetails message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.merchant_service.PaymentDetails
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.merchant_service.PaymentDetails} PaymentDetails
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PaymentDetails.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.PaymentDetails();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.senderId = reader.int32();
+                        break;
+                    case 2:
+                        message.receiverId = reader.int32();
+                        break;
+                    case 3:
+                        message.amount = reader.double();
+                        break;
+                    case 4:
+                        message.remark = reader.string();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a PaymentDetails message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.merchant_service.PaymentDetails
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.merchant_service.PaymentDetails} PaymentDetails
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PaymentDetails.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a PaymentDetails message.
+             * @function verify
+             * @memberof cbs.merchant_service.PaymentDetails
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PaymentDetails.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.senderId != null && message.hasOwnProperty("senderId"))
+                    if (!$util.isInteger(message.senderId))
+                        return "senderId: integer expected";
+                if (message.receiverId != null && message.hasOwnProperty("receiverId"))
+                    if (!$util.isInteger(message.receiverId))
+                        return "receiverId: integer expected";
+                if (message.amount != null && message.hasOwnProperty("amount"))
+                    if (typeof message.amount !== "number")
+                        return "amount: number expected";
+                if (message.remark != null && message.hasOwnProperty("remark"))
+                    if (!$util.isString(message.remark))
+                        return "remark: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a PaymentDetails message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.merchant_service.PaymentDetails
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.merchant_service.PaymentDetails} PaymentDetails
+             */
+            PaymentDetails.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.merchant_service.PaymentDetails)
+                    return object;
+                var message = new $root.cbs.merchant_service.PaymentDetails();
+                if (object.senderId != null)
+                    message.senderId = object.senderId | 0;
+                if (object.receiverId != null)
+                    message.receiverId = object.receiverId | 0;
+                if (object.amount != null)
+                    message.amount = Number(object.amount);
+                if (object.remark != null)
+                    message.remark = String(object.remark);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a PaymentDetails message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.merchant_service.PaymentDetails
+             * @static
+             * @param {cbs.merchant_service.PaymentDetails} message PaymentDetails
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PaymentDetails.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.senderId = 0;
+                    object.receiverId = 0;
+                    object.amount = 0;
+                    object.remark = "";
+                }
+                if (message.senderId != null && message.hasOwnProperty("senderId"))
+                    object.senderId = message.senderId;
+                if (message.receiverId != null && message.hasOwnProperty("receiverId"))
+                    object.receiverId = message.receiverId;
+                if (message.amount != null && message.hasOwnProperty("amount"))
+                    object.amount = options.json && !isFinite(message.amount) ? String(message.amount) : message.amount;
+                if (message.remark != null && message.hasOwnProperty("remark"))
+                    object.remark = message.remark;
+                return object;
+            };
+
+            /**
+             * Converts this PaymentDetails to JSON.
+             * @function toJSON
+             * @memberof cbs.merchant_service.PaymentDetails
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PaymentDetails.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return PaymentDetails;
+        })();
+
+        merchant_service.PaymentCredentials = (function() {
+
+            /**
+             * Properties of a PaymentCredentials.
+             * @memberof cbs.merchant_service
+             * @interface IPaymentCredentials
+             * @property {string|null} [username] PaymentCredentials username
+             * @property {string|null} [password] PaymentCredentials password
+             * @property {string|null} [accessToken] PaymentCredentials accessToken
+             * @property {string|null} [token] PaymentCredentials token
+             */
+
+            /**
+             * Constructs a new PaymentCredentials.
+             * @memberof cbs.merchant_service
+             * @classdesc Represents a PaymentCredentials.
+             * @implements IPaymentCredentials
+             * @constructor
+             * @param {cbs.merchant_service.IPaymentCredentials=} [properties] Properties to set
+             */
+            function PaymentCredentials(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * PaymentCredentials username.
+             * @member {string} username
+             * @memberof cbs.merchant_service.PaymentCredentials
+             * @instance
+             */
+            PaymentCredentials.prototype.username = "";
+
+            /**
+             * PaymentCredentials password.
+             * @member {string} password
+             * @memberof cbs.merchant_service.PaymentCredentials
+             * @instance
+             */
+            PaymentCredentials.prototype.password = "";
+
+            /**
+             * PaymentCredentials accessToken.
+             * @member {string} accessToken
+             * @memberof cbs.merchant_service.PaymentCredentials
+             * @instance
+             */
+            PaymentCredentials.prototype.accessToken = "";
+
+            /**
+             * PaymentCredentials token.
+             * @member {string} token
+             * @memberof cbs.merchant_service.PaymentCredentials
+             * @instance
+             */
+            PaymentCredentials.prototype.token = "";
+
+            /**
+             * Creates a new PaymentCredentials instance using the specified properties.
+             * @function create
+             * @memberof cbs.merchant_service.PaymentCredentials
+             * @static
+             * @param {cbs.merchant_service.IPaymentCredentials=} [properties] Properties to set
+             * @returns {cbs.merchant_service.PaymentCredentials} PaymentCredentials instance
+             */
+            PaymentCredentials.create = function create(properties) {
+                return new PaymentCredentials(properties);
+            };
+
+            /**
+             * Encodes the specified PaymentCredentials message. Does not implicitly {@link cbs.merchant_service.PaymentCredentials.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.merchant_service.PaymentCredentials
+             * @static
+             * @param {cbs.merchant_service.IPaymentCredentials} message PaymentCredentials message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PaymentCredentials.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.username);
+                if (message.password != null && Object.hasOwnProperty.call(message, "password"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.password);
+                if (message.accessToken != null && Object.hasOwnProperty.call(message, "accessToken"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.accessToken);
+                if (message.token != null && Object.hasOwnProperty.call(message, "token"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.token);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified PaymentCredentials message, length delimited. Does not implicitly {@link cbs.merchant_service.PaymentCredentials.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.merchant_service.PaymentCredentials
+             * @static
+             * @param {cbs.merchant_service.IPaymentCredentials} message PaymentCredentials message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PaymentCredentials.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a PaymentCredentials message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.merchant_service.PaymentCredentials
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.merchant_service.PaymentCredentials} PaymentCredentials
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PaymentCredentials.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.PaymentCredentials();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.username = reader.string();
+                        break;
+                    case 2:
+                        message.password = reader.string();
+                        break;
+                    case 3:
+                        message.accessToken = reader.string();
+                        break;
+                    case 4:
+                        message.token = reader.string();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a PaymentCredentials message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.merchant_service.PaymentCredentials
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.merchant_service.PaymentCredentials} PaymentCredentials
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PaymentCredentials.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a PaymentCredentials message.
+             * @function verify
+             * @memberof cbs.merchant_service.PaymentCredentials
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PaymentCredentials.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.username != null && message.hasOwnProperty("username"))
+                    if (!$util.isString(message.username))
+                        return "username: string expected";
+                if (message.password != null && message.hasOwnProperty("password"))
+                    if (!$util.isString(message.password))
+                        return "password: string expected";
+                if (message.accessToken != null && message.hasOwnProperty("accessToken"))
+                    if (!$util.isString(message.accessToken))
+                        return "accessToken: string expected";
+                if (message.token != null && message.hasOwnProperty("token"))
+                    if (!$util.isString(message.token))
+                        return "token: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a PaymentCredentials message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.merchant_service.PaymentCredentials
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.merchant_service.PaymentCredentials} PaymentCredentials
+             */
+            PaymentCredentials.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.merchant_service.PaymentCredentials)
+                    return object;
+                var message = new $root.cbs.merchant_service.PaymentCredentials();
+                if (object.username != null)
+                    message.username = String(object.username);
+                if (object.password != null)
+                    message.password = String(object.password);
+                if (object.accessToken != null)
+                    message.accessToken = String(object.accessToken);
+                if (object.token != null)
+                    message.token = String(object.token);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a PaymentCredentials message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.merchant_service.PaymentCredentials
+             * @static
+             * @param {cbs.merchant_service.PaymentCredentials} message PaymentCredentials
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PaymentCredentials.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.username = "";
+                    object.password = "";
+                    object.accessToken = "";
+                    object.token = "";
+                }
+                if (message.username != null && message.hasOwnProperty("username"))
+                    object.username = message.username;
+                if (message.password != null && message.hasOwnProperty("password"))
+                    object.password = message.password;
+                if (message.accessToken != null && message.hasOwnProperty("accessToken"))
+                    object.accessToken = message.accessToken;
+                if (message.token != null && message.hasOwnProperty("token"))
+                    object.token = message.token;
+                return object;
+            };
+
+            /**
+             * Converts this PaymentCredentials to JSON.
+             * @function toJSON
+             * @memberof cbs.merchant_service.PaymentCredentials
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PaymentCredentials.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return PaymentCredentials;
+        })();
+
+        merchant_service.CreatePaymentRequest = (function() {
+
+            /**
+             * Properties of a CreatePaymentRequest.
+             * @memberof cbs.merchant_service
+             * @interface ICreatePaymentRequest
+             * @property {number|null} [merchantId] CreatePaymentRequest merchantId
+             * @property {cbs.merchant_service.AuthType|null} [authType] CreatePaymentRequest authType
+             * @property {cbs.merchant_service.IPaymentDetails|null} [paymentDetails] CreatePaymentRequest paymentDetails
+             * @property {cbs.merchant_service.IPaymentCredentials|null} [credentials] CreatePaymentRequest credentials
+             */
+
+            /**
+             * Constructs a new CreatePaymentRequest.
+             * @memberof cbs.merchant_service
+             * @classdesc Represents a CreatePaymentRequest.
+             * @implements ICreatePaymentRequest
+             * @constructor
+             * @param {cbs.merchant_service.ICreatePaymentRequest=} [properties] Properties to set
+             */
+            function CreatePaymentRequest(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * CreatePaymentRequest merchantId.
+             * @member {number} merchantId
+             * @memberof cbs.merchant_service.CreatePaymentRequest
+             * @instance
+             */
+            CreatePaymentRequest.prototype.merchantId = 0;
+
+            /**
+             * CreatePaymentRequest authType.
+             * @member {cbs.merchant_service.AuthType} authType
+             * @memberof cbs.merchant_service.CreatePaymentRequest
+             * @instance
+             */
+            CreatePaymentRequest.prototype.authType = 0;
+
+            /**
+             * CreatePaymentRequest paymentDetails.
+             * @member {cbs.merchant_service.IPaymentDetails|null|undefined} paymentDetails
+             * @memberof cbs.merchant_service.CreatePaymentRequest
+             * @instance
+             */
+            CreatePaymentRequest.prototype.paymentDetails = null;
+
+            /**
+             * CreatePaymentRequest credentials.
+             * @member {cbs.merchant_service.IPaymentCredentials|null|undefined} credentials
+             * @memberof cbs.merchant_service.CreatePaymentRequest
+             * @instance
+             */
+            CreatePaymentRequest.prototype.credentials = null;
+
+            /**
+             * Creates a new CreatePaymentRequest instance using the specified properties.
+             * @function create
+             * @memberof cbs.merchant_service.CreatePaymentRequest
+             * @static
+             * @param {cbs.merchant_service.ICreatePaymentRequest=} [properties] Properties to set
+             * @returns {cbs.merchant_service.CreatePaymentRequest} CreatePaymentRequest instance
+             */
+            CreatePaymentRequest.create = function create(properties) {
+                return new CreatePaymentRequest(properties);
+            };
+
+            /**
+             * Encodes the specified CreatePaymentRequest message. Does not implicitly {@link cbs.merchant_service.CreatePaymentRequest.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.merchant_service.CreatePaymentRequest
+             * @static
+             * @param {cbs.merchant_service.ICreatePaymentRequest} message CreatePaymentRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CreatePaymentRequest.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.merchantId != null && Object.hasOwnProperty.call(message, "merchantId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.merchantId);
+                if (message.authType != null && Object.hasOwnProperty.call(message, "authType"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.authType);
+                if (message.paymentDetails != null && Object.hasOwnProperty.call(message, "paymentDetails"))
+                    $root.cbs.merchant_service.PaymentDetails.encode(message.paymentDetails, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                if (message.credentials != null && Object.hasOwnProperty.call(message, "credentials"))
+                    $root.cbs.merchant_service.PaymentCredentials.encode(message.credentials, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified CreatePaymentRequest message, length delimited. Does not implicitly {@link cbs.merchant_service.CreatePaymentRequest.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.merchant_service.CreatePaymentRequest
+             * @static
+             * @param {cbs.merchant_service.ICreatePaymentRequest} message CreatePaymentRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CreatePaymentRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a CreatePaymentRequest message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.merchant_service.CreatePaymentRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.merchant_service.CreatePaymentRequest} CreatePaymentRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CreatePaymentRequest.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.CreatePaymentRequest();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.merchantId = reader.int32();
+                        break;
+                    case 2:
+                        message.authType = reader.int32();
+                        break;
+                    case 3:
+                        message.paymentDetails = $root.cbs.merchant_service.PaymentDetails.decode(reader, reader.uint32());
+                        break;
+                    case 4:
+                        message.credentials = $root.cbs.merchant_service.PaymentCredentials.decode(reader, reader.uint32());
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a CreatePaymentRequest message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.merchant_service.CreatePaymentRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.merchant_service.CreatePaymentRequest} CreatePaymentRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CreatePaymentRequest.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a CreatePaymentRequest message.
+             * @function verify
+             * @memberof cbs.merchant_service.CreatePaymentRequest
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            CreatePaymentRequest.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.merchantId != null && message.hasOwnProperty("merchantId"))
+                    if (!$util.isInteger(message.merchantId))
+                        return "merchantId: integer expected";
+                if (message.authType != null && message.hasOwnProperty("authType"))
+                    switch (message.authType) {
+                    default:
+                        return "authType: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                        break;
+                    }
+                if (message.paymentDetails != null && message.hasOwnProperty("paymentDetails")) {
+                    var error = $root.cbs.merchant_service.PaymentDetails.verify(message.paymentDetails);
+                    if (error)
+                        return "paymentDetails." + error;
+                }
+                if (message.credentials != null && message.hasOwnProperty("credentials")) {
+                    var error = $root.cbs.merchant_service.PaymentCredentials.verify(message.credentials);
+                    if (error)
+                        return "credentials." + error;
+                }
+                return null;
+            };
+
+            /**
+             * Creates a CreatePaymentRequest message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.merchant_service.CreatePaymentRequest
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.merchant_service.CreatePaymentRequest} CreatePaymentRequest
+             */
+            CreatePaymentRequest.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.merchant_service.CreatePaymentRequest)
+                    return object;
+                var message = new $root.cbs.merchant_service.CreatePaymentRequest();
+                if (object.merchantId != null)
+                    message.merchantId = object.merchantId | 0;
+                switch (object.authType) {
+                case "BASIC":
+                case 0:
+                    message.authType = 0;
+                    break;
+                case "OAUTH2":
+                case 1:
+                    message.authType = 1;
+                    break;
+                case "JWT":
+                case 2:
+                    message.authType = 2;
+                    break;
+                }
+                if (object.paymentDetails != null) {
+                    if (typeof object.paymentDetails !== "object")
+                        throw TypeError(".cbs.merchant_service.CreatePaymentRequest.paymentDetails: object expected");
+                    message.paymentDetails = $root.cbs.merchant_service.PaymentDetails.fromObject(object.paymentDetails);
+                }
+                if (object.credentials != null) {
+                    if (typeof object.credentials !== "object")
+                        throw TypeError(".cbs.merchant_service.CreatePaymentRequest.credentials: object expected");
+                    message.credentials = $root.cbs.merchant_service.PaymentCredentials.fromObject(object.credentials);
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a CreatePaymentRequest message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.merchant_service.CreatePaymentRequest
+             * @static
+             * @param {cbs.merchant_service.CreatePaymentRequest} message CreatePaymentRequest
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            CreatePaymentRequest.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.merchantId = 0;
+                    object.authType = options.enums === String ? "BASIC" : 0;
+                    object.paymentDetails = null;
+                    object.credentials = null;
+                }
+                if (message.merchantId != null && message.hasOwnProperty("merchantId"))
+                    object.merchantId = message.merchantId;
+                if (message.authType != null && message.hasOwnProperty("authType"))
+                    object.authType = options.enums === String ? $root.cbs.merchant_service.AuthType[message.authType] : message.authType;
+                if (message.paymentDetails != null && message.hasOwnProperty("paymentDetails"))
+                    object.paymentDetails = $root.cbs.merchant_service.PaymentDetails.toObject(message.paymentDetails, options);
+                if (message.credentials != null && message.hasOwnProperty("credentials"))
+                    object.credentials = $root.cbs.merchant_service.PaymentCredentials.toObject(message.credentials, options);
+                return object;
+            };
+
+            /**
+             * Converts this CreatePaymentRequest to JSON.
+             * @function toJSON
+             * @memberof cbs.merchant_service.CreatePaymentRequest
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            CreatePaymentRequest.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return CreatePaymentRequest;
+        })();
+
+        merchant_service.CreatePaymentResponse = (function() {
+
+            /**
+             * Properties of a CreatePaymentResponse.
+             * @memberof cbs.merchant_service
+             * @interface ICreatePaymentResponse
+             * @property {number|null} [status] CreatePaymentResponse status
+             * @property {boolean|null} [success] CreatePaymentResponse success
+             */
+
+            /**
+             * Constructs a new CreatePaymentResponse.
+             * @memberof cbs.merchant_service
+             * @classdesc Represents a CreatePaymentResponse.
+             * @implements ICreatePaymentResponse
+             * @constructor
+             * @param {cbs.merchant_service.ICreatePaymentResponse=} [properties] Properties to set
+             */
+            function CreatePaymentResponse(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * CreatePaymentResponse status.
+             * @member {number} status
+             * @memberof cbs.merchant_service.CreatePaymentResponse
+             * @instance
+             */
+            CreatePaymentResponse.prototype.status = 0;
+
+            /**
+             * CreatePaymentResponse success.
+             * @member {boolean} success
+             * @memberof cbs.merchant_service.CreatePaymentResponse
+             * @instance
+             */
+            CreatePaymentResponse.prototype.success = false;
+
+            /**
+             * Creates a new CreatePaymentResponse instance using the specified properties.
+             * @function create
+             * @memberof cbs.merchant_service.CreatePaymentResponse
+             * @static
+             * @param {cbs.merchant_service.ICreatePaymentResponse=} [properties] Properties to set
+             * @returns {cbs.merchant_service.CreatePaymentResponse} CreatePaymentResponse instance
+             */
+            CreatePaymentResponse.create = function create(properties) {
+                return new CreatePaymentResponse(properties);
+            };
+
+            /**
+             * Encodes the specified CreatePaymentResponse message. Does not implicitly {@link cbs.merchant_service.CreatePaymentResponse.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.merchant_service.CreatePaymentResponse
+             * @static
+             * @param {cbs.merchant_service.ICreatePaymentResponse} message CreatePaymentResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CreatePaymentResponse.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+                if (message.success != null && Object.hasOwnProperty.call(message, "success"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).bool(message.success);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified CreatePaymentResponse message, length delimited. Does not implicitly {@link cbs.merchant_service.CreatePaymentResponse.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.merchant_service.CreatePaymentResponse
+             * @static
+             * @param {cbs.merchant_service.ICreatePaymentResponse} message CreatePaymentResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CreatePaymentResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a CreatePaymentResponse message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.merchant_service.CreatePaymentResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.merchant_service.CreatePaymentResponse} CreatePaymentResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CreatePaymentResponse.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.CreatePaymentResponse();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.status = reader.int32();
+                        break;
+                    case 2:
+                        message.success = reader.bool();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a CreatePaymentResponse message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.merchant_service.CreatePaymentResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.merchant_service.CreatePaymentResponse} CreatePaymentResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CreatePaymentResponse.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a CreatePaymentResponse message.
+             * @function verify
+             * @memberof cbs.merchant_service.CreatePaymentResponse
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            CreatePaymentResponse.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                if (message.success != null && message.hasOwnProperty("success"))
+                    if (typeof message.success !== "boolean")
+                        return "success: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a CreatePaymentResponse message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.merchant_service.CreatePaymentResponse
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.merchant_service.CreatePaymentResponse} CreatePaymentResponse
+             */
+            CreatePaymentResponse.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.merchant_service.CreatePaymentResponse)
+                    return object;
+                var message = new $root.cbs.merchant_service.CreatePaymentResponse();
+                if (object.status != null)
+                    message.status = object.status | 0;
+                if (object.success != null)
+                    message.success = Boolean(object.success);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a CreatePaymentResponse message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.merchant_service.CreatePaymentResponse
+             * @static
+             * @param {cbs.merchant_service.CreatePaymentResponse} message CreatePaymentResponse
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            CreatePaymentResponse.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.status = 0;
+                    object.success = false;
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                if (message.success != null && message.hasOwnProperty("success"))
+                    object.success = message.success;
+                return object;
+            };
+
+            /**
+             * Converts this CreatePaymentResponse to JSON.
+             * @function toJSON
+             * @memberof cbs.merchant_service.CreatePaymentResponse
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            CreatePaymentResponse.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return CreatePaymentResponse;
         })();
 
         return merchant_service;

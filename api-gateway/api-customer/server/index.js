@@ -65,7 +65,7 @@ app.use((req, res, next) => {
     });
 });
 
-app.use('/api/v1/customer', indexRouter);
+app.use('/api/v1/customers', indexRouter);
 
 // / error handler /
 app.use(function (err, req, res, next) {

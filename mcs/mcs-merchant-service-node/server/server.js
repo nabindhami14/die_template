@@ -13,6 +13,7 @@ const { grpcClientHelper, grpcMetaHelper, mysqlHelperReadonly,mysqlHelper } = re
 
 // MODULES
 const merchantCtrl = require('./modules/merchant_service');
+const paymentCtrl = require('./modules/payment_service');
 
 
 // CONFIGURATION AND CLIENTS
@@ -29,6 +30,9 @@ server.addService(customerProto.cbs.merchant_service.rpc.MerchantService.service
     createMerchant: merchantCtrl.createMerchant,
     getMerchants: merchantCtrl.getMerchants,
     getMerchant: merchantCtrl.getMerchant,
+
+    // PAYMENT SERVICES
+    createPayment: paymentCtrl.createPayment
 })
 
 server.bindAsync(

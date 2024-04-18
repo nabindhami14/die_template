@@ -44,3 +44,4 @@ message CustomerProfileResponse {
     int32 status = 1;
     Customer customer = 2;   
 }
+
