@@ -12,7 +12,7 @@ const grpc = require('@grpc/grpc-js')
 const { grpcClientHelper, grpcMetaHelper, mysqlHelperReadonly,mysqlHelper } = require('common/helpers');
 
 // MODULES
-const mrerchantCtrl = require('./modules/merchant_service');
+const merchantCtrl = require('./modules/merchant_service');
 
 
 // CONFIGURATION AND CLIENTS
@@ -26,9 +26,9 @@ const server = new grpc.Server(null, preHook, postHook)
 const customerProto = grpcClientHelper.loadPackageForServer(config.service.merchantService);
 
 server.addService(customerProto.cbs.merchant_service.rpc.MerchantService.service, {
-    createMerchant: mrerchantCtrl.createMerchant,
-    getMerchants: mrerchantCtrl.getMerchants,
-    getMerchant: mrerchantCtrl.getMerchant,
+    createMerchant: merchantCtrl.createMerchant,
+    getMerchants: merchantCtrl.getMerchants,
+    getMerchant: merchantCtrl.getMerchant,
 })
 
 server.bindAsync(

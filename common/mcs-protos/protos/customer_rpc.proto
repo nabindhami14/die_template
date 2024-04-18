@@ -8,4 +8,8 @@ service CustomerAuthService {
     rpc registerCustomer(cbs.customer_auth_service.RegisterRequest) returns (cbs.customer_auth_service.RegisterResponse);
     rpc loginCustomer(cbs.customer_auth_service.LoginRequest) returns (cbs.customer_auth_service.LoginResponse);
     rpc customerProfile(cbs.customer_auth_service.CustomerProfileRequest) returns (cbs.customer_auth_service.CustomerProfileResponse);
+
+    
+    rpc getMerchant(cbs.customer_auth_service.MerchantRequest) returns (cbs.customer_auth_service.MerchantResponse);
+    rpc getMerchants(cbs.customer_auth_service.MerchantsRequest) returns (cbs.customer_auth_service.MerchantsResponse);
 }
