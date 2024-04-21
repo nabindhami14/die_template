@@ -69,31 +69,31 @@ $root.cbs = (function() {
                 };
 
                 /**
-                 * Callback as used by {@link cbs.admin_service.rpc.AdminService#loginCustomer}.
+                 * Callback as used by {@link cbs.admin_service.rpc.AdminService#loginAdmin}.
                  * @memberof cbs.admin_service.rpc.AdminService
-                 * @typedef loginCustomerCallback
+                 * @typedef loginAdminCallback
                  * @type {function}
                  * @param {Error|null} error Error, if any
                  * @param {cbs.admin_service.LoginResponse} [response] LoginResponse
                  */
 
                 /**
-                 * Calls loginCustomer.
-                 * @function loginCustomer
+                 * Calls loginAdmin.
+                 * @function loginAdmin
                  * @memberof cbs.admin_service.rpc.AdminService
                  * @instance
                  * @param {cbs.admin_service.ILoginRequest} request LoginRequest message or plain object
-                 * @param {cbs.admin_service.rpc.AdminService.loginCustomerCallback} callback Node-style callback called with the error, if any, and LoginResponse
+                 * @param {cbs.admin_service.rpc.AdminService.loginAdminCallback} callback Node-style callback called with the error, if any, and LoginResponse
                  * @returns {undefined}
                  * @variation 1
                  */
-                Object.defineProperty(AdminService.prototype.loginCustomer = function loginCustomer(request, callback) {
-                    return this.rpcCall(loginCustomer, $root.cbs.admin_service.LoginRequest, $root.cbs.admin_service.LoginResponse, request, callback);
-                }, "name", { value: "loginCustomer" });
+                Object.defineProperty(AdminService.prototype.loginAdmin = function loginAdmin(request, callback) {
+                    return this.rpcCall(loginAdmin, $root.cbs.admin_service.LoginRequest, $root.cbs.admin_service.LoginResponse, request, callback);
+                }, "name", { value: "loginAdmin" });
 
                 /**
-                 * Calls loginCustomer.
-                 * @function loginCustomer
+                 * Calls loginAdmin.
+                 * @function loginAdmin
                  * @memberof cbs.admin_service.rpc.AdminService
                  * @instance
                  * @param {cbs.admin_service.ILoginRequest} request LoginRequest message or plain object
@@ -7876,6 +7876,7 @@ $root.cbs = (function() {
              * @interface ICreateMerchantResponse
              * @property {number|null} [status] CreateMerchantResponse status
              * @property {boolean|null} [success] CreateMerchantResponse success
+             * @property {string|null} [message] CreateMerchantResponse message
              */
 
             /**
@@ -7910,6 +7911,14 @@ $root.cbs = (function() {
             CreateMerchantResponse.prototype.success = false;
 
             /**
+             * CreateMerchantResponse message.
+             * @member {string} message
+             * @memberof cbs.merchant_service.CreateMerchantResponse
+             * @instance
+             */
+            CreateMerchantResponse.prototype.message = "";
+
+            /**
              * Creates a new CreateMerchantResponse instance using the specified properties.
              * @function create
              * @memberof cbs.merchant_service.CreateMerchantResponse
@@ -7937,6 +7946,8 @@ $root.cbs = (function() {
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
                 if (message.success != null && Object.hasOwnProperty.call(message, "success"))
                     writer.uint32(/* id 2, wireType 0 =*/16).bool(message.success);
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.message);
                 return writer;
             };
 
@@ -7976,6 +7987,9 @@ $root.cbs = (function() {
                         break;
                     case 2:
                         message.success = reader.bool();
+                        break;
+                    case 3:
+                        message.message = reader.string();
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -8018,6 +8032,9 @@ $root.cbs = (function() {
                 if (message.success != null && message.hasOwnProperty("success"))
                     if (typeof message.success !== "boolean")
                         return "success: boolean expected";
+                if (message.message != null && message.hasOwnProperty("message"))
+                    if (!$util.isString(message.message))
+                        return "message: string expected";
                 return null;
             };
 
@@ -8037,6 +8054,8 @@ $root.cbs = (function() {
                     message.status = object.status | 0;
                 if (object.success != null)
                     message.success = Boolean(object.success);
+                if (object.message != null)
+                    message.message = String(object.message);
                 return message;
             };
 
@@ -8056,11 +8075,14 @@ $root.cbs = (function() {
                 if (options.defaults) {
                     object.status = 0;
                     object.success = false;
+                    object.message = "";
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = message.status;
                 if (message.success != null && message.hasOwnProperty("success"))
                     object.success = message.success;
+                if (message.message != null && message.hasOwnProperty("message"))
+                    object.message = message.message;
                 return object;
             };
 
@@ -8567,6 +8589,7 @@ $root.cbs = (function() {
              * @interface IGetMerchantsResponse
              * @property {number|null} [status] GetMerchantsResponse status
              * @property {Array.<cbs.merchant_service.IGMerchant>|null} [merchants] GetMerchantsResponse merchants
+             * @property {string|null} [message] GetMerchantsResponse message
              */
 
             /**
@@ -8602,6 +8625,14 @@ $root.cbs = (function() {
             GetMerchantsResponse.prototype.merchants = $util.emptyArray;
 
             /**
+             * GetMerchantsResponse message.
+             * @member {string} message
+             * @memberof cbs.merchant_service.GetMerchantsResponse
+             * @instance
+             */
+            GetMerchantsResponse.prototype.message = "";
+
+            /**
              * Creates a new GetMerchantsResponse instance using the specified properties.
              * @function create
              * @memberof cbs.merchant_service.GetMerchantsResponse
@@ -8630,6 +8661,8 @@ $root.cbs = (function() {
                 if (message.merchants != null && message.merchants.length)
                     for (var i = 0; i < message.merchants.length; ++i)
                         $root.cbs.merchant_service.GMerchant.encode(message.merchants[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.message);
                 return writer;
             };
 
@@ -8671,6 +8704,9 @@ $root.cbs = (function() {
                         if (!(message.merchants && message.merchants.length))
                             message.merchants = [];
                         message.merchants.push($root.cbs.merchant_service.GMerchant.decode(reader, reader.uint32()));
+                        break;
+                    case 3:
+                        message.message = reader.string();
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -8719,6 +8755,9 @@ $root.cbs = (function() {
                             return "merchants." + error;
                     }
                 }
+                if (message.message != null && message.hasOwnProperty("message"))
+                    if (!$util.isString(message.message))
+                        return "message: string expected";
                 return null;
             };
 
@@ -8746,6 +8785,8 @@ $root.cbs = (function() {
                         message.merchants[i] = $root.cbs.merchant_service.GMerchant.fromObject(object.merchants[i]);
                     }
                 }
+                if (object.message != null)
+                    message.message = String(object.message);
                 return message;
             };
 
@@ -8764,8 +8805,10 @@ $root.cbs = (function() {
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.merchants = [];
-                if (options.defaults)
+                if (options.defaults) {
                     object.status = 0;
+                    object.message = "";
+                }
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = message.status;
                 if (message.merchants && message.merchants.length) {
@@ -8773,6 +8816,8 @@ $root.cbs = (function() {
                     for (var j = 0; j < message.merchants.length; ++j)
                         object.merchants[j] = $root.cbs.merchant_service.GMerchant.toObject(message.merchants[j], options);
                 }
+                if (message.message != null && message.hasOwnProperty("message"))
+                    object.message = message.message;
                 return object;
             };
 
@@ -9008,6 +9053,7 @@ $root.cbs = (function() {
              * @interface IGetMerchantResponse
              * @property {number|null} [status] GetMerchantResponse status
              * @property {cbs.merchant_service.IGMerchant|null} [merchant] GetMerchantResponse merchant
+             * @property {string|null} [message] GetMerchantResponse message
              */
 
             /**
@@ -9042,6 +9088,14 @@ $root.cbs = (function() {
             GetMerchantResponse.prototype.merchant = null;
 
             /**
+             * GetMerchantResponse message.
+             * @member {string} message
+             * @memberof cbs.merchant_service.GetMerchantResponse
+             * @instance
+             */
+            GetMerchantResponse.prototype.message = "";
+
+            /**
              * Creates a new GetMerchantResponse instance using the specified properties.
              * @function create
              * @memberof cbs.merchant_service.GetMerchantResponse
@@ -9069,6 +9123,8 @@ $root.cbs = (function() {
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
                 if (message.merchant != null && Object.hasOwnProperty.call(message, "merchant"))
                     $root.cbs.merchant_service.GMerchant.encode(message.merchant, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.message);
                 return writer;
             };
 
@@ -9108,6 +9164,9 @@ $root.cbs = (function() {
                         break;
                     case 2:
                         message.merchant = $root.cbs.merchant_service.GMerchant.decode(reader, reader.uint32());
+                        break;
+                    case 3:
+                        message.message = reader.string();
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -9152,6 +9211,9 @@ $root.cbs = (function() {
                     if (error)
                         return "merchant." + error;
                 }
+                if (message.message != null && message.hasOwnProperty("message"))
+                    if (!$util.isString(message.message))
+                        return "message: string expected";
                 return null;
             };
 
@@ -9174,6 +9236,8 @@ $root.cbs = (function() {
                         throw TypeError(".cbs.merchant_service.GetMerchantResponse.merchant: object expected");
                     message.merchant = $root.cbs.merchant_service.GMerchant.fromObject(object.merchant);
                 }
+                if (object.message != null)
+                    message.message = String(object.message);
                 return message;
             };
 
@@ -9193,11 +9257,14 @@ $root.cbs = (function() {
                 if (options.defaults) {
                     object.status = 0;
                     object.merchant = null;
+                    object.message = "";
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = message.status;
                 if (message.merchant != null && message.hasOwnProperty("merchant"))
                     object.merchant = $root.cbs.merchant_service.GMerchant.toObject(message.merchant, options);
+                if (message.message != null && message.hasOwnProperty("message"))
+                    object.message = message.message;
                 return object;
             };
 

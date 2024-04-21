@@ -1,13 +1,17 @@
 (() => {
     const sql = require("../sql")
     module.exports = async (call, callback) => {
-
         const { name, auth_type } = call.request;
 
+        const merchant = await sql.getMerchantByName(name)
+        if (merchant.data.id) {
+            return callback(null, { status: 400, success: false, message: "Merchant already exists with this name" });
+        }
+
         const authPayloadMap = {
-            0 :"BASIC",
-            1 : "OAUTH2",
-            2 : "JWT"
+            0: "BASIC",
+            1: "OAUTH2",
+            2: "JWT"
         }
 
         try {

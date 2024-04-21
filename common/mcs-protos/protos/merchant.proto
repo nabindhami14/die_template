@@ -30,6 +30,7 @@ message CreateMerchantRequest {
 message CreateMerchantResponse {
     int32 status = 1;
     bool success = 2;
+    string message = 3;
 }
 
 
@@ -47,6 +48,7 @@ message GetMerchantsRequest {
 message GetMerchantsResponse {
     int32 status = 1;
     repeated GMerchant merchants = 2;
+    string message = 3;
 }
 
 
@@ -57,6 +59,7 @@ message GetMerchantRequest {
 message GetMerchantResponse {
     int32 status = 1;
     GMerchant merchant = 2;
+    string message = 3;
 }
 
 
