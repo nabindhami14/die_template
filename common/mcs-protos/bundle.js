@@ -9288,7 +9288,6 @@ $root.cbs = (function() {
              * Properties of a PaymentDetails.
              * @memberof cbs.merchant_service
              * @interface IPaymentDetails
-             * @property {number|null} [senderId] PaymentDetails senderId
              * @property {number|null} [receiverId] PaymentDetails receiverId
              * @property {number|null} [amount] PaymentDetails amount
              * @property {string|null} [remark] PaymentDetails remark
@@ -9308,14 +9307,6 @@ $root.cbs = (function() {
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
-
-            /**
-             * PaymentDetails senderId.
-             * @member {number} senderId
-             * @memberof cbs.merchant_service.PaymentDetails
-             * @instance
-             */
-            PaymentDetails.prototype.senderId = 0;
 
             /**
              * PaymentDetails receiverId.
@@ -9365,14 +9356,12 @@ $root.cbs = (function() {
             PaymentDetails.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.senderId != null && Object.hasOwnProperty.call(message, "senderId"))
-                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.senderId);
                 if (message.receiverId != null && Object.hasOwnProperty.call(message, "receiverId"))
-                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.receiverId);
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.receiverId);
                 if (message.amount != null && Object.hasOwnProperty.call(message, "amount"))
-                    writer.uint32(/* id 3, wireType 1 =*/25).double(message.amount);
+                    writer.uint32(/* id 2, wireType 1 =*/17).double(message.amount);
                 if (message.remark != null && Object.hasOwnProperty.call(message, "remark"))
-                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.remark);
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.remark);
                 return writer;
             };
 
@@ -9408,15 +9397,12 @@ $root.cbs = (function() {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
-                        message.senderId = reader.int32();
-                        break;
-                    case 2:
                         message.receiverId = reader.int32();
                         break;
-                    case 3:
+                    case 2:
                         message.amount = reader.double();
                         break;
-                    case 4:
+                    case 3:
                         message.remark = reader.string();
                         break;
                     default:
@@ -9454,9 +9440,6 @@ $root.cbs = (function() {
             PaymentDetails.verify = function verify(message) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
-                if (message.senderId != null && message.hasOwnProperty("senderId"))
-                    if (!$util.isInteger(message.senderId))
-                        return "senderId: integer expected";
                 if (message.receiverId != null && message.hasOwnProperty("receiverId"))
                     if (!$util.isInteger(message.receiverId))
                         return "receiverId: integer expected";
@@ -9481,8 +9464,6 @@ $root.cbs = (function() {
                 if (object instanceof $root.cbs.merchant_service.PaymentDetails)
                     return object;
                 var message = new $root.cbs.merchant_service.PaymentDetails();
-                if (object.senderId != null)
-                    message.senderId = object.senderId | 0;
                 if (object.receiverId != null)
                     message.receiverId = object.receiverId | 0;
                 if (object.amount != null)
@@ -9506,13 +9487,10 @@ $root.cbs = (function() {
                     options = {};
                 var object = {};
                 if (options.defaults) {
-                    object.senderId = 0;
                     object.receiverId = 0;
                     object.amount = 0;
                     object.remark = "";
                 }
-                if (message.senderId != null && message.hasOwnProperty("senderId"))
-                    object.senderId = message.senderId;
                 if (message.receiverId != null && message.hasOwnProperty("receiverId"))
                     object.receiverId = message.receiverId;
                 if (message.amount != null && message.hasOwnProperty("amount"))
@@ -9797,6 +9775,7 @@ $root.cbs = (function() {
              * @memberof cbs.merchant_service
              * @interface ICreatePaymentRequest
              * @property {number|null} [merchantId] CreatePaymentRequest merchantId
+             * @property {number|null} [senderId] CreatePaymentRequest senderId
              * @property {cbs.merchant_service.AuthType|null} [authType] CreatePaymentRequest authType
              * @property {cbs.merchant_service.IPaymentDetails|null} [paymentDetails] CreatePaymentRequest paymentDetails
              * @property {cbs.merchant_service.IPaymentCredentials|null} [credentials] CreatePaymentRequest credentials
@@ -9824,6 +9803,14 @@ $root.cbs = (function() {
              * @instance
              */
             CreatePaymentRequest.prototype.merchantId = 0;
+
+            /**
+             * CreatePaymentRequest senderId.
+             * @member {number} senderId
+             * @memberof cbs.merchant_service.CreatePaymentRequest
+             * @instance
+             */
+            CreatePaymentRequest.prototype.senderId = 0;
 
             /**
              * CreatePaymentRequest authType.
@@ -9875,12 +9862,14 @@ $root.cbs = (function() {
                     writer = $Writer.create();
                 if (message.merchantId != null && Object.hasOwnProperty.call(message, "merchantId"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.merchantId);
+                if (message.senderId != null && Object.hasOwnProperty.call(message, "senderId"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.senderId);
                 if (message.authType != null && Object.hasOwnProperty.call(message, "authType"))
-                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.authType);
+                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.authType);
                 if (message.paymentDetails != null && Object.hasOwnProperty.call(message, "paymentDetails"))
-                    $root.cbs.merchant_service.PaymentDetails.encode(message.paymentDetails, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                    $root.cbs.merchant_service.PaymentDetails.encode(message.paymentDetails, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                 if (message.credentials != null && Object.hasOwnProperty.call(message, "credentials"))
-                    $root.cbs.merchant_service.PaymentCredentials.encode(message.credentials, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                    $root.cbs.merchant_service.PaymentCredentials.encode(message.credentials, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                 return writer;
             };
 
@@ -9919,12 +9908,15 @@ $root.cbs = (function() {
                         message.merchantId = reader.int32();
                         break;
                     case 2:
-                        message.authType = reader.int32();
+                        message.senderId = reader.int32();
                         break;
                     case 3:
-                        message.paymentDetails = $root.cbs.merchant_service.PaymentDetails.decode(reader, reader.uint32());
+                        message.authType = reader.int32();
                         break;
                     case 4:
+                        message.paymentDetails = $root.cbs.merchant_service.PaymentDetails.decode(reader, reader.uint32());
+                        break;
+                    case 5:
                         message.credentials = $root.cbs.merchant_service.PaymentCredentials.decode(reader, reader.uint32());
                         break;
                     default:
@@ -9965,6 +9957,9 @@ $root.cbs = (function() {
                 if (message.merchantId != null && message.hasOwnProperty("merchantId"))
                     if (!$util.isInteger(message.merchantId))
                         return "merchantId: integer expected";
+                if (message.senderId != null && message.hasOwnProperty("senderId"))
+                    if (!$util.isInteger(message.senderId))
+                        return "senderId: integer expected";
                 if (message.authType != null && message.hasOwnProperty("authType"))
                     switch (message.authType) {
                     default:
@@ -10001,6 +9996,8 @@ $root.cbs = (function() {
                 var message = new $root.cbs.merchant_service.CreatePaymentRequest();
                 if (object.merchantId != null)
                     message.merchantId = object.merchantId | 0;
+                if (object.senderId != null)
+                    message.senderId = object.senderId | 0;
                 switch (object.authType) {
                 case "BASIC":
                 case 0:
@@ -10043,12 +10040,15 @@ $root.cbs = (function() {
                 var object = {};
                 if (options.defaults) {
                     object.merchantId = 0;
+                    object.senderId = 0;
                     object.authType = options.enums === String ? "BASIC" : 0;
                     object.paymentDetails = null;
                     object.credentials = null;
                 }
                 if (message.merchantId != null && message.hasOwnProperty("merchantId"))
                     object.merchantId = message.merchantId;
+                if (message.senderId != null && message.hasOwnProperty("senderId"))
+                    object.senderId = message.senderId;
                 if (message.authType != null && message.hasOwnProperty("authType"))
                     object.authType = options.enums === String ? $root.cbs.merchant_service.AuthType[message.authType] : message.authType;
                 if (message.paymentDetails != null && message.hasOwnProperty("paymentDetails"))

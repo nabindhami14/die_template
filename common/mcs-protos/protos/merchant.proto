@@ -62,13 +62,10 @@ message GetMerchantResponse {
     string message = 3;
 }
 
-
-
 message PaymentDetails {
-    int32 sender_id = 1;
-    int32 receiver_id = 2;
-    double amount = 3;
-    string remark = 4;
+    int32 receiver_id = 1;
+    double amount = 2;
+    string remark = 3;
 }
 
 message PaymentCredentials {
@@ -80,9 +77,10 @@ message PaymentCredentials {
 
 message CreatePaymentRequest {
     int32 merchant_id = 1;
-    AuthType auth_type = 2;
-    PaymentDetails payment_details = 3;
-    PaymentCredentials credentials = 4;
+    int32 sender_id = 2;
+    AuthType auth_type = 3;
+    PaymentDetails payment_details = 4;
+    PaymentCredentials credentials = 5;
 }
 
 message CreatePaymentResponse {

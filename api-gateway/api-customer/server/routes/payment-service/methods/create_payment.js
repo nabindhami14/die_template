@@ -11,8 +11,7 @@
 
         const payload = requestHelper(req, res, cbs.merchant_service.CreatePaymentRequest)
         
-        // THIS WORKS
-        // payload.id = req.user.id;
+        payload.sender_id = req.user.id;
 
         if (payload.status) {
             return responseHelper.sendResponse(req, '', res, payload)
