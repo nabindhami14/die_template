@@ -5711,6 +5711,39 @@ $root.cbs = (function() {
                 };
 
                 /**
+                 * Callback as used by {@link cbs.customer_auth_service.rpc.CustomerAuthService#healthCheck}.
+                 * @memberof cbs.customer_auth_service.rpc.CustomerAuthService
+                 * @typedef healthCheckCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {cbs.customer_auth_service.HealthCheckResponse} [response] HealthCheckResponse
+                 */
+
+                /**
+                 * Calls healthCheck.
+                 * @function healthCheck
+                 * @memberof cbs.customer_auth_service.rpc.CustomerAuthService
+                 * @instance
+                 * @param {cbs.customer_auth_service.IHealthCheckRequest} request HealthCheckRequest message or plain object
+                 * @param {cbs.customer_auth_service.rpc.CustomerAuthService.healthCheckCallback} callback Node-style callback called with the error, if any, and HealthCheckResponse
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(CustomerAuthService.prototype.healthCheck = function healthCheck(request, callback) {
+                    return this.rpcCall(healthCheck, $root.cbs.customer_auth_service.HealthCheckRequest, $root.cbs.customer_auth_service.HealthCheckResponse, request, callback);
+                }, "name", { value: "healthCheck" });
+
+                /**
+                 * Calls healthCheck.
+                 * @function healthCheck
+                 * @memberof cbs.customer_auth_service.rpc.CustomerAuthService
+                 * @instance
+                 * @param {cbs.customer_auth_service.IHealthCheckRequest} request HealthCheckRequest message or plain object
+                 * @returns {Promise<cbs.customer_auth_service.HealthCheckResponse>} Promise
+                 * @variation 2
+                 */
+
+                /**
                  * Callback as used by {@link cbs.customer_auth_service.rpc.CustomerAuthService#loginCustomer}.
                  * @memberof cbs.customer_auth_service.rpc.CustomerAuthService
                  * @typedef loginCustomerCallback
@@ -7115,6 +7148,376 @@ $root.cbs = (function() {
             };
 
             return CustomerProfileResponse;
+        })();
+
+        customer_auth_service.HealthCheckRequest = (function() {
+
+            /**
+             * Properties of a HealthCheckRequest.
+             * @memberof cbs.customer_auth_service
+             * @interface IHealthCheckRequest
+             */
+
+            /**
+             * Constructs a new HealthCheckRequest.
+             * @memberof cbs.customer_auth_service
+             * @classdesc Represents a HealthCheckRequest.
+             * @implements IHealthCheckRequest
+             * @constructor
+             * @param {cbs.customer_auth_service.IHealthCheckRequest=} [properties] Properties to set
+             */
+            function HealthCheckRequest(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * Creates a new HealthCheckRequest instance using the specified properties.
+             * @function create
+             * @memberof cbs.customer_auth_service.HealthCheckRequest
+             * @static
+             * @param {cbs.customer_auth_service.IHealthCheckRequest=} [properties] Properties to set
+             * @returns {cbs.customer_auth_service.HealthCheckRequest} HealthCheckRequest instance
+             */
+            HealthCheckRequest.create = function create(properties) {
+                return new HealthCheckRequest(properties);
+            };
+
+            /**
+             * Encodes the specified HealthCheckRequest message. Does not implicitly {@link cbs.customer_auth_service.HealthCheckRequest.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.customer_auth_service.HealthCheckRequest
+             * @static
+             * @param {cbs.customer_auth_service.IHealthCheckRequest} message HealthCheckRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            HealthCheckRequest.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified HealthCheckRequest message, length delimited. Does not implicitly {@link cbs.customer_auth_service.HealthCheckRequest.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.customer_auth_service.HealthCheckRequest
+             * @static
+             * @param {cbs.customer_auth_service.IHealthCheckRequest} message HealthCheckRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            HealthCheckRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a HealthCheckRequest message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.customer_auth_service.HealthCheckRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.customer_auth_service.HealthCheckRequest} HealthCheckRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            HealthCheckRequest.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.HealthCheckRequest();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a HealthCheckRequest message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.customer_auth_service.HealthCheckRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.customer_auth_service.HealthCheckRequest} HealthCheckRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            HealthCheckRequest.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a HealthCheckRequest message.
+             * @function verify
+             * @memberof cbs.customer_auth_service.HealthCheckRequest
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            HealthCheckRequest.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                return null;
+            };
+
+            /**
+             * Creates a HealthCheckRequest message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.customer_auth_service.HealthCheckRequest
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.customer_auth_service.HealthCheckRequest} HealthCheckRequest
+             */
+            HealthCheckRequest.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.customer_auth_service.HealthCheckRequest)
+                    return object;
+                return new $root.cbs.customer_auth_service.HealthCheckRequest();
+            };
+
+            /**
+             * Creates a plain object from a HealthCheckRequest message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.customer_auth_service.HealthCheckRequest
+             * @static
+             * @param {cbs.customer_auth_service.HealthCheckRequest} message HealthCheckRequest
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            HealthCheckRequest.toObject = function toObject() {
+                return {};
+            };
+
+            /**
+             * Converts this HealthCheckRequest to JSON.
+             * @function toJSON
+             * @memberof cbs.customer_auth_service.HealthCheckRequest
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            HealthCheckRequest.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return HealthCheckRequest;
+        })();
+
+        customer_auth_service.HealthCheckResponse = (function() {
+
+            /**
+             * Properties of a HealthCheckResponse.
+             * @memberof cbs.customer_auth_service
+             * @interface IHealthCheckResponse
+             * @property {number|null} [status] HealthCheckResponse status
+             * @property {string|null} [message] HealthCheckResponse message
+             */
+
+            /**
+             * Constructs a new HealthCheckResponse.
+             * @memberof cbs.customer_auth_service
+             * @classdesc Represents a HealthCheckResponse.
+             * @implements IHealthCheckResponse
+             * @constructor
+             * @param {cbs.customer_auth_service.IHealthCheckResponse=} [properties] Properties to set
+             */
+            function HealthCheckResponse(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * HealthCheckResponse status.
+             * @member {number} status
+             * @memberof cbs.customer_auth_service.HealthCheckResponse
+             * @instance
+             */
+            HealthCheckResponse.prototype.status = 0;
+
+            /**
+             * HealthCheckResponse message.
+             * @member {string} message
+             * @memberof cbs.customer_auth_service.HealthCheckResponse
+             * @instance
+             */
+            HealthCheckResponse.prototype.message = "";
+
+            /**
+             * Creates a new HealthCheckResponse instance using the specified properties.
+             * @function create
+             * @memberof cbs.customer_auth_service.HealthCheckResponse
+             * @static
+             * @param {cbs.customer_auth_service.IHealthCheckResponse=} [properties] Properties to set
+             * @returns {cbs.customer_auth_service.HealthCheckResponse} HealthCheckResponse instance
+             */
+            HealthCheckResponse.create = function create(properties) {
+                return new HealthCheckResponse(properties);
+            };
+
+            /**
+             * Encodes the specified HealthCheckResponse message. Does not implicitly {@link cbs.customer_auth_service.HealthCheckResponse.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.customer_auth_service.HealthCheckResponse
+             * @static
+             * @param {cbs.customer_auth_service.IHealthCheckResponse} message HealthCheckResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            HealthCheckResponse.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.message);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified HealthCheckResponse message, length delimited. Does not implicitly {@link cbs.customer_auth_service.HealthCheckResponse.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.customer_auth_service.HealthCheckResponse
+             * @static
+             * @param {cbs.customer_auth_service.IHealthCheckResponse} message HealthCheckResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            HealthCheckResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a HealthCheckResponse message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.customer_auth_service.HealthCheckResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.customer_auth_service.HealthCheckResponse} HealthCheckResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            HealthCheckResponse.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.HealthCheckResponse();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.status = reader.int32();
+                        break;
+                    case 2:
+                        message.message = reader.string();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a HealthCheckResponse message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.customer_auth_service.HealthCheckResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.customer_auth_service.HealthCheckResponse} HealthCheckResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            HealthCheckResponse.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a HealthCheckResponse message.
+             * @function verify
+             * @memberof cbs.customer_auth_service.HealthCheckResponse
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            HealthCheckResponse.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                if (message.message != null && message.hasOwnProperty("message"))
+                    if (!$util.isString(message.message))
+                        return "message: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a HealthCheckResponse message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.customer_auth_service.HealthCheckResponse
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.customer_auth_service.HealthCheckResponse} HealthCheckResponse
+             */
+            HealthCheckResponse.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.customer_auth_service.HealthCheckResponse)
+                    return object;
+                var message = new $root.cbs.customer_auth_service.HealthCheckResponse();
+                if (object.status != null)
+                    message.status = object.status | 0;
+                if (object.message != null)
+                    message.message = String(object.message);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a HealthCheckResponse message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.customer_auth_service.HealthCheckResponse
+             * @static
+             * @param {cbs.customer_auth_service.HealthCheckResponse} message HealthCheckResponse
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            HealthCheckResponse.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.status = 0;
+                    object.message = "";
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                if (message.message != null && message.hasOwnProperty("message"))
+                    object.message = message.message;
+                return object;
+            };
+
+            /**
+             * Converts this HealthCheckResponse to JSON.
+             * @function toJSON
+             * @memberof cbs.customer_auth_service.HealthCheckResponse
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            HealthCheckResponse.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return HealthCheckResponse;
         })();
 
         return customer_auth_service;

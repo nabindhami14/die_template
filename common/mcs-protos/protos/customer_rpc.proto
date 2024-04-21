@@ -5,6 +5,7 @@ import "customer.proto";
 package cbs.customer_auth_service.rpc;
 
 service CustomerAuthService {
+    rpc healthCheck(cbs.customer_auth_service.HealthCheckRequest) returns (cbs.customer_auth_service.HealthCheckResponse);
     rpc loginCustomer(cbs.customer_auth_service.LoginRequest) returns (cbs.customer_auth_service.LoginResponse);
     rpc customerProfile(cbs.customer_auth_service.CustomerProfileRequest) returns (cbs.customer_auth_service.CustomerProfileResponse);
 }

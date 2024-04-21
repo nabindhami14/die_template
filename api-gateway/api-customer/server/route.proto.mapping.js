@@ -3,6 +3,14 @@
   const clientLoader = require('client');
 
   module.exports = {
+    '/api/v1/customers/health-check': {
+      POST: {
+        client: clientLoader.customerAuthClient,
+        method: 'healthCheck',
+        encode: cbs.customer_auth_service.HealthCheckRequest,
+        decode: cbs.customer_auth_service.HealthCheckResponse,
+      }
+    },
     '/api/v1/customers/auth/login': {
       POST: {
         client: clientLoader.customerAuthClient,

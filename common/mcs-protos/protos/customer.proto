@@ -33,3 +33,9 @@ message CustomerProfileResponse {
     Customer customer = 2;   
 }
 
+
+message HealthCheckRequest {}
+message HealthCheckResponse {
+    int32 status = 1;
+    string message = 2;
+}
