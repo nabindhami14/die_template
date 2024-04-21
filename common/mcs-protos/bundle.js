@@ -7156,6 +7156,8 @@ $root.cbs = (function() {
              * Properties of a HealthCheckRequest.
              * @memberof cbs.customer_auth_service
              * @interface IHealthCheckRequest
+             * @property {number|null} [id] HealthCheckRequest id
+             * @property {string|null} [name] HealthCheckRequest name
              */
 
             /**
@@ -7172,6 +7174,22 @@ $root.cbs = (function() {
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
+
+            /**
+             * HealthCheckRequest id.
+             * @member {number} id
+             * @memberof cbs.customer_auth_service.HealthCheckRequest
+             * @instance
+             */
+            HealthCheckRequest.prototype.id = 0;
+
+            /**
+             * HealthCheckRequest name.
+             * @member {string} name
+             * @memberof cbs.customer_auth_service.HealthCheckRequest
+             * @instance
+             */
+            HealthCheckRequest.prototype.name = "";
 
             /**
              * Creates a new HealthCheckRequest instance using the specified properties.
@@ -7197,6 +7215,10 @@ $root.cbs = (function() {
             HealthCheckRequest.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
                 return writer;
             };
 
@@ -7231,6 +7253,12 @@ $root.cbs = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
+                    case 1:
+                        message.id = reader.int32();
+                        break;
+                    case 2:
+                        message.name = reader.string();
+                        break;
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -7266,6 +7294,12 @@ $root.cbs = (function() {
             HealthCheckRequest.verify = function verify(message) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                if (message.name != null && message.hasOwnProperty("name"))
+                    if (!$util.isString(message.name))
+                        return "name: string expected";
                 return null;
             };
 
@@ -7280,7 +7314,12 @@ $root.cbs = (function() {
             HealthCheckRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.customer_auth_service.HealthCheckRequest)
                     return object;
-                return new $root.cbs.customer_auth_service.HealthCheckRequest();
+                var message = new $root.cbs.customer_auth_service.HealthCheckRequest();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                if (object.name != null)
+                    message.name = String(object.name);
+                return message;
             };
 
             /**
@@ -7292,8 +7331,19 @@ $root.cbs = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            HealthCheckRequest.toObject = function toObject() {
-                return {};
+            HealthCheckRequest.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.id = 0;
+                    object.name = "";
+                }
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                if (message.name != null && message.hasOwnProperty("name"))
+                    object.name = message.name;
+                return object;
             };
 
             /**

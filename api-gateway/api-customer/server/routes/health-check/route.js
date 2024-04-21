@@ -6,7 +6,7 @@
     const healthCheckRouter = express.Router();
     const healthCheckRouterCtrl = require(".")
 
-    healthCheckRouter.route("/").get(healthCheckRouterCtrl.HealthCheck)
+    healthCheckRouter.route("/").post(healthCheckRouterCtrl.HealthCheck)
 
     module.exports = healthCheckRouter
 })()
