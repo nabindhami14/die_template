@@ -69,6 +69,39 @@ $root.cbs = (function() {
                 };
 
                 /**
+                 * Callback as used by {@link cbs.admin_service.rpc.AdminService#loginCustomer}.
+                 * @memberof cbs.admin_service.rpc.AdminService
+                 * @typedef loginCustomerCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {cbs.admin_service.LoginResponse} [response] LoginResponse
+                 */
+
+                /**
+                 * Calls loginCustomer.
+                 * @function loginCustomer
+                 * @memberof cbs.admin_service.rpc.AdminService
+                 * @instance
+                 * @param {cbs.admin_service.ILoginRequest} request LoginRequest message or plain object
+                 * @param {cbs.admin_service.rpc.AdminService.loginCustomerCallback} callback Node-style callback called with the error, if any, and LoginResponse
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(AdminService.prototype.loginCustomer = function loginCustomer(request, callback) {
+                    return this.rpcCall(loginCustomer, $root.cbs.admin_service.LoginRequest, $root.cbs.admin_service.LoginResponse, request, callback);
+                }, "name", { value: "loginCustomer" });
+
+                /**
+                 * Calls loginCustomer.
+                 * @function loginCustomer
+                 * @memberof cbs.admin_service.rpc.AdminService
+                 * @instance
+                 * @param {cbs.admin_service.ILoginRequest} request LoginRequest message or plain object
+                 * @returns {Promise<cbs.admin_service.LoginResponse>} Promise
+                 * @variation 2
+                 */
+
+                /**
                  * Callback as used by {@link cbs.admin_service.rpc.AdminService#createCustomer}.
                  * @memberof cbs.admin_service.rpc.AdminService
                  * @typedef createCustomerCallback
@@ -204,6 +237,641 @@ $root.cbs = (function() {
             })();
 
             return rpc;
+        })();
+
+        admin_service.LoginRequest = (function() {
+
+            /**
+             * Properties of a LoginRequest.
+             * @memberof cbs.admin_service
+             * @interface ILoginRequest
+             * @property {string|null} [email] LoginRequest email
+             * @property {string|null} [password] LoginRequest password
+             */
+
+            /**
+             * Constructs a new LoginRequest.
+             * @memberof cbs.admin_service
+             * @classdesc Represents a LoginRequest.
+             * @implements ILoginRequest
+             * @constructor
+             * @param {cbs.admin_service.ILoginRequest=} [properties] Properties to set
+             */
+            function LoginRequest(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * LoginRequest email.
+             * @member {string} email
+             * @memberof cbs.admin_service.LoginRequest
+             * @instance
+             */
+            LoginRequest.prototype.email = "";
+
+            /**
+             * LoginRequest password.
+             * @member {string} password
+             * @memberof cbs.admin_service.LoginRequest
+             * @instance
+             */
+            LoginRequest.prototype.password = "";
+
+            /**
+             * Creates a new LoginRequest instance using the specified properties.
+             * @function create
+             * @memberof cbs.admin_service.LoginRequest
+             * @static
+             * @param {cbs.admin_service.ILoginRequest=} [properties] Properties to set
+             * @returns {cbs.admin_service.LoginRequest} LoginRequest instance
+             */
+            LoginRequest.create = function create(properties) {
+                return new LoginRequest(properties);
+            };
+
+            /**
+             * Encodes the specified LoginRequest message. Does not implicitly {@link cbs.admin_service.LoginRequest.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.admin_service.LoginRequest
+             * @static
+             * @param {cbs.admin_service.ILoginRequest} message LoginRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LoginRequest.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.email != null && Object.hasOwnProperty.call(message, "email"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.email);
+                if (message.password != null && Object.hasOwnProperty.call(message, "password"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.password);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified LoginRequest message, length delimited. Does not implicitly {@link cbs.admin_service.LoginRequest.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.admin_service.LoginRequest
+             * @static
+             * @param {cbs.admin_service.ILoginRequest} message LoginRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LoginRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a LoginRequest message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.admin_service.LoginRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.admin_service.LoginRequest} LoginRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LoginRequest.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.LoginRequest();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.email = reader.string();
+                        break;
+                    case 2:
+                        message.password = reader.string();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a LoginRequest message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.admin_service.LoginRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.admin_service.LoginRequest} LoginRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LoginRequest.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a LoginRequest message.
+             * @function verify
+             * @memberof cbs.admin_service.LoginRequest
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            LoginRequest.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.email != null && message.hasOwnProperty("email"))
+                    if (!$util.isString(message.email))
+                        return "email: string expected";
+                if (message.password != null && message.hasOwnProperty("password"))
+                    if (!$util.isString(message.password))
+                        return "password: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a LoginRequest message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.admin_service.LoginRequest
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.admin_service.LoginRequest} LoginRequest
+             */
+            LoginRequest.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.admin_service.LoginRequest)
+                    return object;
+                var message = new $root.cbs.admin_service.LoginRequest();
+                if (object.email != null)
+                    message.email = String(object.email);
+                if (object.password != null)
+                    message.password = String(object.password);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a LoginRequest message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.admin_service.LoginRequest
+             * @static
+             * @param {cbs.admin_service.LoginRequest} message LoginRequest
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            LoginRequest.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.email = "";
+                    object.password = "";
+                }
+                if (message.email != null && message.hasOwnProperty("email"))
+                    object.email = message.email;
+                if (message.password != null && message.hasOwnProperty("password"))
+                    object.password = message.password;
+                return object;
+            };
+
+            /**
+             * Converts this LoginRequest to JSON.
+             * @function toJSON
+             * @memberof cbs.admin_service.LoginRequest
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            LoginRequest.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return LoginRequest;
+        })();
+
+        admin_service.Tokens = (function() {
+
+            /**
+             * Properties of a Tokens.
+             * @memberof cbs.admin_service
+             * @interface ITokens
+             * @property {string|null} [accessToken] Tokens accessToken
+             * @property {string|null} [refreshToken] Tokens refreshToken
+             */
+
+            /**
+             * Constructs a new Tokens.
+             * @memberof cbs.admin_service
+             * @classdesc Represents a Tokens.
+             * @implements ITokens
+             * @constructor
+             * @param {cbs.admin_service.ITokens=} [properties] Properties to set
+             */
+            function Tokens(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * Tokens accessToken.
+             * @member {string} accessToken
+             * @memberof cbs.admin_service.Tokens
+             * @instance
+             */
+            Tokens.prototype.accessToken = "";
+
+            /**
+             * Tokens refreshToken.
+             * @member {string} refreshToken
+             * @memberof cbs.admin_service.Tokens
+             * @instance
+             */
+            Tokens.prototype.refreshToken = "";
+
+            /**
+             * Creates a new Tokens instance using the specified properties.
+             * @function create
+             * @memberof cbs.admin_service.Tokens
+             * @static
+             * @param {cbs.admin_service.ITokens=} [properties] Properties to set
+             * @returns {cbs.admin_service.Tokens} Tokens instance
+             */
+            Tokens.create = function create(properties) {
+                return new Tokens(properties);
+            };
+
+            /**
+             * Encodes the specified Tokens message. Does not implicitly {@link cbs.admin_service.Tokens.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.admin_service.Tokens
+             * @static
+             * @param {cbs.admin_service.ITokens} message Tokens message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Tokens.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.accessToken != null && Object.hasOwnProperty.call(message, "accessToken"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.accessToken);
+                if (message.refreshToken != null && Object.hasOwnProperty.call(message, "refreshToken"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.refreshToken);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified Tokens message, length delimited. Does not implicitly {@link cbs.admin_service.Tokens.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.admin_service.Tokens
+             * @static
+             * @param {cbs.admin_service.ITokens} message Tokens message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Tokens.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a Tokens message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.admin_service.Tokens
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.admin_service.Tokens} Tokens
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Tokens.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.Tokens();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.accessToken = reader.string();
+                        break;
+                    case 2:
+                        message.refreshToken = reader.string();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a Tokens message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.admin_service.Tokens
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.admin_service.Tokens} Tokens
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Tokens.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a Tokens message.
+             * @function verify
+             * @memberof cbs.admin_service.Tokens
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Tokens.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.accessToken != null && message.hasOwnProperty("accessToken"))
+                    if (!$util.isString(message.accessToken))
+                        return "accessToken: string expected";
+                if (message.refreshToken != null && message.hasOwnProperty("refreshToken"))
+                    if (!$util.isString(message.refreshToken))
+                        return "refreshToken: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a Tokens message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.admin_service.Tokens
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.admin_service.Tokens} Tokens
+             */
+            Tokens.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.admin_service.Tokens)
+                    return object;
+                var message = new $root.cbs.admin_service.Tokens();
+                if (object.accessToken != null)
+                    message.accessToken = String(object.accessToken);
+                if (object.refreshToken != null)
+                    message.refreshToken = String(object.refreshToken);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a Tokens message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.admin_service.Tokens
+             * @static
+             * @param {cbs.admin_service.Tokens} message Tokens
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Tokens.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.accessToken = "";
+                    object.refreshToken = "";
+                }
+                if (message.accessToken != null && message.hasOwnProperty("accessToken"))
+                    object.accessToken = message.accessToken;
+                if (message.refreshToken != null && message.hasOwnProperty("refreshToken"))
+                    object.refreshToken = message.refreshToken;
+                return object;
+            };
+
+            /**
+             * Converts this Tokens to JSON.
+             * @function toJSON
+             * @memberof cbs.admin_service.Tokens
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Tokens.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return Tokens;
+        })();
+
+        admin_service.LoginResponse = (function() {
+
+            /**
+             * Properties of a LoginResponse.
+             * @memberof cbs.admin_service
+             * @interface ILoginResponse
+             * @property {number|null} [status] LoginResponse status
+             * @property {cbs.admin_service.ITokens|null} [tokens] LoginResponse tokens
+             */
+
+            /**
+             * Constructs a new LoginResponse.
+             * @memberof cbs.admin_service
+             * @classdesc Represents a LoginResponse.
+             * @implements ILoginResponse
+             * @constructor
+             * @param {cbs.admin_service.ILoginResponse=} [properties] Properties to set
+             */
+            function LoginResponse(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * LoginResponse status.
+             * @member {number} status
+             * @memberof cbs.admin_service.LoginResponse
+             * @instance
+             */
+            LoginResponse.prototype.status = 0;
+
+            /**
+             * LoginResponse tokens.
+             * @member {cbs.admin_service.ITokens|null|undefined} tokens
+             * @memberof cbs.admin_service.LoginResponse
+             * @instance
+             */
+            LoginResponse.prototype.tokens = null;
+
+            /**
+             * Creates a new LoginResponse instance using the specified properties.
+             * @function create
+             * @memberof cbs.admin_service.LoginResponse
+             * @static
+             * @param {cbs.admin_service.ILoginResponse=} [properties] Properties to set
+             * @returns {cbs.admin_service.LoginResponse} LoginResponse instance
+             */
+            LoginResponse.create = function create(properties) {
+                return new LoginResponse(properties);
+            };
+
+            /**
+             * Encodes the specified LoginResponse message. Does not implicitly {@link cbs.admin_service.LoginResponse.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.admin_service.LoginResponse
+             * @static
+             * @param {cbs.admin_service.ILoginResponse} message LoginResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LoginResponse.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+                if (message.tokens != null && Object.hasOwnProperty.call(message, "tokens"))
+                    $root.cbs.admin_service.Tokens.encode(message.tokens, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified LoginResponse message, length delimited. Does not implicitly {@link cbs.admin_service.LoginResponse.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.admin_service.LoginResponse
+             * @static
+             * @param {cbs.admin_service.ILoginResponse} message LoginResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LoginResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a LoginResponse message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.admin_service.LoginResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.admin_service.LoginResponse} LoginResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LoginResponse.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.LoginResponse();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.status = reader.int32();
+                        break;
+                    case 2:
+                        message.tokens = $root.cbs.admin_service.Tokens.decode(reader, reader.uint32());
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a LoginResponse message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.admin_service.LoginResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.admin_service.LoginResponse} LoginResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LoginResponse.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a LoginResponse message.
+             * @function verify
+             * @memberof cbs.admin_service.LoginResponse
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            LoginResponse.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                if (message.tokens != null && message.hasOwnProperty("tokens")) {
+                    var error = $root.cbs.admin_service.Tokens.verify(message.tokens);
+                    if (error)
+                        return "tokens." + error;
+                }
+                return null;
+            };
+
+            /**
+             * Creates a LoginResponse message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.admin_service.LoginResponse
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.admin_service.LoginResponse} LoginResponse
+             */
+            LoginResponse.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.admin_service.LoginResponse)
+                    return object;
+                var message = new $root.cbs.admin_service.LoginResponse();
+                if (object.status != null)
+                    message.status = object.status | 0;
+                if (object.tokens != null) {
+                    if (typeof object.tokens !== "object")
+                        throw TypeError(".cbs.admin_service.LoginResponse.tokens: object expected");
+                    message.tokens = $root.cbs.admin_service.Tokens.fromObject(object.tokens);
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a LoginResponse message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.admin_service.LoginResponse
+             * @static
+             * @param {cbs.admin_service.LoginResponse} message LoginResponse
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            LoginResponse.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.status = 0;
+                    object.tokens = null;
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                if (message.tokens != null && message.hasOwnProperty("tokens"))
+                    object.tokens = $root.cbs.admin_service.Tokens.toObject(message.tokens, options);
+                return object;
+            };
+
+            /**
+             * Converts this LoginResponse to JSON.
+             * @function toJSON
+             * @memberof cbs.admin_service.LoginResponse
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            LoginResponse.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return LoginResponse;
         })();
 
         admin_service.BulkUploadRequest = (function() {

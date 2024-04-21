@@ -3,6 +3,16 @@
   const clientLoader = require('client');
 
   module.exports = {
+    '/api/v1/admin/auth/login': {
+      POST: {
+        client: clientLoader.adminClient,
+        method: 'loginAdmin',
+        encode: cbs.admin_service.LoginRequest,
+        decode: cbs.admin_service.LoginResponse
+      }
+    },
+
+    // CUSTOMERS
     '/api/v1/admin/customers': {
       POST: {
         client: clientLoader.adminClient,
@@ -35,6 +45,8 @@
         decode: cbs.admin_service.GetCustomersResponse
       }
     },
+
+    // MERCHANTS
     '/api/v1/admin/merchants': {
       POST: {
         client: clientLoader.merchantClient,

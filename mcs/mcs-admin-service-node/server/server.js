@@ -13,6 +13,7 @@ const { grpcClientHelper, grpcMetaHelper, mysqlHelperReadonly } = require('commo
 
 // MODULES
 const customerCtrl = require('./modules/customer_service');
+const authCtrl = require('./modules/auth_service');
 
 
 // CONFIGURATION AND CLIENTS
@@ -26,9 +27,11 @@ const server = new grpc.Server(null, preHook, postHook)
 const customerProto = grpcClientHelper.loadPackageForServer(config.service.adminService);
 
 server.addService(customerProto.cbs.admin_service.rpc.AdminService.service, {
+    loginAdmin: authCtrl.loginAdmin,
+
     createCustomer: customerCtrl.createCustomer,
     bulkUpload: customerCtrl.customerBulkUpload,
-    
+
     getCustomer: customerCtrl.getCustomer,
     getCustomers: customerCtrl.getCustomers
 })
