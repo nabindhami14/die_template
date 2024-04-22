@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { Buffer } from "node:buffer"
 import { cbs } from "proto/ok";
 
-const Merchants = () => {
-    const [merchants, setMerchants] = useState([])
+const Merchant = () => {
+    const [merchant, setMerchant] = useState()
+
     const authPayloadMap = {
         0: "BASIC",
         1: "OAUTH2",
@@ -13,18 +14,16 @@ const Merchants = () => {
     }
 
     const fetchMerchants = async () => {
-
-        const proto = cbs.merchant_service.GetMerchantsResponse;
+        const proto = cbs.merchant_service.GetMerchantResponse;
         try {
-            const res = await axios.get("http:///localhost:3018/api/v1/customers/merchants", {
+            const res = await axios.get("http:///localhost:3018/api/v1/customers/merchants/1", {
                 headers: {
                     Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDQsImVtYWlsIjoiSGVsbG8iLCJpYXQiOjE3MTM3NjQ5MDMsImV4cCI6MTcxMzg1MTMwM30.Sr-OqHIUvIBh7O_qIBTZUYNXlYCjikxusAqnd5UtRjg`
                 }
             })
 
             const data = proto.decode(Buffer.from(res.data));
-            console.log(data);
-            setMerchants(data.merchants)
+            setMerchant(data.merchant)
         } catch (error) {
             console.log(error);
         }
@@ -35,18 +34,13 @@ const Merchants = () => {
         fetchMerchants()
     }, [])
 
+    if (!merchant) return <h2>Loading...</h2>
 
     return (
         <>
-            {merchants.length > 0 && merchants.map(m => (
-                <div key={m.id}>
-                    {m.name} || {authPayloadMap[m.authType]}
-                </div>
-            ))}
+            {merchant.name} || {authPayloadMap[merchant.authType]}
         </>
     )
 }
 
-export default Merchants
-
-
+export default Merchant

@@ -1,4 +1,4 @@
-name,email,password,phone_number,address,money
+name,email,password,phoneNumber,address,money
 "Mr. John Doe","john.doe@example.com","P@ssw0rd123","+1-123-456-7890","123 Main Street",7854.23
 "Ms. Jane Smith","jane.smith@example.net","SecurePwd987","555-555-5555","456 Elm Avenue Apt. 101",2319.45
 "Dr. Alex Johnson","alex.johnson@example.org","Passw0rd!","123-456-7890","789 Oak Street Suite 202",5426.71

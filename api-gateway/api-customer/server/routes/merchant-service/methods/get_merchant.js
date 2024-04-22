@@ -24,7 +24,7 @@
                     return responseHelper.sendErrorResponse(err, res, req.metaData);
                 }
 
-                return responseHelper.sendSuccessResponse(response.status, response, cbs.common.Response, res);
+                return responseHelper.sendSuccessResponse(response.status, response, cbs.merchant_service.GetMerchantResponse, res);
             });
         } catch (err) {
             console.error(req.metaData, '[ADMIN: GET_MERCHANT]', err);

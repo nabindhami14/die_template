@@ -3,13 +3,13 @@
     const jwt = require("jsonwebtoken")
 
     jwtHelper.generateTokens = async (payload) => {
-        const access_token = jwt.sign(payload, "ACCESS_TOKEN_SECERT", { expiresIn: "1d" })
-        const refresh_token = jwt.sign(payload, "REFRESH_TOKEN_SECERT", { expiresIn: "7d" })
+        const accessToken = jwt.sign(payload, "ACCESS_TOKEN_SECERT", { expiresIn: "1d" })
+        const refreshToken = jwt.sign(payload, "REFRESH_TOKEN_SECERT", { expiresIn: "7d" })
 
-        return { access_token, refresh_token }
+        return { accessToken, refreshToken }
     }
     jwtHelper.verifyAccessToken = async (token) => {
-        const decoded = await jwt.verify(token, "ACCESS_TOKEN_SECERT")
+        const decoded = jwt.verify(token, "ACCESS_TOKEN_SECERT")
         return decoded
     }
 })(module.exports)

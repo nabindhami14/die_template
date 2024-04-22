@@ -13,18 +13,17 @@ enum AuthType {
 
 message Merchant {
     string name = 1;
-    AuthType auth_type = 2;
-
+    AuthType authType = 2;
 
     string username = 3;
     string password = 4;
-    string access_token = 5;
+    string accessToken = 5;
     string token = 6; 
 }
 
 message CreateMerchantRequest {
     string name = 1;
-    AuthType auth_type = 2;
+    AuthType authType = 2;
 }
 
 message CreateMerchantResponse {
@@ -37,7 +36,7 @@ message CreateMerchantResponse {
 message GMerchant {
     int32 id = 1;
     string name = 2;
-    AuthType auth_type = 3;
+    AuthType authType = 3;
     string createdAt = 4;
     string updatedAt = 5;
 }
@@ -63,7 +62,7 @@ message GetMerchantResponse {
 }
 
 message PaymentDetails {
-    int32 receiver_id = 1;
+    int32 receiverId = 1;
     double amount = 2;
     string remark = 3;
 }
@@ -71,15 +70,15 @@ message PaymentDetails {
 message PaymentCredentials {
     string username = 1;
     string password = 2;
-    string access_token = 3;
+    string accessToken = 3;
     string token = 4;
 }
 
 message CreatePaymentRequest {
-    int32 merchant_id = 1;
-    int32 sender_id = 2;
-    AuthType auth_type = 3;
-    PaymentDetails payment_details = 4;
+    int32 merchantId = 1;
+    int32 senderId = 2;
+    AuthType authType = 3;
+    PaymentDetails paymentDetails = 4;
     PaymentCredentials credentials = 5;
 }
 

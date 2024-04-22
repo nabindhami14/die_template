@@ -10,7 +10,7 @@
             const response = await sql.getCustomerByEmail(email)
             const isMatch = await passwordHelper.comparePasssword(password, response.data.password)
             if (!isMatch) {
-                return callback(null, { status: 400, access_token: "INVALID", refresh_token: "INVALID" })
+                return callback(null, { status: 400, accessToken: "INVALID", refreshToken: "INVALID" })
             }
             const tokens = await jwtHelper.generateTokens({ id: response.data.id, email: response.data.email })
             

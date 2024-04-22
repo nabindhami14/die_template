@@ -6,35 +6,35 @@
     module.exports = async (call, callback) => {
 
         try {
-            const { merchant_id, sender_id, auth_type, payment_details, credentials } = call.request;
-            const { receiver_id, amount, remark } = payment_details;
-            const { username, password, access_token, token } = credentials;
+            const { merchantId, senderId, authType, paymentDetails, credentials } = call.request;
+            const { receiverId, amount, remark } = paymentDetails;
+            const { username, password, accessToken, token } = credentials;
 
             // Retrieve merchant details
-            const merchant = await db.getMerchant(merchant_id);
+            const merchant = await db.getMerchant(merchantId);
 
-            // Determine columns and values based on auth_type
+            // Determine columns and values based on authType
             let columns, values;
-            switch (auth_type) {
+            switch (authType) {
                 case 0: // BASIC
                     columns = "username,password";
                     values = [username, password];
                     break;
                 case 1: // OAUTH2
-                    columns = "access_token";
-                    values = [access_token];
+                    columns = "accessToken";
+                    values = [accessToken];
                     break;
                 case 2: // JWT
                     columns = "token";
                     values = [token];
                     break;
                 default:
-                    throw new Error("Invalid auth_type");
+                    throw new Error("Invalid authType");
             }
 
             // Retrieve sender and receiver details
-            const sender = await sql.getCustomer(sender_id);
-            const receiver = await sql.getCustomer(receiver_id);
+            const sender = await sql.getCustomer(senderId);
+            const receiver = await sql.getCustomer(receiverId);
 
             // Check if sender has sufficient balance
             if (sender.data && receiver.data && +sender.data.money > +amount) {
@@ -42,11 +42,11 @@
                 await mysqlHelper.beginTransaction();
 
                 // Deduct amount from sender and add to receiver
-                await sql.moneyOperation(sender_id, amount);
-                await sql.moneyOperation(receiver_id, amount, "add");
+                await sql.moneyOperation(senderId, amount);
+                await sql.moneyOperation(receiverId, amount, "add");
 
                 // Create payment record
-                await sql.createPayment(merchant.data.name, sender_id, receiver_id, amount, remark, columns, values);
+                await sql.createPayment(merchant.data.name, senderId, receiverId, amount, remark, columns, values);
 
                 // Commit transaction
                 await mysqlHelper.commit();
