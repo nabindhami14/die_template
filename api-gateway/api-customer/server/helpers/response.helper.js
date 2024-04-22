@@ -7,6 +7,7 @@ const { httpStatusArrayLists } = require('../config');
 
 ((responseHelper) => {
     responseHelper.sendSuccessResponse = (status, data, proto, res, req = false) => {
+
         try {
             if (status == 0) {
                 console.error(req.metaData, 'Status 0 ====:: respData', data)
@@ -16,8 +17,9 @@ const { httpStatusArrayLists } = require('../config');
             if (status == 0 || status == "0") {
                 status = 200
             }
+
             return res
-                .status(status)
+                .status(+status)
                 .set(req ? req.headers["content-type"] : "application/octet-stream")
                 .send((req && req.headers["content-type"] == 'application/json' ? payload : bufferResponse));
         } catch (error) {

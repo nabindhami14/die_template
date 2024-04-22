@@ -7,7 +7,7 @@
     module.exports = async (req, res, next) => {
         const meta = grpcMetaHelper.setMetadata(req.metaData)
 
-        const payload = requestHelper(req, res, cbs.customer_auth_service.LoginRequest)
+        const payload = requestHelper(req, res, cbs.customer_auth_service.HealthCheckRequest)
         if (payload.status) {
             return responseHelper.sendResponse(req, '', res, payload)
         }
@@ -18,7 +18,7 @@
                     return responseHelper.sendErrorResponse(err, res, req.metaData);
                 }
 
-                return responseHelper.sendSuccessResponse(response.status, response, cbs.common.Response, res);
+                return responseHelper.sendSuccessResponse(response.status, response, cbs.customer_auth_service.HealthCheckResponse, res);
             });
         } catch (err) {
             console.error(req.metaData, '[HEATLTH CHECK]', err);

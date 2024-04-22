@@ -7,6 +7,7 @@
     "compile": "cd protos && protoc --js_out=import_style=commonjs,binary:../build  *.proto",
     "bundle": "cd protos && ../node_modules/.bin/pbjs -t static-module -w commonjs -o ../bundle.js *.proto",
     "bundle-win": "cd protos && ..\\node_modules\\.bin\\pbjs -t static-module -w commonjs -o ..\\bundle.js *.proto",
+    "ok": "cd protos && ..\\node_modules\\.bin\\pbjs -t static-module -w es6 -o ..\\ok.js *.proto",
     "pull:all": "git pull origin develop && git pull origin testing && git pull origin staging"
   },
   "keywords": [],

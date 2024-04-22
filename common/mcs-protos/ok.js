@@ -1,22 +1,20 @@
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
-"use strict";
-
-var $protobuf = require("protobufjs/minimal");
+import * as $protobuf from "protobufjs/minimal";
 
 // Common aliases
-var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
 // Exported root namespace
-var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
+const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
-$root.cbs = (function() {
+export const cbs = $root.cbs = (() => {
 
     /**
      * Namespace cbs.
      * @exports cbs
      * @namespace
      */
-    var cbs = {};
+    const cbs = {};
 
     cbs.admin_service = (function() {
 
@@ -25,7 +23,7 @@ $root.cbs = (function() {
          * @memberof cbs
          * @namespace
          */
-        var admin_service = {};
+        const admin_service = {};
 
         admin_service.rpc = (function() {
 
@@ -34,7 +32,7 @@ $root.cbs = (function() {
              * @memberof cbs.admin_service
              * @namespace
              */
-            var rpc = {};
+            const rpc = {};
 
             rpc.AdminService = (function() {
 
@@ -259,7 +257,7 @@ $root.cbs = (function() {
              */
             function LoginRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -338,9 +336,9 @@ $root.cbs = (function() {
             LoginRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.LoginRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.LoginRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.email = reader.string();
@@ -403,7 +401,7 @@ $root.cbs = (function() {
             LoginRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.admin_service.LoginRequest)
                     return object;
-                var message = new $root.cbs.admin_service.LoginRequest();
+                let message = new $root.cbs.admin_service.LoginRequest();
                 if (object.email != null)
                     message.email = String(object.email);
                 if (object.password != null)
@@ -423,7 +421,7 @@ $root.cbs = (function() {
             LoginRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.email = "";
                     object.password = "";
@@ -469,7 +467,7 @@ $root.cbs = (function() {
              */
             function Tokens(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -548,9 +546,9 @@ $root.cbs = (function() {
             Tokens.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.Tokens();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.Tokens();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.accessToken = reader.string();
@@ -613,7 +611,7 @@ $root.cbs = (function() {
             Tokens.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.admin_service.Tokens)
                     return object;
-                var message = new $root.cbs.admin_service.Tokens();
+                let message = new $root.cbs.admin_service.Tokens();
                 if (object.accessToken != null)
                     message.accessToken = String(object.accessToken);
                 if (object.refreshToken != null)
@@ -633,7 +631,7 @@ $root.cbs = (function() {
             Tokens.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.accessToken = "";
                     object.refreshToken = "";
@@ -679,7 +677,7 @@ $root.cbs = (function() {
              */
             function LoginResponse(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -758,9 +756,9 @@ $root.cbs = (function() {
             LoginResponse.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.LoginResponse();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.LoginResponse();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.status = reader.int32();
@@ -807,7 +805,7 @@ $root.cbs = (function() {
                     if (!$util.isInteger(message.status))
                         return "status: integer expected";
                 if (message.tokens != null && message.hasOwnProperty("tokens")) {
-                    var error = $root.cbs.admin_service.Tokens.verify(message.tokens);
+                    let error = $root.cbs.admin_service.Tokens.verify(message.tokens);
                     if (error)
                         return "tokens." + error;
                 }
@@ -825,7 +823,7 @@ $root.cbs = (function() {
             LoginResponse.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.admin_service.LoginResponse)
                     return object;
-                var message = new $root.cbs.admin_service.LoginResponse();
+                let message = new $root.cbs.admin_service.LoginResponse();
                 if (object.status != null)
                     message.status = object.status | 0;
                 if (object.tokens != null) {
@@ -848,7 +846,7 @@ $root.cbs = (function() {
             LoginResponse.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.status = 0;
                     object.tokens = null;
@@ -894,7 +892,7 @@ $root.cbs = (function() {
              */
             function BulkUploadRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -973,9 +971,9 @@ $root.cbs = (function() {
             BulkUploadRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.BulkUploadRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.BulkUploadRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.id = reader.int32();
@@ -1038,7 +1036,7 @@ $root.cbs = (function() {
             BulkUploadRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.admin_service.BulkUploadRequest)
                     return object;
-                var message = new $root.cbs.admin_service.BulkUploadRequest();
+                let message = new $root.cbs.admin_service.BulkUploadRequest();
                 if (object.id != null)
                     message.id = object.id | 0;
                 if (object.filePath != null)
@@ -1058,7 +1056,7 @@ $root.cbs = (function() {
             BulkUploadRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.id = 0;
                     object.filePath = "";
@@ -1104,7 +1102,7 @@ $root.cbs = (function() {
              */
             function BulkUploadResponse(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -1183,9 +1181,9 @@ $root.cbs = (function() {
             BulkUploadResponse.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.BulkUploadResponse();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.BulkUploadResponse();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.status = reader.int32();
@@ -1248,7 +1246,7 @@ $root.cbs = (function() {
             BulkUploadResponse.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.admin_service.BulkUploadResponse)
                     return object;
-                var message = new $root.cbs.admin_service.BulkUploadResponse();
+                let message = new $root.cbs.admin_service.BulkUploadResponse();
                 if (object.status != null)
                     message.status = object.status | 0;
                 if (object.message != null)
@@ -1268,7 +1266,7 @@ $root.cbs = (function() {
             BulkUploadResponse.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.status = 0;
                     object.message = "";
@@ -1318,7 +1316,7 @@ $root.cbs = (function() {
              */
             function CreateCustomerRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -1437,9 +1435,9 @@ $root.cbs = (function() {
             CreateCustomerRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.CreateCustomerRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.CreateCustomerRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.name = reader.string();
@@ -1526,7 +1524,7 @@ $root.cbs = (function() {
             CreateCustomerRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.admin_service.CreateCustomerRequest)
                     return object;
-                var message = new $root.cbs.admin_service.CreateCustomerRequest();
+                let message = new $root.cbs.admin_service.CreateCustomerRequest();
                 if (object.name != null)
                     message.name = String(object.name);
                 if (object.email != null)
@@ -1554,7 +1552,7 @@ $root.cbs = (function() {
             CreateCustomerRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.name = "";
                     object.email = "";
@@ -1612,7 +1610,7 @@ $root.cbs = (function() {
              */
             function CreateCustomerResponse(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -1691,9 +1689,9 @@ $root.cbs = (function() {
             CreateCustomerResponse.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.CreateCustomerResponse();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.CreateCustomerResponse();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.status = reader.string();
@@ -1756,7 +1754,7 @@ $root.cbs = (function() {
             CreateCustomerResponse.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.admin_service.CreateCustomerResponse)
                     return object;
-                var message = new $root.cbs.admin_service.CreateCustomerResponse();
+                let message = new $root.cbs.admin_service.CreateCustomerResponse();
                 if (object.status != null)
                     message.status = String(object.status);
                 if (object.message != null)
@@ -1776,7 +1774,7 @@ $root.cbs = (function() {
             CreateCustomerResponse.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.status = "";
                     object.message = "";
@@ -1826,7 +1824,7 @@ $root.cbs = (function() {
              */
             function Customer(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -1945,9 +1943,9 @@ $root.cbs = (function() {
             Customer.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.Customer();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.Customer();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.id = reader.string();
@@ -2034,7 +2032,7 @@ $root.cbs = (function() {
             Customer.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.admin_service.Customer)
                     return object;
-                var message = new $root.cbs.admin_service.Customer();
+                let message = new $root.cbs.admin_service.Customer();
                 if (object.id != null)
                     message.id = String(object.id);
                 if (object.name != null)
@@ -2062,7 +2060,7 @@ $root.cbs = (function() {
             Customer.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.id = "";
                     object.name = "";
@@ -2120,7 +2118,7 @@ $root.cbs = (function() {
              */
             function GetCustomerRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -2199,9 +2197,9 @@ $root.cbs = (function() {
             GetCustomerRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.GetCustomerRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.GetCustomerRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.id = reader.int32();
@@ -2264,7 +2262,7 @@ $root.cbs = (function() {
             GetCustomerRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.admin_service.GetCustomerRequest)
                     return object;
-                var message = new $root.cbs.admin_service.GetCustomerRequest();
+                let message = new $root.cbs.admin_service.GetCustomerRequest();
                 if (object.id != null)
                     message.id = object.id | 0;
                 if (object.customerId != null)
@@ -2284,7 +2282,7 @@ $root.cbs = (function() {
             GetCustomerRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.id = 0;
                     object.customerId = 0;
@@ -2330,7 +2328,7 @@ $root.cbs = (function() {
              */
             function GetCustomerResponse(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -2409,9 +2407,9 @@ $root.cbs = (function() {
             GetCustomerResponse.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.GetCustomerResponse();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.GetCustomerResponse();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.status = reader.int32();
@@ -2458,7 +2456,7 @@ $root.cbs = (function() {
                     if (!$util.isInteger(message.status))
                         return "status: integer expected";
                 if (message.customer != null && message.hasOwnProperty("customer")) {
-                    var error = $root.cbs.admin_service.Customer.verify(message.customer);
+                    let error = $root.cbs.admin_service.Customer.verify(message.customer);
                     if (error)
                         return "customer." + error;
                 }
@@ -2476,7 +2474,7 @@ $root.cbs = (function() {
             GetCustomerResponse.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.admin_service.GetCustomerResponse)
                     return object;
-                var message = new $root.cbs.admin_service.GetCustomerResponse();
+                let message = new $root.cbs.admin_service.GetCustomerResponse();
                 if (object.status != null)
                     message.status = object.status | 0;
                 if (object.customer != null) {
@@ -2499,7 +2497,7 @@ $root.cbs = (function() {
             GetCustomerResponse.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.status = 0;
                     object.customer = null;
@@ -2544,7 +2542,7 @@ $root.cbs = (function() {
              */
             function GetCustomersRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -2613,9 +2611,9 @@ $root.cbs = (function() {
             GetCustomersRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.GetCustomersRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.GetCustomersRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.id = reader.int32();
@@ -2672,7 +2670,7 @@ $root.cbs = (function() {
             GetCustomersRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.admin_service.GetCustomersRequest)
                     return object;
-                var message = new $root.cbs.admin_service.GetCustomersRequest();
+                let message = new $root.cbs.admin_service.GetCustomersRequest();
                 if (object.id != null)
                     message.id = object.id | 0;
                 return message;
@@ -2690,7 +2688,7 @@ $root.cbs = (function() {
             GetCustomersRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults)
                     object.id = 0;
                 if (message.id != null && message.hasOwnProperty("id"))
@@ -2733,7 +2731,7 @@ $root.cbs = (function() {
             function GetCustomersResponse(properties) {
                 this.customers = [];
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -2781,7 +2779,7 @@ $root.cbs = (function() {
                 if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
                 if (message.customers != null && message.customers.length)
-                    for (var i = 0; i < message.customers.length; ++i)
+                    for (let i = 0; i < message.customers.length; ++i)
                         $root.cbs.admin_service.Customer.encode(message.customers[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -2813,9 +2811,9 @@ $root.cbs = (function() {
             GetCustomersResponse.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.GetCustomersResponse();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.GetCustomersResponse();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.status = reader.int32();
@@ -2866,8 +2864,8 @@ $root.cbs = (function() {
                 if (message.customers != null && message.hasOwnProperty("customers")) {
                     if (!Array.isArray(message.customers))
                         return "customers: array expected";
-                    for (var i = 0; i < message.customers.length; ++i) {
-                        var error = $root.cbs.admin_service.Customer.verify(message.customers[i]);
+                    for (let i = 0; i < message.customers.length; ++i) {
+                        let error = $root.cbs.admin_service.Customer.verify(message.customers[i]);
                         if (error)
                             return "customers." + error;
                     }
@@ -2886,14 +2884,14 @@ $root.cbs = (function() {
             GetCustomersResponse.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.admin_service.GetCustomersResponse)
                     return object;
-                var message = new $root.cbs.admin_service.GetCustomersResponse();
+                let message = new $root.cbs.admin_service.GetCustomersResponse();
                 if (object.status != null)
                     message.status = object.status | 0;
                 if (object.customers) {
                     if (!Array.isArray(object.customers))
                         throw TypeError(".cbs.admin_service.GetCustomersResponse.customers: array expected");
                     message.customers = [];
-                    for (var i = 0; i < object.customers.length; ++i) {
+                    for (let i = 0; i < object.customers.length; ++i) {
                         if (typeof object.customers[i] !== "object")
                             throw TypeError(".cbs.admin_service.GetCustomersResponse.customers: object expected");
                         message.customers[i] = $root.cbs.admin_service.Customer.fromObject(object.customers[i]);
@@ -2914,7 +2912,7 @@ $root.cbs = (function() {
             GetCustomersResponse.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.arrays || options.defaults)
                     object.customers = [];
                 if (options.defaults)
@@ -2923,7 +2921,7 @@ $root.cbs = (function() {
                     object.status = message.status;
                 if (message.customers && message.customers.length) {
                     object.customers = [];
-                    for (var j = 0; j < message.customers.length; ++j)
+                    for (let j = 0; j < message.customers.length; ++j)
                         object.customers[j] = $root.cbs.admin_service.Customer.toObject(message.customers[j], options);
                 }
                 return object;
@@ -2953,7 +2951,7 @@ $root.cbs = (function() {
          * @memberof cbs
          * @namespace
          */
-        var common = {};
+        const common = {};
 
         common.ListRequest = (function() {
 
@@ -2980,7 +2978,7 @@ $root.cbs = (function() {
                 this.filter = {};
                 this.order = {};
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -3054,10 +3052,10 @@ $root.cbs = (function() {
                 if (message.perPage != null && Object.hasOwnProperty.call(message, "perPage"))
                     writer.uint32(/* id 2, wireType 0 =*/16).int32(message.perPage);
                 if (message.filter != null && Object.hasOwnProperty.call(message, "filter"))
-                    for (var keys = Object.keys(message.filter), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(message.filter), i = 0; i < keys.length; ++i)
                         writer.uint32(/* id 3, wireType 2 =*/26).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.filter[keys[i]]).ldelim();
                 if (message.order != null && Object.hasOwnProperty.call(message, "order"))
-                    for (var keys = Object.keys(message.order), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(message.order), i = 0; i < keys.length; ++i)
                         writer.uint32(/* id 4, wireType 2 =*/34).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.order[keys[i]]).ldelim();
                 if (message.exportType != null && Object.hasOwnProperty.call(message, "exportType"))
                     writer.uint32(/* id 5, wireType 2 =*/42).string(message.exportType);
@@ -3091,9 +3089,9 @@ $root.cbs = (function() {
             ListRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.ListRequest(), key, value;
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.ListRequest(), key, value;
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.currentPage = reader.int32();
@@ -3104,11 +3102,11 @@ $root.cbs = (function() {
                     case 3:
                         if (message.filter === $util.emptyObject)
                             message.filter = {};
-                        var end2 = reader.uint32() + reader.pos;
+                        end2 = reader.uint32() + reader.pos;
                         key = "";
                         value = "";
                         while (reader.pos < end2) {
-                            var tag2 = reader.uint32();
+                            let tag2 = reader.uint32();
                             switch (tag2 >>> 3) {
                             case 1:
                                 key = reader.string();
@@ -3126,11 +3124,11 @@ $root.cbs = (function() {
                     case 4:
                         if (message.order === $util.emptyObject)
                             message.order = {};
-                        var end2 = reader.uint32() + reader.pos;
+                        let end2 = reader.uint32() + reader.pos;
                         key = "";
                         value = "";
                         while (reader.pos < end2) {
-                            var tag2 = reader.uint32();
+                            let tag2 = reader.uint32();
                             switch (tag2 >>> 3) {
                             case 1:
                                 key = reader.string();
@@ -3192,16 +3190,16 @@ $root.cbs = (function() {
                 if (message.filter != null && message.hasOwnProperty("filter")) {
                     if (!$util.isObject(message.filter))
                         return "filter: object expected";
-                    var key = Object.keys(message.filter);
-                    for (var i = 0; i < key.length; ++i)
+                    let key = Object.keys(message.filter);
+                    for (let i = 0; i < key.length; ++i)
                         if (!$util.isString(message.filter[key[i]]))
                             return "filter: string{k:string} expected";
                 }
                 if (message.order != null && message.hasOwnProperty("order")) {
                     if (!$util.isObject(message.order))
                         return "order: object expected";
-                    var key = Object.keys(message.order);
-                    for (var i = 0; i < key.length; ++i)
+                    let key = Object.keys(message.order);
+                    for (let i = 0; i < key.length; ++i)
                         if (!$util.isString(message.order[key[i]]))
                             return "order: string{k:string} expected";
                 }
@@ -3222,7 +3220,7 @@ $root.cbs = (function() {
             ListRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.common.ListRequest)
                     return object;
-                var message = new $root.cbs.common.ListRequest();
+                let message = new $root.cbs.common.ListRequest();
                 if (object.currentPage != null)
                     message.currentPage = object.currentPage | 0;
                 if (object.perPage != null)
@@ -3231,14 +3229,14 @@ $root.cbs = (function() {
                     if (typeof object.filter !== "object")
                         throw TypeError(".cbs.common.ListRequest.filter: object expected");
                     message.filter = {};
-                    for (var keys = Object.keys(object.filter), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(object.filter), i = 0; i < keys.length; ++i)
                         message.filter[keys[i]] = String(object.filter[keys[i]]);
                 }
                 if (object.order) {
                     if (typeof object.order !== "object")
                         throw TypeError(".cbs.common.ListRequest.order: object expected");
                     message.order = {};
-                    for (var keys = Object.keys(object.order), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(object.order), i = 0; i < keys.length; ++i)
                         message.order[keys[i]] = String(object.order[keys[i]]);
                 }
                 if (object.exportType != null)
@@ -3258,7 +3256,7 @@ $root.cbs = (function() {
             ListRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.objects || options.defaults) {
                     object.filter = {};
                     object.order = {};
@@ -3272,15 +3270,15 @@ $root.cbs = (function() {
                     object.currentPage = message.currentPage;
                 if (message.perPage != null && message.hasOwnProperty("perPage"))
                     object.perPage = message.perPage;
-                var keys2;
+                let keys2;
                 if (message.filter && (keys2 = Object.keys(message.filter)).length) {
                     object.filter = {};
-                    for (var j = 0; j < keys2.length; ++j)
+                    for (let j = 0; j < keys2.length; ++j)
                         object.filter[keys2[j]] = message.filter[keys2[j]];
                 }
                 if (message.order && (keys2 = Object.keys(message.order)).length) {
                     object.order = {};
-                    for (var j = 0; j < keys2.length; ++j)
+                    for (let j = 0; j < keys2.length; ++j)
                         object.order[keys2[j]] = message.order[keys2[j]];
                 }
                 if (message.exportType != null && message.hasOwnProperty("exportType"))
@@ -3321,7 +3319,7 @@ $root.cbs = (function() {
              */
             function GetRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -3390,9 +3388,9 @@ $root.cbs = (function() {
             GetRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.GetRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.GetRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.uuid = reader.string();
@@ -3449,7 +3447,7 @@ $root.cbs = (function() {
             GetRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.common.GetRequest)
                     return object;
-                var message = new $root.cbs.common.GetRequest();
+                let message = new $root.cbs.common.GetRequest();
                 if (object.uuid != null)
                     message.uuid = String(object.uuid);
                 return message;
@@ -3467,7 +3465,7 @@ $root.cbs = (function() {
             GetRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults)
                     object.uuid = "";
                 if (message.uuid != null && message.hasOwnProperty("uuid"))
@@ -3507,7 +3505,7 @@ $root.cbs = (function() {
              */
             function Empty(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -3566,9 +3564,9 @@ $root.cbs = (function() {
             Empty.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.Empty();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.Empty();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     default:
                         reader.skipType(tag & 7);
@@ -3668,7 +3666,7 @@ $root.cbs = (function() {
              */
             function Request(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -3737,9 +3735,9 @@ $root.cbs = (function() {
             Request.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.Request();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.Request();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.uniqueIdentifier = reader.string();
@@ -3796,7 +3794,7 @@ $root.cbs = (function() {
             Request.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.common.Request)
                     return object;
-                var message = new $root.cbs.common.Request();
+                let message = new $root.cbs.common.Request();
                 if (object.uniqueIdentifier != null)
                     message.uniqueIdentifier = String(object.uniqueIdentifier);
                 return message;
@@ -3814,7 +3812,7 @@ $root.cbs = (function() {
             Request.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults)
                     object.uniqueIdentifier = "";
                 if (message.uniqueIdentifier != null && message.hasOwnProperty("uniqueIdentifier"))
@@ -3855,7 +3853,7 @@ $root.cbs = (function() {
              */
             function DetectChannel(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -3924,9 +3922,9 @@ $root.cbs = (function() {
             DetectChannel.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.DetectChannel();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.DetectChannel();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.detectChannel = $root.cbs.common.Request.decode(reader, reader.uint32());
@@ -3967,7 +3965,7 @@ $root.cbs = (function() {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
                 if (message.detectChannel != null && message.hasOwnProperty("detectChannel")) {
-                    var error = $root.cbs.common.Request.verify(message.detectChannel);
+                    let error = $root.cbs.common.Request.verify(message.detectChannel);
                     if (error)
                         return "detectChannel." + error;
                 }
@@ -3985,7 +3983,7 @@ $root.cbs = (function() {
             DetectChannel.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.common.DetectChannel)
                     return object;
-                var message = new $root.cbs.common.DetectChannel();
+                let message = new $root.cbs.common.DetectChannel();
                 if (object.detectChannel != null) {
                     if (typeof object.detectChannel !== "object")
                         throw TypeError(".cbs.common.DetectChannel.detectChannel: object expected");
@@ -4006,7 +4004,7 @@ $root.cbs = (function() {
             DetectChannel.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults)
                     object.detectChannel = null;
                 if (message.detectChannel != null && message.hasOwnProperty("detectChannel"))
@@ -4048,7 +4046,7 @@ $root.cbs = (function() {
              */
             function Response(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -4127,9 +4125,9 @@ $root.cbs = (function() {
             Response.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.Response();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.Response();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.status = reader.int32();
@@ -4192,7 +4190,7 @@ $root.cbs = (function() {
             Response.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.common.Response)
                     return object;
-                var message = new $root.cbs.common.Response();
+                let message = new $root.cbs.common.Response();
                 if (object.status != null)
                     message.status = object.status | 0;
                 if (object.message != null)
@@ -4212,7 +4210,7 @@ $root.cbs = (function() {
             Response.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.status = 0;
                     object.message = "";
@@ -4259,7 +4257,7 @@ $root.cbs = (function() {
              */
             function MobileCommonResponse(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -4348,9 +4346,9 @@ $root.cbs = (function() {
             MobileCommonResponse.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.MobileCommonResponse();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.MobileCommonResponse();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.status = reader.int32();
@@ -4419,7 +4417,7 @@ $root.cbs = (function() {
             MobileCommonResponse.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.common.MobileCommonResponse)
                     return object;
-                var message = new $root.cbs.common.MobileCommonResponse();
+                let message = new $root.cbs.common.MobileCommonResponse();
                 if (object.status != null)
                     message.status = object.status | 0;
                 if (object.message != null)
@@ -4441,7 +4439,7 @@ $root.cbs = (function() {
             MobileCommonResponse.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.status = 0;
                     object.message = "";
@@ -4492,7 +4490,7 @@ $root.cbs = (function() {
              */
             function Pagination(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -4591,9 +4589,9 @@ $root.cbs = (function() {
             Pagination.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.Pagination();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.Pagination();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.currentPage = reader.int32();
@@ -4668,7 +4666,7 @@ $root.cbs = (function() {
             Pagination.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.common.Pagination)
                     return object;
-                var message = new $root.cbs.common.Pagination();
+                let message = new $root.cbs.common.Pagination();
                 if (object.currentPage != null)
                     message.currentPage = object.currentPage | 0;
                 if (object.totalItem != null)
@@ -4692,7 +4690,7 @@ $root.cbs = (function() {
             Pagination.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.currentPage = 0;
                     object.totalItem = 0;
@@ -4744,7 +4742,7 @@ $root.cbs = (function() {
              */
             function Meta(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -4823,9 +4821,9 @@ $root.cbs = (function() {
             Meta.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.Meta();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.Meta();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.pagination = $root.cbs.common.Pagination.decode(reader, reader.uint32());
@@ -4869,12 +4867,12 @@ $root.cbs = (function() {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
                 if (message.pagination != null && message.hasOwnProperty("pagination")) {
-                    var error = $root.cbs.common.Pagination.verify(message.pagination);
+                    let error = $root.cbs.common.Pagination.verify(message.pagination);
                     if (error)
                         return "pagination." + error;
                 }
                 if (message.response != null && message.hasOwnProperty("response")) {
-                    var error = $root.cbs.common.Response.verify(message.response);
+                    let error = $root.cbs.common.Response.verify(message.response);
                     if (error)
                         return "response." + error;
                 }
@@ -4892,7 +4890,7 @@ $root.cbs = (function() {
             Meta.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.common.Meta)
                     return object;
-                var message = new $root.cbs.common.Meta();
+                let message = new $root.cbs.common.Meta();
                 if (object.pagination != null) {
                     if (typeof object.pagination !== "object")
                         throw TypeError(".cbs.common.Meta.pagination: object expected");
@@ -4918,7 +4916,7 @@ $root.cbs = (function() {
             Meta.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.pagination = null;
                     object.response = null;
@@ -4966,7 +4964,7 @@ $root.cbs = (function() {
             function ApproveRejectRequest(properties) {
                 this.uuid = [];
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -5020,7 +5018,7 @@ $root.cbs = (function() {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.uuid != null && message.uuid.length)
-                    for (var i = 0; i < message.uuid.length; ++i)
+                    for (let i = 0; i < message.uuid.length; ++i)
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.uuid[i]);
                 if (message.action != null && Object.hasOwnProperty.call(message, "action"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.action);
@@ -5056,9 +5054,9 @@ $root.cbs = (function() {
             ApproveRejectRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.ApproveRejectRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.ApproveRejectRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         if (!(message.uuid && message.uuid.length))
@@ -5109,7 +5107,7 @@ $root.cbs = (function() {
                 if (message.uuid != null && message.hasOwnProperty("uuid")) {
                     if (!Array.isArray(message.uuid))
                         return "uuid: array expected";
-                    for (var i = 0; i < message.uuid.length; ++i)
+                    for (let i = 0; i < message.uuid.length; ++i)
                         if (!$util.isString(message.uuid[i]))
                             return "uuid: string[] expected";
                 }
@@ -5133,12 +5131,12 @@ $root.cbs = (function() {
             ApproveRejectRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.common.ApproveRejectRequest)
                     return object;
-                var message = new $root.cbs.common.ApproveRejectRequest();
+                let message = new $root.cbs.common.ApproveRejectRequest();
                 if (object.uuid) {
                     if (!Array.isArray(object.uuid))
                         throw TypeError(".cbs.common.ApproveRejectRequest.uuid: array expected");
                     message.uuid = [];
-                    for (var i = 0; i < object.uuid.length; ++i)
+                    for (let i = 0; i < object.uuid.length; ++i)
                         message.uuid[i] = String(object.uuid[i]);
                 }
                 if (object.action != null)
@@ -5160,7 +5158,7 @@ $root.cbs = (function() {
             ApproveRejectRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.arrays || options.defaults)
                     object.uuid = [];
                 if (options.defaults) {
@@ -5169,7 +5167,7 @@ $root.cbs = (function() {
                 }
                 if (message.uuid && message.uuid.length) {
                     object.uuid = [];
-                    for (var j = 0; j < message.uuid.length; ++j)
+                    for (let j = 0; j < message.uuid.length; ++j)
                         object.uuid[j] = message.uuid[j];
                 }
                 if (message.action != null && message.hasOwnProperty("action"))
@@ -5214,7 +5212,7 @@ $root.cbs = (function() {
              */
             function SingleApproveRejectRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -5303,9 +5301,9 @@ $root.cbs = (function() {
             SingleApproveRejectRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.SingleApproveRejectRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.SingleApproveRejectRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.uuid = reader.string();
@@ -5374,7 +5372,7 @@ $root.cbs = (function() {
             SingleApproveRejectRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.common.SingleApproveRejectRequest)
                     return object;
-                var message = new $root.cbs.common.SingleApproveRejectRequest();
+                let message = new $root.cbs.common.SingleApproveRejectRequest();
                 if (object.uuid != null)
                     message.uuid = String(object.uuid);
                 if (object.action != null)
@@ -5396,7 +5394,7 @@ $root.cbs = (function() {
             SingleApproveRejectRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.uuid = "";
                     object.action = "";
@@ -5446,7 +5444,7 @@ $root.cbs = (function() {
              */
             function ApproveRejectBatchRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -5535,9 +5533,9 @@ $root.cbs = (function() {
             ApproveRejectBatchRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.ApproveRejectBatchRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.common.ApproveRejectBatchRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.batchId = reader.string();
@@ -5606,7 +5604,7 @@ $root.cbs = (function() {
             ApproveRejectBatchRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.common.ApproveRejectBatchRequest)
                     return object;
-                var message = new $root.cbs.common.ApproveRejectBatchRequest();
+                let message = new $root.cbs.common.ApproveRejectBatchRequest();
                 if (object.batchId != null)
                     message.batchId = String(object.batchId);
                 if (object.action != null)
@@ -5628,7 +5626,7 @@ $root.cbs = (function() {
             ApproveRejectBatchRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.batchId = "";
                     object.action = "";
@@ -5667,7 +5665,7 @@ $root.cbs = (function() {
          * @memberof cbs
          * @namespace
          */
-        var customer_auth_service = {};
+        const customer_auth_service = {};
 
         customer_auth_service.rpc = (function() {
 
@@ -5676,7 +5674,7 @@ $root.cbs = (function() {
              * @memberof cbs.customer_auth_service
              * @namespace
              */
-            var rpc = {};
+            const rpc = {};
 
             rpc.CustomerAuthService = (function() {
 
@@ -5835,7 +5833,7 @@ $root.cbs = (function() {
              */
             function LoginRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -5914,9 +5912,9 @@ $root.cbs = (function() {
             LoginRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.LoginRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.LoginRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.email = reader.string();
@@ -5979,7 +5977,7 @@ $root.cbs = (function() {
             LoginRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.customer_auth_service.LoginRequest)
                     return object;
-                var message = new $root.cbs.customer_auth_service.LoginRequest();
+                let message = new $root.cbs.customer_auth_service.LoginRequest();
                 if (object.email != null)
                     message.email = String(object.email);
                 if (object.password != null)
@@ -5999,7 +5997,7 @@ $root.cbs = (function() {
             LoginRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.email = "";
                     object.password = "";
@@ -6045,7 +6043,7 @@ $root.cbs = (function() {
              */
             function Tokens(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -6124,9 +6122,9 @@ $root.cbs = (function() {
             Tokens.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.Tokens();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.Tokens();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.accessToken = reader.string();
@@ -6189,7 +6187,7 @@ $root.cbs = (function() {
             Tokens.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.customer_auth_service.Tokens)
                     return object;
-                var message = new $root.cbs.customer_auth_service.Tokens();
+                let message = new $root.cbs.customer_auth_service.Tokens();
                 if (object.accessToken != null)
                     message.accessToken = String(object.accessToken);
                 if (object.refreshToken != null)
@@ -6209,7 +6207,7 @@ $root.cbs = (function() {
             Tokens.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.accessToken = "";
                     object.refreshToken = "";
@@ -6255,7 +6253,7 @@ $root.cbs = (function() {
              */
             function LoginResponse(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -6334,9 +6332,9 @@ $root.cbs = (function() {
             LoginResponse.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.LoginResponse();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.LoginResponse();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.status = reader.int32();
@@ -6383,7 +6381,7 @@ $root.cbs = (function() {
                     if (!$util.isInteger(message.status))
                         return "status: integer expected";
                 if (message.tokens != null && message.hasOwnProperty("tokens")) {
-                    var error = $root.cbs.customer_auth_service.Tokens.verify(message.tokens);
+                    let error = $root.cbs.customer_auth_service.Tokens.verify(message.tokens);
                     if (error)
                         return "tokens." + error;
                 }
@@ -6401,7 +6399,7 @@ $root.cbs = (function() {
             LoginResponse.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.customer_auth_service.LoginResponse)
                     return object;
-                var message = new $root.cbs.customer_auth_service.LoginResponse();
+                let message = new $root.cbs.customer_auth_service.LoginResponse();
                 if (object.status != null)
                     message.status = object.status | 0;
                 if (object.tokens != null) {
@@ -6424,7 +6422,7 @@ $root.cbs = (function() {
             LoginResponse.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.status = 0;
                     object.tokens = null;
@@ -6474,7 +6472,7 @@ $root.cbs = (function() {
              */
             function Customer(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -6593,9 +6591,9 @@ $root.cbs = (function() {
             Customer.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.Customer();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.Customer();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.id = reader.string();
@@ -6682,7 +6680,7 @@ $root.cbs = (function() {
             Customer.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.customer_auth_service.Customer)
                     return object;
-                var message = new $root.cbs.customer_auth_service.Customer();
+                let message = new $root.cbs.customer_auth_service.Customer();
                 if (object.id != null)
                     message.id = String(object.id);
                 if (object.name != null)
@@ -6710,7 +6708,7 @@ $root.cbs = (function() {
             Customer.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.id = "";
                     object.name = "";
@@ -6767,7 +6765,7 @@ $root.cbs = (function() {
              */
             function CustomerProfileRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -6836,9 +6834,9 @@ $root.cbs = (function() {
             CustomerProfileRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.CustomerProfileRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.CustomerProfileRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.id = reader.string();
@@ -6895,7 +6893,7 @@ $root.cbs = (function() {
             CustomerProfileRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.customer_auth_service.CustomerProfileRequest)
                     return object;
-                var message = new $root.cbs.customer_auth_service.CustomerProfileRequest();
+                let message = new $root.cbs.customer_auth_service.CustomerProfileRequest();
                 if (object.id != null)
                     message.id = String(object.id);
                 return message;
@@ -6913,7 +6911,7 @@ $root.cbs = (function() {
             CustomerProfileRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults)
                     object.id = "";
                 if (message.id != null && message.hasOwnProperty("id"))
@@ -6955,7 +6953,7 @@ $root.cbs = (function() {
              */
             function CustomerProfileResponse(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -7034,9 +7032,9 @@ $root.cbs = (function() {
             CustomerProfileResponse.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.CustomerProfileResponse();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.CustomerProfileResponse();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.status = reader.int32();
@@ -7083,7 +7081,7 @@ $root.cbs = (function() {
                     if (!$util.isInteger(message.status))
                         return "status: integer expected";
                 if (message.customer != null && message.hasOwnProperty("customer")) {
-                    var error = $root.cbs.customer_auth_service.Customer.verify(message.customer);
+                    let error = $root.cbs.customer_auth_service.Customer.verify(message.customer);
                     if (error)
                         return "customer." + error;
                 }
@@ -7101,7 +7099,7 @@ $root.cbs = (function() {
             CustomerProfileResponse.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.customer_auth_service.CustomerProfileResponse)
                     return object;
-                var message = new $root.cbs.customer_auth_service.CustomerProfileResponse();
+                let message = new $root.cbs.customer_auth_service.CustomerProfileResponse();
                 if (object.status != null)
                     message.status = object.status | 0;
                 if (object.customer != null) {
@@ -7124,7 +7122,7 @@ $root.cbs = (function() {
             CustomerProfileResponse.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.status = 0;
                     object.customer = null;
@@ -7170,7 +7168,7 @@ $root.cbs = (function() {
              */
             function HealthCheckRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -7249,9 +7247,9 @@ $root.cbs = (function() {
             HealthCheckRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.HealthCheckRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.HealthCheckRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.id = reader.int32();
@@ -7314,7 +7312,7 @@ $root.cbs = (function() {
             HealthCheckRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.customer_auth_service.HealthCheckRequest)
                     return object;
-                var message = new $root.cbs.customer_auth_service.HealthCheckRequest();
+                let message = new $root.cbs.customer_auth_service.HealthCheckRequest();
                 if (object.id != null)
                     message.id = object.id | 0;
                 if (object.name != null)
@@ -7334,7 +7332,7 @@ $root.cbs = (function() {
             HealthCheckRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.id = 0;
                     object.name = "";
@@ -7380,7 +7378,7 @@ $root.cbs = (function() {
              */
             function HealthCheckResponse(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -7459,9 +7457,9 @@ $root.cbs = (function() {
             HealthCheckResponse.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.HealthCheckResponse();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.customer_auth_service.HealthCheckResponse();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.status = reader.int64();
@@ -7524,7 +7522,7 @@ $root.cbs = (function() {
             HealthCheckResponse.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.customer_auth_service.HealthCheckResponse)
                     return object;
-                var message = new $root.cbs.customer_auth_service.HealthCheckResponse();
+                let message = new $root.cbs.customer_auth_service.HealthCheckResponse();
                 if (object.status != null)
                     if ($util.Long)
                         (message.status = $util.Long.fromValue(object.status)).unsigned = false;
@@ -7551,10 +7549,10 @@ $root.cbs = (function() {
             HealthCheckResponse.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     if ($util.Long) {
-                        var long = new $util.Long(0, 0, false);
+                        let long = new $util.Long(0, 0, false);
                         object.status = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                     } else
                         object.status = options.longs === String ? "0" : 0;
@@ -7594,7 +7592,7 @@ $root.cbs = (function() {
          * @memberof cbs
          * @namespace
          */
-        var merchant_service = {};
+        const merchant_service = {};
 
         merchant_service.rpc = (function() {
 
@@ -7603,7 +7601,7 @@ $root.cbs = (function() {
              * @memberof cbs.merchant_service
              * @namespace
              */
-            var rpc = {};
+            const rpc = {};
 
             rpc.MerchantService = (function() {
 
@@ -7784,7 +7782,7 @@ $root.cbs = (function() {
          * @property {number} JWT=2 JWT value
          */
         merchant_service.AuthType = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
+            const valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "BASIC"] = 0;
             values[valuesById[1] = "OAUTH2"] = 1;
             values[valuesById[2] = "JWT"] = 2;
@@ -7815,7 +7813,7 @@ $root.cbs = (function() {
              */
             function Merchant(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -7934,9 +7932,9 @@ $root.cbs = (function() {
             Merchant.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.Merchant();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.Merchant();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.name = reader.string();
@@ -8029,7 +8027,7 @@ $root.cbs = (function() {
             Merchant.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.merchant_service.Merchant)
                     return object;
-                var message = new $root.cbs.merchant_service.Merchant();
+                let message = new $root.cbs.merchant_service.Merchant();
                 if (object.name != null)
                     message.name = String(object.name);
                 switch (object.authType) {
@@ -8069,7 +8067,7 @@ $root.cbs = (function() {
             Merchant.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.name = "";
                     object.authType = options.enums === String ? "BASIC" : 0;
@@ -8127,7 +8125,7 @@ $root.cbs = (function() {
              */
             function CreateMerchantRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -8206,9 +8204,9 @@ $root.cbs = (function() {
             CreateMerchantRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.CreateMerchantRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.CreateMerchantRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.name = reader.string();
@@ -8277,7 +8275,7 @@ $root.cbs = (function() {
             CreateMerchantRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.merchant_service.CreateMerchantRequest)
                     return object;
-                var message = new $root.cbs.merchant_service.CreateMerchantRequest();
+                let message = new $root.cbs.merchant_service.CreateMerchantRequest();
                 if (object.name != null)
                     message.name = String(object.name);
                 switch (object.authType) {
@@ -8309,7 +8307,7 @@ $root.cbs = (function() {
             CreateMerchantRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.name = "";
                     object.authType = options.enums === String ? "BASIC" : 0;
@@ -8356,7 +8354,7 @@ $root.cbs = (function() {
              */
             function CreateMerchantResponse(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -8445,9 +8443,9 @@ $root.cbs = (function() {
             CreateMerchantResponse.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.CreateMerchantResponse();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.CreateMerchantResponse();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.status = reader.int32();
@@ -8516,7 +8514,7 @@ $root.cbs = (function() {
             CreateMerchantResponse.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.merchant_service.CreateMerchantResponse)
                     return object;
-                var message = new $root.cbs.merchant_service.CreateMerchantResponse();
+                let message = new $root.cbs.merchant_service.CreateMerchantResponse();
                 if (object.status != null)
                     message.status = object.status | 0;
                 if (object.success != null)
@@ -8538,7 +8536,7 @@ $root.cbs = (function() {
             CreateMerchantResponse.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.status = 0;
                     object.success = false;
@@ -8590,7 +8588,7 @@ $root.cbs = (function() {
              */
             function GMerchant(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -8699,9 +8697,9 @@ $root.cbs = (function() {
             GMerchant.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.GMerchant();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.GMerchant();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.id = reader.int32();
@@ -8788,7 +8786,7 @@ $root.cbs = (function() {
             GMerchant.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.merchant_service.GMerchant)
                     return object;
-                var message = new $root.cbs.merchant_service.GMerchant();
+                let message = new $root.cbs.merchant_service.GMerchant();
                 if (object.id != null)
                     message.id = object.id | 0;
                 if (object.name != null)
@@ -8826,7 +8824,7 @@ $root.cbs = (function() {
             GMerchant.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.id = 0;
                     object.name = "";
@@ -8880,7 +8878,7 @@ $root.cbs = (function() {
              */
             function GetMerchantsRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -8949,9 +8947,9 @@ $root.cbs = (function() {
             GetMerchantsRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.GetMerchantsRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.GetMerchantsRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.id = reader.int32();
@@ -9008,7 +9006,7 @@ $root.cbs = (function() {
             GetMerchantsRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.merchant_service.GetMerchantsRequest)
                     return object;
-                var message = new $root.cbs.merchant_service.GetMerchantsRequest();
+                let message = new $root.cbs.merchant_service.GetMerchantsRequest();
                 if (object.id != null)
                     message.id = object.id | 0;
                 return message;
@@ -9026,7 +9024,7 @@ $root.cbs = (function() {
             GetMerchantsRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults)
                     object.id = 0;
                 if (message.id != null && message.hasOwnProperty("id"))
@@ -9070,7 +9068,7 @@ $root.cbs = (function() {
             function GetMerchantsResponse(properties) {
                 this.merchants = [];
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -9126,7 +9124,7 @@ $root.cbs = (function() {
                 if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
                 if (message.merchants != null && message.merchants.length)
-                    for (var i = 0; i < message.merchants.length; ++i)
+                    for (let i = 0; i < message.merchants.length; ++i)
                         $root.cbs.merchant_service.GMerchant.encode(message.merchants[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.message);
@@ -9160,9 +9158,9 @@ $root.cbs = (function() {
             GetMerchantsResponse.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.GetMerchantsResponse();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.GetMerchantsResponse();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.status = reader.int32();
@@ -9216,8 +9214,8 @@ $root.cbs = (function() {
                 if (message.merchants != null && message.hasOwnProperty("merchants")) {
                     if (!Array.isArray(message.merchants))
                         return "merchants: array expected";
-                    for (var i = 0; i < message.merchants.length; ++i) {
-                        var error = $root.cbs.merchant_service.GMerchant.verify(message.merchants[i]);
+                    for (let i = 0; i < message.merchants.length; ++i) {
+                        let error = $root.cbs.merchant_service.GMerchant.verify(message.merchants[i]);
                         if (error)
                             return "merchants." + error;
                     }
@@ -9239,14 +9237,14 @@ $root.cbs = (function() {
             GetMerchantsResponse.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.merchant_service.GetMerchantsResponse)
                     return object;
-                var message = new $root.cbs.merchant_service.GetMerchantsResponse();
+                let message = new $root.cbs.merchant_service.GetMerchantsResponse();
                 if (object.status != null)
                     message.status = object.status | 0;
                 if (object.merchants) {
                     if (!Array.isArray(object.merchants))
                         throw TypeError(".cbs.merchant_service.GetMerchantsResponse.merchants: array expected");
                     message.merchants = [];
-                    for (var i = 0; i < object.merchants.length; ++i) {
+                    for (let i = 0; i < object.merchants.length; ++i) {
                         if (typeof object.merchants[i] !== "object")
                             throw TypeError(".cbs.merchant_service.GetMerchantsResponse.merchants: object expected");
                         message.merchants[i] = $root.cbs.merchant_service.GMerchant.fromObject(object.merchants[i]);
@@ -9269,7 +9267,7 @@ $root.cbs = (function() {
             GetMerchantsResponse.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.arrays || options.defaults)
                     object.merchants = [];
                 if (options.defaults) {
@@ -9280,7 +9278,7 @@ $root.cbs = (function() {
                     object.status = message.status;
                 if (message.merchants && message.merchants.length) {
                     object.merchants = [];
-                    for (var j = 0; j < message.merchants.length; ++j)
+                    for (let j = 0; j < message.merchants.length; ++j)
                         object.merchants[j] = $root.cbs.merchant_service.GMerchant.toObject(message.merchants[j], options);
                 }
                 if (message.message != null && message.hasOwnProperty("message"))
@@ -9322,7 +9320,7 @@ $root.cbs = (function() {
              */
             function GetMerchantRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -9401,9 +9399,9 @@ $root.cbs = (function() {
             GetMerchantRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.GetMerchantRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.GetMerchantRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.id = reader.int32();
@@ -9466,7 +9464,7 @@ $root.cbs = (function() {
             GetMerchantRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.merchant_service.GetMerchantRequest)
                     return object;
-                var message = new $root.cbs.merchant_service.GetMerchantRequest();
+                let message = new $root.cbs.merchant_service.GetMerchantRequest();
                 if (object.id != null)
                     message.id = object.id | 0;
                 if (object.merchantId != null)
@@ -9486,7 +9484,7 @@ $root.cbs = (function() {
             GetMerchantRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.id = 0;
                     object.merchantId = 0;
@@ -9533,7 +9531,7 @@ $root.cbs = (function() {
              */
             function GetMerchantResponse(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -9622,9 +9620,9 @@ $root.cbs = (function() {
             GetMerchantResponse.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.GetMerchantResponse();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.GetMerchantResponse();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.status = reader.int32();
@@ -9674,7 +9672,7 @@ $root.cbs = (function() {
                     if (!$util.isInteger(message.status))
                         return "status: integer expected";
                 if (message.merchant != null && message.hasOwnProperty("merchant")) {
-                    var error = $root.cbs.merchant_service.GMerchant.verify(message.merchant);
+                    let error = $root.cbs.merchant_service.GMerchant.verify(message.merchant);
                     if (error)
                         return "merchant." + error;
                 }
@@ -9695,7 +9693,7 @@ $root.cbs = (function() {
             GetMerchantResponse.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.merchant_service.GetMerchantResponse)
                     return object;
-                var message = new $root.cbs.merchant_service.GetMerchantResponse();
+                let message = new $root.cbs.merchant_service.GetMerchantResponse();
                 if (object.status != null)
                     message.status = object.status | 0;
                 if (object.merchant != null) {
@@ -9720,7 +9718,7 @@ $root.cbs = (function() {
             GetMerchantResponse.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.status = 0;
                     object.merchant = null;
@@ -9770,7 +9768,7 @@ $root.cbs = (function() {
              */
             function PaymentDetails(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -9859,9 +9857,9 @@ $root.cbs = (function() {
             PaymentDetails.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.PaymentDetails();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.PaymentDetails();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.receiverId = reader.int32();
@@ -9930,7 +9928,7 @@ $root.cbs = (function() {
             PaymentDetails.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.merchant_service.PaymentDetails)
                     return object;
-                var message = new $root.cbs.merchant_service.PaymentDetails();
+                let message = new $root.cbs.merchant_service.PaymentDetails();
                 if (object.receiverId != null)
                     message.receiverId = object.receiverId | 0;
                 if (object.amount != null)
@@ -9952,7 +9950,7 @@ $root.cbs = (function() {
             PaymentDetails.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.receiverId = 0;
                     object.amount = 0;
@@ -10003,7 +10001,7 @@ $root.cbs = (function() {
              */
             function PaymentCredentials(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -10102,9 +10100,9 @@ $root.cbs = (function() {
             PaymentCredentials.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.PaymentCredentials();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.PaymentCredentials();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.username = reader.string();
@@ -10179,7 +10177,7 @@ $root.cbs = (function() {
             PaymentCredentials.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.merchant_service.PaymentCredentials)
                     return object;
-                var message = new $root.cbs.merchant_service.PaymentCredentials();
+                let message = new $root.cbs.merchant_service.PaymentCredentials();
                 if (object.username != null)
                     message.username = String(object.username);
                 if (object.password != null)
@@ -10203,7 +10201,7 @@ $root.cbs = (function() {
             PaymentCredentials.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.username = "";
                     object.password = "";
@@ -10258,7 +10256,7 @@ $root.cbs = (function() {
              */
             function CreatePaymentRequest(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -10367,9 +10365,9 @@ $root.cbs = (function() {
             CreatePaymentRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.CreatePaymentRequest();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.CreatePaymentRequest();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.merchantId = reader.int32();
@@ -10437,12 +10435,12 @@ $root.cbs = (function() {
                         break;
                     }
                 if (message.paymentDetails != null && message.hasOwnProperty("paymentDetails")) {
-                    var error = $root.cbs.merchant_service.PaymentDetails.verify(message.paymentDetails);
+                    let error = $root.cbs.merchant_service.PaymentDetails.verify(message.paymentDetails);
                     if (error)
                         return "paymentDetails." + error;
                 }
                 if (message.credentials != null && message.hasOwnProperty("credentials")) {
-                    var error = $root.cbs.merchant_service.PaymentCredentials.verify(message.credentials);
+                    let error = $root.cbs.merchant_service.PaymentCredentials.verify(message.credentials);
                     if (error)
                         return "credentials." + error;
                 }
@@ -10460,7 +10458,7 @@ $root.cbs = (function() {
             CreatePaymentRequest.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.merchant_service.CreatePaymentRequest)
                     return object;
-                var message = new $root.cbs.merchant_service.CreatePaymentRequest();
+                let message = new $root.cbs.merchant_service.CreatePaymentRequest();
                 if (object.merchantId != null)
                     message.merchantId = object.merchantId | 0;
                 if (object.senderId != null)
@@ -10504,7 +10502,7 @@ $root.cbs = (function() {
             CreatePaymentRequest.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.merchantId = 0;
                     object.senderId = 0;
@@ -10559,7 +10557,7 @@ $root.cbs = (function() {
              */
             function CreatePaymentResponse(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -10638,9 +10636,9 @@ $root.cbs = (function() {
             CreatePaymentResponse.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.CreatePaymentResponse();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.CreatePaymentResponse();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.status = reader.int32();
@@ -10703,7 +10701,7 @@ $root.cbs = (function() {
             CreatePaymentResponse.fromObject = function fromObject(object) {
                 if (object instanceof $root.cbs.merchant_service.CreatePaymentResponse)
                     return object;
-                var message = new $root.cbs.merchant_service.CreatePaymentResponse();
+                let message = new $root.cbs.merchant_service.CreatePaymentResponse();
                 if (object.status != null)
                     message.status = object.status | 0;
                 if (object.success != null)
@@ -10723,7 +10721,7 @@ $root.cbs = (function() {
             CreatePaymentResponse.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.status = 0;
                     object.success = false;
@@ -10755,4 +10753,4 @@ $root.cbs = (function() {
     return cbs;
 })();
 
-module.exports = $root;
+export { $root as default };

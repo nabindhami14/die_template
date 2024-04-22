@@ -23,6 +23,7 @@ const trimRequestObj = (requestObj) => {
             if (req.method === 'GET' || req.method === 'DELETE') {
                 req.body = { ...req.query, ...req.params };
             } else {
+
                 req.body = (contentType !== 'application/octet-stream' ? req.body : proto.decode(req.raw))
                 const err = proto.verify(req.body);
                 if (err) {
