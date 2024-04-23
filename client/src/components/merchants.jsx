@@ -13,7 +13,6 @@ const Merchants = () => {
     }
 
     const fetchMerchants = async () => {
-
         const proto = cbs.merchant_service.GetMerchantsResponse;
         try {
             const res = await axios.get("http:///localhost:3018/api/v1/customers/merchants", {

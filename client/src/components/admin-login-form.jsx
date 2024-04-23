@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 import { Buffer } from "node:buffer"
-import {cbs} from "proto/bundle";
+import { cbs } from "proto/ok";
 
 const AdminLoginForm = () => {
     const [email, setEmail] = useState('');
@@ -19,14 +19,19 @@ const AdminLoginForm = () => {
                 password
             });
 
+            // console.log(res.data);
+
+            console.log(Buffer.from(res.data));
             console.log(proto.decode(Buffer.from(res.data)));
-            // const data = proto.decode(Buffer.from(res.data));
+            // const data = proto.decode(Buffer.from.da(resta));
             // console.log(data)
 
         } catch (error) {
-            console.error('Error logging in:', error);
             // const e = proto.decode(Buffer.from(error.response.data));
+            console.log(error);
+            // console.error('Error logging in:', e.message);
             // Handle error, show a message to the user, etc.
+
         }
     };
 

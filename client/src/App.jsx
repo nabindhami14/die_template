@@ -1,11 +1,10 @@
-import AdminLoginForm from './components/admin-login-form';
-import Merchant from './components/merchant';
+import MerchantForm from "./components/merchant-form"
+
 
 function App() {
   return (
     <>
-      // <AdminLoginForm />
-      <Merchant />
+      <MerchantForm />
       <hr />
 
     </>

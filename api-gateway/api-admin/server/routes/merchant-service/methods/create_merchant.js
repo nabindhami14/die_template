@@ -20,7 +20,8 @@
                     return responseHelper.sendErrorResponse(err, res, req.metaData);
                 }
 
-                return responseHelper.sendSuccessResponse(response.status, response, cbs.common.Response, res);
+                return responseHelper.sendSuccessResponse(response.status, response, cbs.merchant_service.CreateMerchantResponse
+                    , res);
             });
         } catch (err) {
             console.error(req.metaData, '[ADMIN: CREATE MERCHANT]', err);

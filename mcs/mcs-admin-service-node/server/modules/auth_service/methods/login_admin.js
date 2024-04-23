@@ -8,7 +8,7 @@
         try {
             const response = await sql.getAdminByEmail(email)
             if (!response.data.id) {
-                return callback(null, { status: 400, message: "No admin found with this email" })
+                return callback(null, { status: 404, message: "No admin found with this email" })
             }
 
             const isMatch = await passwordHelper.comparePasssword(password, response.data.password)
@@ -17,7 +17,7 @@
             }
             const tokens = await jwtHelper.generateTokens({ id: response.data.id })
 
-            callback(null, { status: 200, tokens })
+            callback(null, { status: 200, accessToken: tokens.accessToken, message: "Okey" })
         } catch (error) {
             callback(error)
         }

@@ -28,7 +28,7 @@
             await sql.createMerchantTable(name, authPayload);
             await sql.createMerchant(name, authPayloadMap[authType]);
             await mysqlHelper.commit();
-            return callback(null, { status: 200, success: true });
+            return callback(null, { status: 200, success: true, message: "Successfully created" });
         } catch (error) {
             await mysqlHelper.rollback(); // Rollback the transaction
             callback(error);

@@ -447,216 +447,6 @@ export const cbs = $root.cbs = (() => {
             return LoginRequest;
         })();
 
-        admin_service.Tokens = (function() {
-
-            /**
-             * Properties of a Tokens.
-             * @memberof cbs.admin_service
-             * @interface ITokens
-             * @property {string|null} [accessToken] Tokens accessToken
-             * @property {string|null} [refreshToken] Tokens refreshToken
-             */
-
-            /**
-             * Constructs a new Tokens.
-             * @memberof cbs.admin_service
-             * @classdesc Represents a Tokens.
-             * @implements ITokens
-             * @constructor
-             * @param {cbs.admin_service.ITokens=} [properties] Properties to set
-             */
-            function Tokens(properties) {
-                if (properties)
-                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * Tokens accessToken.
-             * @member {string} accessToken
-             * @memberof cbs.admin_service.Tokens
-             * @instance
-             */
-            Tokens.prototype.accessToken = "";
-
-            /**
-             * Tokens refreshToken.
-             * @member {string} refreshToken
-             * @memberof cbs.admin_service.Tokens
-             * @instance
-             */
-            Tokens.prototype.refreshToken = "";
-
-            /**
-             * Creates a new Tokens instance using the specified properties.
-             * @function create
-             * @memberof cbs.admin_service.Tokens
-             * @static
-             * @param {cbs.admin_service.ITokens=} [properties] Properties to set
-             * @returns {cbs.admin_service.Tokens} Tokens instance
-             */
-            Tokens.create = function create(properties) {
-                return new Tokens(properties);
-            };
-
-            /**
-             * Encodes the specified Tokens message. Does not implicitly {@link cbs.admin_service.Tokens.verify|verify} messages.
-             * @function encode
-             * @memberof cbs.admin_service.Tokens
-             * @static
-             * @param {cbs.admin_service.ITokens} message Tokens message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            Tokens.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.accessToken != null && Object.hasOwnProperty.call(message, "accessToken"))
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.accessToken);
-                if (message.refreshToken != null && Object.hasOwnProperty.call(message, "refreshToken"))
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.refreshToken);
-                return writer;
-            };
-
-            /**
-             * Encodes the specified Tokens message, length delimited. Does not implicitly {@link cbs.admin_service.Tokens.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof cbs.admin_service.Tokens
-             * @static
-             * @param {cbs.admin_service.ITokens} message Tokens message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            Tokens.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a Tokens message from the specified reader or buffer.
-             * @function decode
-             * @memberof cbs.admin_service.Tokens
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {cbs.admin_service.Tokens} Tokens
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            Tokens.decode = function decode(reader, length) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.admin_service.Tokens();
-                while (reader.pos < end) {
-                    let tag = reader.uint32();
-                    switch (tag >>> 3) {
-                    case 1:
-                        message.accessToken = reader.string();
-                        break;
-                    case 2:
-                        message.refreshToken = reader.string();
-                        break;
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes a Tokens message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof cbs.admin_service.Tokens
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {cbs.admin_service.Tokens} Tokens
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            Tokens.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a Tokens message.
-             * @function verify
-             * @memberof cbs.admin_service.Tokens
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            Tokens.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (message.accessToken != null && message.hasOwnProperty("accessToken"))
-                    if (!$util.isString(message.accessToken))
-                        return "accessToken: string expected";
-                if (message.refreshToken != null && message.hasOwnProperty("refreshToken"))
-                    if (!$util.isString(message.refreshToken))
-                        return "refreshToken: string expected";
-                return null;
-            };
-
-            /**
-             * Creates a Tokens message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof cbs.admin_service.Tokens
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {cbs.admin_service.Tokens} Tokens
-             */
-            Tokens.fromObject = function fromObject(object) {
-                if (object instanceof $root.cbs.admin_service.Tokens)
-                    return object;
-                let message = new $root.cbs.admin_service.Tokens();
-                if (object.accessToken != null)
-                    message.accessToken = String(object.accessToken);
-                if (object.refreshToken != null)
-                    message.refreshToken = String(object.refreshToken);
-                return message;
-            };
-
-            /**
-             * Creates a plain object from a Tokens message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof cbs.admin_service.Tokens
-             * @static
-             * @param {cbs.admin_service.Tokens} message Tokens
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            Tokens.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                let object = {};
-                if (options.defaults) {
-                    object.accessToken = "";
-                    object.refreshToken = "";
-                }
-                if (message.accessToken != null && message.hasOwnProperty("accessToken"))
-                    object.accessToken = message.accessToken;
-                if (message.refreshToken != null && message.hasOwnProperty("refreshToken"))
-                    object.refreshToken = message.refreshToken;
-                return object;
-            };
-
-            /**
-             * Converts this Tokens to JSON.
-             * @function toJSON
-             * @memberof cbs.admin_service.Tokens
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            Tokens.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            return Tokens;
-        })();
-
         admin_service.LoginResponse = (function() {
 
             /**
@@ -664,7 +454,7 @@ export const cbs = $root.cbs = (() => {
              * @memberof cbs.admin_service
              * @interface ILoginResponse
              * @property {number|null} [status] LoginResponse status
-             * @property {cbs.admin_service.ITokens|null} [tokens] LoginResponse tokens
+             * @property {string|null} [accessToken] LoginResponse accessToken
              * @property {string|null} [message] LoginResponse message
              */
 
@@ -692,12 +482,12 @@ export const cbs = $root.cbs = (() => {
             LoginResponse.prototype.status = 0;
 
             /**
-             * LoginResponse tokens.
-             * @member {cbs.admin_service.ITokens|null|undefined} tokens
+             * LoginResponse accessToken.
+             * @member {string} accessToken
              * @memberof cbs.admin_service.LoginResponse
              * @instance
              */
-            LoginResponse.prototype.tokens = null;
+            LoginResponse.prototype.accessToken = "";
 
             /**
              * LoginResponse message.
@@ -733,8 +523,8 @@ export const cbs = $root.cbs = (() => {
                     writer = $Writer.create();
                 if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
-                if (message.tokens != null && Object.hasOwnProperty.call(message, "tokens"))
-                    $root.cbs.admin_service.Tokens.encode(message.tokens, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.accessToken != null && Object.hasOwnProperty.call(message, "accessToken"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.accessToken);
                 if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.message);
                 return writer;
@@ -775,7 +565,7 @@ export const cbs = $root.cbs = (() => {
                         message.status = reader.int32();
                         break;
                     case 2:
-                        message.tokens = $root.cbs.admin_service.Tokens.decode(reader, reader.uint32());
+                        message.accessToken = reader.string();
                         break;
                     case 3:
                         message.message = reader.string();
@@ -818,11 +608,9 @@ export const cbs = $root.cbs = (() => {
                 if (message.status != null && message.hasOwnProperty("status"))
                     if (!$util.isInteger(message.status))
                         return "status: integer expected";
-                if (message.tokens != null && message.hasOwnProperty("tokens")) {
-                    let error = $root.cbs.admin_service.Tokens.verify(message.tokens);
-                    if (error)
-                        return "tokens." + error;
-                }
+                if (message.accessToken != null && message.hasOwnProperty("accessToken"))
+                    if (!$util.isString(message.accessToken))
+                        return "accessToken: string expected";
                 if (message.message != null && message.hasOwnProperty("message"))
                     if (!$util.isString(message.message))
                         return "message: string expected";
@@ -843,11 +631,8 @@ export const cbs = $root.cbs = (() => {
                 let message = new $root.cbs.admin_service.LoginResponse();
                 if (object.status != null)
                     message.status = object.status | 0;
-                if (object.tokens != null) {
-                    if (typeof object.tokens !== "object")
-                        throw TypeError(".cbs.admin_service.LoginResponse.tokens: object expected");
-                    message.tokens = $root.cbs.admin_service.Tokens.fromObject(object.tokens);
-                }
+                if (object.accessToken != null)
+                    message.accessToken = String(object.accessToken);
                 if (object.message != null)
                     message.message = String(object.message);
                 return message;
@@ -868,13 +653,13 @@ export const cbs = $root.cbs = (() => {
                 let object = {};
                 if (options.defaults) {
                     object.status = 0;
-                    object.tokens = null;
+                    object.accessToken = "";
                     object.message = "";
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = message.status;
-                if (message.tokens != null && message.hasOwnProperty("tokens"))
-                    object.tokens = $root.cbs.admin_service.Tokens.toObject(message.tokens, options);
+                if (message.accessToken != null && message.hasOwnProperty("accessToken"))
+                    object.accessToken = message.accessToken;
                 if (message.message != null && message.hasOwnProperty("message"))
                     object.message = message.message;
                 return object;
@@ -3124,7 +2909,7 @@ export const cbs = $root.cbs = (() => {
                     case 3:
                         if (message.filter === $util.emptyObject)
                             message.filter = {};
-                        let end2 = reader.uint32() + reader.pos;
+                        end2 = reader.uint32() + reader.pos;
                         key = "";
                         value = "";
                         while (reader.pos < end2) {
@@ -6263,6 +6048,7 @@ export const cbs = $root.cbs = (() => {
              * @interface ILoginResponse
              * @property {number|null} [status] LoginResponse status
              * @property {cbs.customer_auth_service.ITokens|null} [tokens] LoginResponse tokens
+             * @property {string|null} [message] LoginResponse message
              */
 
             /**
@@ -6297,6 +6083,14 @@ export const cbs = $root.cbs = (() => {
             LoginResponse.prototype.tokens = null;
 
             /**
+             * LoginResponse message.
+             * @member {string} message
+             * @memberof cbs.customer_auth_service.LoginResponse
+             * @instance
+             */
+            LoginResponse.prototype.message = "";
+
+            /**
              * Creates a new LoginResponse instance using the specified properties.
              * @function create
              * @memberof cbs.customer_auth_service.LoginResponse
@@ -6324,6 +6118,8 @@ export const cbs = $root.cbs = (() => {
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
                 if (message.tokens != null && Object.hasOwnProperty.call(message, "tokens"))
                     $root.cbs.customer_auth_service.Tokens.encode(message.tokens, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.message);
                 return writer;
             };
 
@@ -6363,6 +6159,9 @@ export const cbs = $root.cbs = (() => {
                         break;
                     case 2:
                         message.tokens = $root.cbs.customer_auth_service.Tokens.decode(reader, reader.uint32());
+                        break;
+                    case 3:
+                        message.message = reader.string();
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -6407,6 +6206,9 @@ export const cbs = $root.cbs = (() => {
                     if (error)
                         return "tokens." + error;
                 }
+                if (message.message != null && message.hasOwnProperty("message"))
+                    if (!$util.isString(message.message))
+                        return "message: string expected";
                 return null;
             };
 
@@ -6429,6 +6231,8 @@ export const cbs = $root.cbs = (() => {
                         throw TypeError(".cbs.customer_auth_service.LoginResponse.tokens: object expected");
                     message.tokens = $root.cbs.customer_auth_service.Tokens.fromObject(object.tokens);
                 }
+                if (object.message != null)
+                    message.message = String(object.message);
                 return message;
             };
 
@@ -6448,11 +6252,14 @@ export const cbs = $root.cbs = (() => {
                 if (options.defaults) {
                     object.status = 0;
                     object.tokens = null;
+                    object.message = "";
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = message.status;
                 if (message.tokens != null && message.hasOwnProperty("tokens"))
                     object.tokens = $root.cbs.customer_auth_service.Tokens.toObject(message.tokens, options);
+                if (message.message != null && message.hasOwnProperty("message"))
+                    object.message = message.message;
                 return object;
             };
 

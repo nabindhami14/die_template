@@ -81,10 +81,10 @@ const { httpStatusArrayLists } = require('../config');
     }
 
     responseHelper.sendResponse = (req, err, res, data, proto) => {
-        proto = proto || bfi.common.Response
+        proto = proto || cbs.common.Response
         try {
             if (err || !data) {
-                proto = bfi.common.Response
+                proto = cbs.common.Response
                 data = { status: httpStatus.INTERNAL_SERVER_ERROR, message: 'Internal Server Error' }
             }
             if (!data.status || !httpStatusArrayLists.httpStatus.includes(data.status)) {
