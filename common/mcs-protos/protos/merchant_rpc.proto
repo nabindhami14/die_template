@@ -12,4 +12,5 @@ service MerchantService {
     rpc createPayment(cbs.merchant_service.CreatePaymentRequest) returns (cbs.merchant_service.CreatePaymentResponse);
 
     rpc createAuthType(cbs.merchant_service.CreateAuthTypeRequest) returns (cbs.merchant_service.CreateAuthTypeResponse);
+    rpc getAuthType(cbs.merchant_service.GetAuthTypeRequest) returns (cbs.merchant_service.GetAuthTypeResponse);
 }

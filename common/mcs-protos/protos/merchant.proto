@@ -100,3 +100,14 @@ message CreateAuthTypeResponse {
     bool success = 2;
     string message = 3;
 }
+
+message GetAuthTypeRequest {
+    int32 id = 1;
+    int32 authtypeId = 2;   
+}
+message GetAuthTypeResponse {
+    int32 status = 1;
+    bool success = 2;
+    string message = 3;
+    map<string, string> parameters = 4;
+}
