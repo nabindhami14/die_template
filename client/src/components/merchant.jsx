@@ -21,8 +21,9 @@ const Merchant = () => {
                     Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDQsImVtYWlsIjoiSGVsbG8iLCJpYXQiOjE3MTM3NjQ5MDMsImV4cCI6MTcxMzg1MTMwM30.Sr-OqHIUvIBh7O_qIBTZUYNXlYCjikxusAqnd5UtRjg`
                 }
             })
-
+            console.log(res.data)
             const data = proto.decode(Buffer.from(res.data));
+            console.log(data)
             setMerchant(data.merchant)
         } catch (error) {
             console.log(error);

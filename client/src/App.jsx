@@ -1,16 +1,13 @@
-import './App.css'
+import AdminLoginForm from './components/admin-login-form';
 import Merchant from './components/merchant';
-
-import Merchants from './components/merchants';
 
 function App() {
   return (
     <>
-      <Merchants />
-
+      // <AdminLoginForm />
+      <Merchant />
       <hr />
 
-      <Merchant />
     </>
   )
 }

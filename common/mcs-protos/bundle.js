@@ -667,6 +667,7 @@ $root.cbs = (function() {
              * @interface ILoginResponse
              * @property {number|null} [status] LoginResponse status
              * @property {cbs.admin_service.ITokens|null} [tokens] LoginResponse tokens
+             * @property {string|null} [message] LoginResponse message
              */
 
             /**
@@ -701,6 +702,14 @@ $root.cbs = (function() {
             LoginResponse.prototype.tokens = null;
 
             /**
+             * LoginResponse message.
+             * @member {string} message
+             * @memberof cbs.admin_service.LoginResponse
+             * @instance
+             */
+            LoginResponse.prototype.message = "";
+
+            /**
              * Creates a new LoginResponse instance using the specified properties.
              * @function create
              * @memberof cbs.admin_service.LoginResponse
@@ -728,6 +737,8 @@ $root.cbs = (function() {
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
                 if (message.tokens != null && Object.hasOwnProperty.call(message, "tokens"))
                     $root.cbs.admin_service.Tokens.encode(message.tokens, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.message);
                 return writer;
             };
 
@@ -767,6 +778,9 @@ $root.cbs = (function() {
                         break;
                     case 2:
                         message.tokens = $root.cbs.admin_service.Tokens.decode(reader, reader.uint32());
+                        break;
+                    case 3:
+                        message.message = reader.string();
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -811,6 +825,9 @@ $root.cbs = (function() {
                     if (error)
                         return "tokens." + error;
                 }
+                if (message.message != null && message.hasOwnProperty("message"))
+                    if (!$util.isString(message.message))
+                        return "message: string expected";
                 return null;
             };
 
@@ -833,6 +850,8 @@ $root.cbs = (function() {
                         throw TypeError(".cbs.admin_service.LoginResponse.tokens: object expected");
                     message.tokens = $root.cbs.admin_service.Tokens.fromObject(object.tokens);
                 }
+                if (object.message != null)
+                    message.message = String(object.message);
                 return message;
             };
 
@@ -852,11 +871,14 @@ $root.cbs = (function() {
                 if (options.defaults) {
                     object.status = 0;
                     object.tokens = null;
+                    object.message = "";
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = message.status;
                 if (message.tokens != null && message.hasOwnProperty("tokens"))
                     object.tokens = $root.cbs.admin_service.Tokens.toObject(message.tokens, options);
+                if (message.message != null && message.hasOwnProperty("message"))
+                    object.message = message.message;
                 return object;
             };
 

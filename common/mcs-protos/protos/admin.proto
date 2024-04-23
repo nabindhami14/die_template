@@ -13,6 +13,7 @@ message Tokens {
 message LoginResponse {
     int32 status = 1;
     Tokens tokens = 2;
+    string message = 3;
 }
 
 message BulkUploadRequest {

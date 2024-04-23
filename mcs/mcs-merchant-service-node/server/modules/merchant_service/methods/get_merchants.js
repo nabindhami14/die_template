@@ -13,8 +13,6 @@
         try {
             const res = await sql.getMerchants();
 
-            console.log(res);
-
             // const merchants = res.data.map(merchant => ({
             //     id: merchant.id,
             //     name: merchant.name,
