@@ -10,4 +10,6 @@ service MerchantService {
     rpc getMerchants(cbs.merchant_service.GetMerchantsRequest) returns (cbs.merchant_service.GetMerchantsResponse);
     rpc getMerchant(cbs.merchant_service.GetMerchantRequest) returns (cbs.merchant_service.GetMerchantResponse);
     rpc createPayment(cbs.merchant_service.CreatePaymentRequest) returns (cbs.merchant_service.CreatePaymentResponse);
+
+    rpc createAuthType(cbs.merchant_service.CreateAuthTypeRequest) returns (cbs.merchant_service.CreateAuthTypeResponse);
 }

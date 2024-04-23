@@ -7598,6 +7598,39 @@ $root.cbs = (function() {
                  * @variation 2
                  */
 
+                /**
+                 * Callback as used by {@link cbs.merchant_service.rpc.MerchantService#createAuthType}.
+                 * @memberof cbs.merchant_service.rpc.MerchantService
+                 * @typedef createAuthTypeCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {cbs.merchant_service.CreateAuthTypeResponse} [response] CreateAuthTypeResponse
+                 */
+
+                /**
+                 * Calls createAuthType.
+                 * @function createAuthType
+                 * @memberof cbs.merchant_service.rpc.MerchantService
+                 * @instance
+                 * @param {cbs.merchant_service.ICreateAuthTypeRequest} request CreateAuthTypeRequest message or plain object
+                 * @param {cbs.merchant_service.rpc.MerchantService.createAuthTypeCallback} callback Node-style callback called with the error, if any, and CreateAuthTypeResponse
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(MerchantService.prototype.createAuthType = function createAuthType(request, callback) {
+                    return this.rpcCall(createAuthType, $root.cbs.merchant_service.CreateAuthTypeRequest, $root.cbs.merchant_service.CreateAuthTypeResponse, request, callback);
+                }, "name", { value: "createAuthType" });
+
+                /**
+                 * Calls createAuthType.
+                 * @function createAuthType
+                 * @memberof cbs.merchant_service.rpc.MerchantService
+                 * @instance
+                 * @param {cbs.merchant_service.ICreateAuthTypeRequest} request CreateAuthTypeRequest message or plain object
+                 * @returns {Promise<cbs.merchant_service.CreateAuthTypeResponse>} Promise
+                 * @variation 2
+                 */
+
                 return MerchantService;
             })();
 
@@ -10576,6 +10609,506 @@ $root.cbs = (function() {
             };
 
             return CreatePaymentResponse;
+        })();
+
+        merchant_service.CreateAuthTypeRequest = (function() {
+
+            /**
+             * Properties of a CreateAuthTypeRequest.
+             * @memberof cbs.merchant_service
+             * @interface ICreateAuthTypeRequest
+             * @property {number|null} [id] CreateAuthTypeRequest id
+             * @property {string|null} [name] CreateAuthTypeRequest name
+             * @property {Object.<string,string>|null} [parameters] CreateAuthTypeRequest parameters
+             */
+
+            /**
+             * Constructs a new CreateAuthTypeRequest.
+             * @memberof cbs.merchant_service
+             * @classdesc Represents a CreateAuthTypeRequest.
+             * @implements ICreateAuthTypeRequest
+             * @constructor
+             * @param {cbs.merchant_service.ICreateAuthTypeRequest=} [properties] Properties to set
+             */
+            function CreateAuthTypeRequest(properties) {
+                this.parameters = {};
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * CreateAuthTypeRequest id.
+             * @member {number} id
+             * @memberof cbs.merchant_service.CreateAuthTypeRequest
+             * @instance
+             */
+            CreateAuthTypeRequest.prototype.id = 0;
+
+            /**
+             * CreateAuthTypeRequest name.
+             * @member {string} name
+             * @memberof cbs.merchant_service.CreateAuthTypeRequest
+             * @instance
+             */
+            CreateAuthTypeRequest.prototype.name = "";
+
+            /**
+             * CreateAuthTypeRequest parameters.
+             * @member {Object.<string,string>} parameters
+             * @memberof cbs.merchant_service.CreateAuthTypeRequest
+             * @instance
+             */
+            CreateAuthTypeRequest.prototype.parameters = $util.emptyObject;
+
+            /**
+             * Creates a new CreateAuthTypeRequest instance using the specified properties.
+             * @function create
+             * @memberof cbs.merchant_service.CreateAuthTypeRequest
+             * @static
+             * @param {cbs.merchant_service.ICreateAuthTypeRequest=} [properties] Properties to set
+             * @returns {cbs.merchant_service.CreateAuthTypeRequest} CreateAuthTypeRequest instance
+             */
+            CreateAuthTypeRequest.create = function create(properties) {
+                return new CreateAuthTypeRequest(properties);
+            };
+
+            /**
+             * Encodes the specified CreateAuthTypeRequest message. Does not implicitly {@link cbs.merchant_service.CreateAuthTypeRequest.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.merchant_service.CreateAuthTypeRequest
+             * @static
+             * @param {cbs.merchant_service.ICreateAuthTypeRequest} message CreateAuthTypeRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CreateAuthTypeRequest.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+                if (message.parameters != null && Object.hasOwnProperty.call(message, "parameters"))
+                    for (var keys = Object.keys(message.parameters), i = 0; i < keys.length; ++i)
+                        writer.uint32(/* id 3, wireType 2 =*/26).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.parameters[keys[i]]).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified CreateAuthTypeRequest message, length delimited. Does not implicitly {@link cbs.merchant_service.CreateAuthTypeRequest.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.merchant_service.CreateAuthTypeRequest
+             * @static
+             * @param {cbs.merchant_service.ICreateAuthTypeRequest} message CreateAuthTypeRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CreateAuthTypeRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a CreateAuthTypeRequest message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.merchant_service.CreateAuthTypeRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.merchant_service.CreateAuthTypeRequest} CreateAuthTypeRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CreateAuthTypeRequest.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.CreateAuthTypeRequest(), key, value;
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.id = reader.int32();
+                        break;
+                    case 2:
+                        message.name = reader.string();
+                        break;
+                    case 3:
+                        if (message.parameters === $util.emptyObject)
+                            message.parameters = {};
+                        var end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = "";
+                        while (reader.pos < end2) {
+                            var tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.string();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.parameters[key] = value;
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a CreateAuthTypeRequest message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.merchant_service.CreateAuthTypeRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.merchant_service.CreateAuthTypeRequest} CreateAuthTypeRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CreateAuthTypeRequest.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a CreateAuthTypeRequest message.
+             * @function verify
+             * @memberof cbs.merchant_service.CreateAuthTypeRequest
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            CreateAuthTypeRequest.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                if (message.name != null && message.hasOwnProperty("name"))
+                    if (!$util.isString(message.name))
+                        return "name: string expected";
+                if (message.parameters != null && message.hasOwnProperty("parameters")) {
+                    if (!$util.isObject(message.parameters))
+                        return "parameters: object expected";
+                    var key = Object.keys(message.parameters);
+                    for (var i = 0; i < key.length; ++i)
+                        if (!$util.isString(message.parameters[key[i]]))
+                            return "parameters: string{k:string} expected";
+                }
+                return null;
+            };
+
+            /**
+             * Creates a CreateAuthTypeRequest message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.merchant_service.CreateAuthTypeRequest
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.merchant_service.CreateAuthTypeRequest} CreateAuthTypeRequest
+             */
+            CreateAuthTypeRequest.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.merchant_service.CreateAuthTypeRequest)
+                    return object;
+                var message = new $root.cbs.merchant_service.CreateAuthTypeRequest();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                if (object.name != null)
+                    message.name = String(object.name);
+                if (object.parameters) {
+                    if (typeof object.parameters !== "object")
+                        throw TypeError(".cbs.merchant_service.CreateAuthTypeRequest.parameters: object expected");
+                    message.parameters = {};
+                    for (var keys = Object.keys(object.parameters), i = 0; i < keys.length; ++i)
+                        message.parameters[keys[i]] = String(object.parameters[keys[i]]);
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a CreateAuthTypeRequest message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.merchant_service.CreateAuthTypeRequest
+             * @static
+             * @param {cbs.merchant_service.CreateAuthTypeRequest} message CreateAuthTypeRequest
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            CreateAuthTypeRequest.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.objects || options.defaults)
+                    object.parameters = {};
+                if (options.defaults) {
+                    object.id = 0;
+                    object.name = "";
+                }
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                if (message.name != null && message.hasOwnProperty("name"))
+                    object.name = message.name;
+                var keys2;
+                if (message.parameters && (keys2 = Object.keys(message.parameters)).length) {
+                    object.parameters = {};
+                    for (var j = 0; j < keys2.length; ++j)
+                        object.parameters[keys2[j]] = message.parameters[keys2[j]];
+                }
+                return object;
+            };
+
+            /**
+             * Converts this CreateAuthTypeRequest to JSON.
+             * @function toJSON
+             * @memberof cbs.merchant_service.CreateAuthTypeRequest
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            CreateAuthTypeRequest.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return CreateAuthTypeRequest;
+        })();
+
+        merchant_service.CreateAuthTypeResponse = (function() {
+
+            /**
+             * Properties of a CreateAuthTypeResponse.
+             * @memberof cbs.merchant_service
+             * @interface ICreateAuthTypeResponse
+             * @property {number|null} [status] CreateAuthTypeResponse status
+             * @property {boolean|null} [success] CreateAuthTypeResponse success
+             * @property {string|null} [message] CreateAuthTypeResponse message
+             */
+
+            /**
+             * Constructs a new CreateAuthTypeResponse.
+             * @memberof cbs.merchant_service
+             * @classdesc Represents a CreateAuthTypeResponse.
+             * @implements ICreateAuthTypeResponse
+             * @constructor
+             * @param {cbs.merchant_service.ICreateAuthTypeResponse=} [properties] Properties to set
+             */
+            function CreateAuthTypeResponse(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * CreateAuthTypeResponse status.
+             * @member {number} status
+             * @memberof cbs.merchant_service.CreateAuthTypeResponse
+             * @instance
+             */
+            CreateAuthTypeResponse.prototype.status = 0;
+
+            /**
+             * CreateAuthTypeResponse success.
+             * @member {boolean} success
+             * @memberof cbs.merchant_service.CreateAuthTypeResponse
+             * @instance
+             */
+            CreateAuthTypeResponse.prototype.success = false;
+
+            /**
+             * CreateAuthTypeResponse message.
+             * @member {string} message
+             * @memberof cbs.merchant_service.CreateAuthTypeResponse
+             * @instance
+             */
+            CreateAuthTypeResponse.prototype.message = "";
+
+            /**
+             * Creates a new CreateAuthTypeResponse instance using the specified properties.
+             * @function create
+             * @memberof cbs.merchant_service.CreateAuthTypeResponse
+             * @static
+             * @param {cbs.merchant_service.ICreateAuthTypeResponse=} [properties] Properties to set
+             * @returns {cbs.merchant_service.CreateAuthTypeResponse} CreateAuthTypeResponse instance
+             */
+            CreateAuthTypeResponse.create = function create(properties) {
+                return new CreateAuthTypeResponse(properties);
+            };
+
+            /**
+             * Encodes the specified CreateAuthTypeResponse message. Does not implicitly {@link cbs.merchant_service.CreateAuthTypeResponse.verify|verify} messages.
+             * @function encode
+             * @memberof cbs.merchant_service.CreateAuthTypeResponse
+             * @static
+             * @param {cbs.merchant_service.ICreateAuthTypeResponse} message CreateAuthTypeResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CreateAuthTypeResponse.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+                if (message.success != null && Object.hasOwnProperty.call(message, "success"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).bool(message.success);
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.message);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified CreateAuthTypeResponse message, length delimited. Does not implicitly {@link cbs.merchant_service.CreateAuthTypeResponse.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof cbs.merchant_service.CreateAuthTypeResponse
+             * @static
+             * @param {cbs.merchant_service.ICreateAuthTypeResponse} message CreateAuthTypeResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CreateAuthTypeResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a CreateAuthTypeResponse message from the specified reader or buffer.
+             * @function decode
+             * @memberof cbs.merchant_service.CreateAuthTypeResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {cbs.merchant_service.CreateAuthTypeResponse} CreateAuthTypeResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CreateAuthTypeResponse.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.cbs.merchant_service.CreateAuthTypeResponse();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.status = reader.int32();
+                        break;
+                    case 2:
+                        message.success = reader.bool();
+                        break;
+                    case 3:
+                        message.message = reader.string();
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a CreateAuthTypeResponse message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof cbs.merchant_service.CreateAuthTypeResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {cbs.merchant_service.CreateAuthTypeResponse} CreateAuthTypeResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CreateAuthTypeResponse.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a CreateAuthTypeResponse message.
+             * @function verify
+             * @memberof cbs.merchant_service.CreateAuthTypeResponse
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            CreateAuthTypeResponse.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                if (message.success != null && message.hasOwnProperty("success"))
+                    if (typeof message.success !== "boolean")
+                        return "success: boolean expected";
+                if (message.message != null && message.hasOwnProperty("message"))
+                    if (!$util.isString(message.message))
+                        return "message: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a CreateAuthTypeResponse message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof cbs.merchant_service.CreateAuthTypeResponse
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {cbs.merchant_service.CreateAuthTypeResponse} CreateAuthTypeResponse
+             */
+            CreateAuthTypeResponse.fromObject = function fromObject(object) {
+                if (object instanceof $root.cbs.merchant_service.CreateAuthTypeResponse)
+                    return object;
+                var message = new $root.cbs.merchant_service.CreateAuthTypeResponse();
+                if (object.status != null)
+                    message.status = object.status | 0;
+                if (object.success != null)
+                    message.success = Boolean(object.success);
+                if (object.message != null)
+                    message.message = String(object.message);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a CreateAuthTypeResponse message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof cbs.merchant_service.CreateAuthTypeResponse
+             * @static
+             * @param {cbs.merchant_service.CreateAuthTypeResponse} message CreateAuthTypeResponse
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            CreateAuthTypeResponse.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.status = 0;
+                    object.success = false;
+                    object.message = "";
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                if (message.success != null && message.hasOwnProperty("success"))
+                    object.success = message.success;
+                if (message.message != null && message.hasOwnProperty("message"))
+                    object.message = message.message;
+                return object;
+            };
+
+            /**
+             * Converts this CreateAuthTypeResponse to JSON.
+             * @function toJSON
+             * @memberof cbs.merchant_service.CreateAuthTypeResponse
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            CreateAuthTypeResponse.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return CreateAuthTypeResponse;
         })();
 
         return merchant_service;

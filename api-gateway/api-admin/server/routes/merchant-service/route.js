@@ -8,6 +8,8 @@
     merchantRouter.route("/").post(merchantRouterCtrl.CreateMerchant)
     merchantRouter.route("/:merchantId").get(merchantRouterCtrl.GetMerchant)
     merchantRouter.route("/").get(merchantRouterCtrl.GetMerchants)
+    
+    merchantRouter.route("/auth-type").post(merchantRouterCtrl.CreateAuthType)
 
     module.exports = merchantRouter
 })()

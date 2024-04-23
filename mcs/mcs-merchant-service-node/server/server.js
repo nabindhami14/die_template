@@ -9,7 +9,7 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 const grpc = require('@grpc/grpc-js')
 
 // HELPERS
-const { grpcClientHelper, grpcMetaHelper, mysqlHelperReadonly,mysqlHelper } = require('common/helpers');
+const { grpcClientHelper, grpcMetaHelper, mysqlHelperReadonly, mysqlHelper } = require('common/helpers');
 
 // MODULES
 const merchantCtrl = require('./modules/merchant_service');
@@ -32,7 +32,10 @@ server.addService(customerProto.cbs.merchant_service.rpc.MerchantService.service
     getMerchant: merchantCtrl.getMerchant,
 
     // PAYMENT SERVICES
-    createPayment: paymentCtrl.createPayment
+    createPayment: paymentCtrl.createPayment,
+
+    // 
+    createAuthType: merchantCtrl.createAuthType
 })
 
 server.bindAsync(

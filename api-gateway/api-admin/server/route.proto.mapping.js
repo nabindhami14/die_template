@@ -46,6 +46,17 @@
       }
     },
 
+    // AUTH TYPE
+    '/api/v1/admin/merchants/auth-type': {
+      POST: {
+        client: clientLoader.merchantClient,
+        method: 'createAuthType',
+        encode: cbs.merchant_service.CreateAuthTypeRequest,
+        decode: cbs.merchant_service.CreateAuthTypeResponse
+      }
+    },
+
+
     // MERCHANTS
     '/api/v1/admin/merchants': {
       POST: {
