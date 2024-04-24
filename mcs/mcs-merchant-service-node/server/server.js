@@ -36,7 +36,8 @@ server.addService(customerProto.cbs.merchant_service.rpc.MerchantService.service
 
     // 
     createAuthType: merchantCtrl.createAuthType,
-    getAuthType: merchantCtrl.getAuthType
+    getAuthType: merchantCtrl.getAuthType,
+    getAuthTypes: merchantCtrl.getAuthTypes
 })
 
 server.bindAsync(

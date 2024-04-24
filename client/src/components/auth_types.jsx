@@ -4,20 +4,20 @@ import { useEffect, useState } from "react";
 import { Buffer } from "node:buffer"
 import { cbs } from "proto/ok";
 
-const Merchants = () => {
-    const [merchants, setMerchants] = useState([])
+const AuthTypes = () => {
+    const [authTypes, setAuthTypes] = useState([])
 
-    const fetchMerchants = async () => {
-        const proto = cbs.merchant_service.GetMerchantsResponse;
+    const fetchauthTypes = async () => {
+        const proto = cbs.merchant_service.GetAuthTypesResponse
         try {
-            const res = await axios.get("http:///localhost:3018/api/v1/customers/merchants", {
+            const res = await axios.get("http:///localhost:3018/api/v1/customers/auth-types", {
                 headers: {
                     Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiS2F0dGVsYmlwbG92NUBnbWFpbC5jb20iLCJpYXQiOjE3MTM5NDQ5MTAsImV4cCI6MTcxNDAzMTMxMH0.oIf-64R9YDXYj5DHcQjuKXTVtTvG1PPszTUHRQpmayc`
                 }
             })
 
             const data = proto.decode(Buffer.from(res.data));
-            setMerchants(data.merchants)
+            setAuthTypes(data.authTypes)
         } catch (error) {
             console.log(error);
         }
@@ -25,21 +25,21 @@ const Merchants = () => {
 
 
     useEffect(() => {
-        fetchMerchants()
+        fetchauthTypes()
     }, [])
 
 
     return (
         <>
-            {merchants.length > 0 && merchants.map(m => (
+            {authTypes.length > 0 && authTypes.map(m => (
                 <div key={m.id}>
-                    {m.name} || {m.authType}
+                    {m.name}
                 </div>
             ))}
         </>
     )
 }
 
-export default Merchants
+export default AuthTypes
 
 

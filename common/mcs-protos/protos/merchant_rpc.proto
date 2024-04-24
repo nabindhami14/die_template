@@ -13,4 +13,5 @@ service MerchantService {
 
     rpc createAuthType(cbs.merchant_service.CreateAuthTypeRequest) returns (cbs.merchant_service.CreateAuthTypeResponse);
     rpc getAuthType(cbs.merchant_service.GetAuthTypeRequest) returns (cbs.merchant_service.GetAuthTypeResponse);
+    rpc getAuthTypes(cbs.merchant_service.GetAuthTypesRequest) returns (cbs.merchant_service.GetAuthTypesResponse);
 }

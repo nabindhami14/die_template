@@ -24,7 +24,7 @@ const BulkUploadForm = () => {
             const response = await axios.post('http://localhost:3019/api/v1/admin/customers/bulk-upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDQsImVtYWlsIjoiSGVsbG8iLCJpYXQiOjE3MTM3NjQ5MDMsImV4cCI6MTcxMzg1MTMwM30.Sr-OqHIUvIBh7O_qIBTZUYNXlYCjikxusAqnd5UtRjg`
+                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEzOTQ2OTM2LCJleHAiOjE3MTQwMzMzMzZ9.V52LgGo4d3Vh9ecDepGaRmhZtnhSdAfiBYCj9jVeTUk`
                 }
 
             });

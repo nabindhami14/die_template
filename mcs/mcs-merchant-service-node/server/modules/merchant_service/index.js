@@ -8,6 +8,7 @@
 
 
         createAuthType: require("./methods/create_auth_type"),
-        getAuthType: require("./methods/get_auth_type")
+        getAuthType: require("./methods/get_auth_type"),
+        getAuthTypes: require("./methods/get_auth_types")
     };
 })();

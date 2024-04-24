@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { Buffer } from "node:buffer"
@@ -14,9 +14,28 @@ const MerchantForm = () => {
 
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
+    const [authTypes, setAuthTypes] = useState([])
 
-    const authPayload = ["BASIC", "OAUTH2", "JWT"];
-    const authPayloadMap = { "BASIC": 0, "OAUTH2": 1, "JWT": 2 };
+    const fetchauthTypes = async () => {
+        const proto = cbs.merchant_service.GetAuthTypesResponse
+        try {
+            const res = await axios.get("http:///localhost:3018/api/v1/customers/auth-types", {
+                headers: {
+                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiS2F0dGVsYmlwbG92NUBnbWFpbC5jb20iLCJpYXQiOjE3MTM5NDQ5MTAsImV4cCI6MTcxNDAzMTMxMH0.oIf-64R9YDXYj5DHcQjuKXTVtTvG1PPszTUHRQpmayc`
+                }
+            })
+
+            const data = proto.decode(Buffer.from(res.data));
+            setAuthTypes(data.authTypes)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    useEffect(() => {
+        fetchauthTypes()
+    }, [])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -34,10 +53,10 @@ const MerchantForm = () => {
         try {
             await axios.post(
                 'http://localhost:3019/api/v1/admin/merchants',
-                { name: formData.name, authType: authPayloadMap[formData.authType] },
+                formData,
                 {
                     headers: {
-                        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDQsImVtYWlsIjoiSGVsbG8iLCJpYXQiOjE3MTM3NjQ5MDMsImV4cCI6MTcxMzg1MTMwM30.Sr-OqHIUvIBh7O_qIBTZUYNXlYCjikxusAqnd5UtRjg`
+                        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiS2F0dGVsYmlwbG92NUBnbWFpbC5jb20iLCJpYXQiOjE3MTM5NDQ5MTAsImV4cCI6MTcxNDAzMTMxMH0.oIf-64R9YDXYj5DHcQjuKXTVtTvG1PPszTUHRQpmayc`
                     }
                 }
             );
@@ -72,9 +91,9 @@ const MerchantForm = () => {
                     required
                 >
                     <option value="">Select Auth Type</option>
-                    {authPayload.map((authType) => (
-                        <option key={authType} value={authType}>
-                            {authType}
+                    {authTypes.map((authType) => (
+                        <option key={authType.id} value={authType.name}>
+                            {authType.name}
                         </option>
                     ))}
                 </select>

@@ -47,7 +47,7 @@
     },
 
     // AUTH TYPE
-    '/api/v1/admin/auth-type': {
+    '/api/v1/admin/auth-types': {
       POST: {
         client: clientLoader.merchantClient,
         method: 'createAuthType',
@@ -55,7 +55,15 @@
         decode: cbs.merchant_service.CreateAuthTypeResponse
       }
     },
-    '/api/v1/admin/auth-type/:authtypeId': {
+    '/api/v1/admin/auth-types': {
+      GET: {
+        client: clientLoader.merchantClient,
+        method: 'getAuthType',
+        encode: cbs.merchant_service.GetAuthTypesRequest,
+        decode: cbs.merchant_service.GetAuthTypesResponse
+      }
+    },
+    '/api/v1/admin/auth-types/:authtypeId': {
       POST: {
         client: clientLoader.merchantClient,
         method: 'getAuthType',

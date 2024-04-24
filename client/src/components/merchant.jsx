@@ -7,26 +7,21 @@ import { cbs } from "proto/ok";
 const Merchant = () => {
     const [merchant, setMerchant] = useState()
 
-    const authPayloadMap = {
-        0: "BASIC",
-        1: "OAUTH2",
-        2: "JWT"
-    }
 
     const fetchMerchants = async () => {
         const proto = cbs.merchant_service.GetMerchantResponse;
         try {
-            const res = await axios.get("http:///localhost:3018/api/v1/customers/merchants/1", {
+            const res = await axios.get("http:///localhost:3018/api/v1/customers/merchants/2", {
                 headers: {
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDQsImVtYWlsIjoiSGVsbG8iLCJpYXQiOjE3MTM3NjQ5MDMsImV4cCI6MTcxMzg1MTMwM30.Sr-OqHIUvIBh7O_qIBTZUYNXlYCjikxusAqnd5UtRjg`
+                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiS2F0dGVsYmlwbG92NUBnbWFpbC5jb20iLCJpYXQiOjE3MTM5NDQ5MTAsImV4cCI6MTcxNDAzMTMxMH0.oIf-64R9YDXYj5DHcQjuKXTVtTvG1PPszTUHRQpmayc`
                 }
             })
-            console.log(res.data)
             const data = proto.decode(Buffer.from(res.data));
             console.log(data)
             setMerchant(data.merchant)
         } catch (error) {
-            console.log(error);
+            const e = proto.decode(Buffer.from(error.response.data));
+            console.error('ERROR GET MERCHANT:', e.message);
         }
     }
 
@@ -39,7 +34,7 @@ const Merchant = () => {
 
     return (
         <>
-            {merchant.name} || {authPayloadMap[merchant.authType]}
+            <hr />
         </>
     )
 }

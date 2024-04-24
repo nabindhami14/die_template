@@ -12,7 +12,8 @@
     createAuthTypeTable: require("./create_auth_type_table"),
 
     createAuthType: require("./create_auth_type"),
-    getAuthType: require("./get_auth_type")
+    getAuthType: require("./get_auth_type"),
+    getAuthTypes: require("./get_auth_types")
 
   };
 })();

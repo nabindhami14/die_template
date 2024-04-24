@@ -100,3 +100,16 @@ message GetAuthTypeResponse {
     string message = 3;
     map<string, string> parameters = 4;
 }
+
+message authType {
+    int32 id = 1;
+    string name = 2;
+}
+message GetAuthTypesRequest {
+    int32 id = 1;
+}
+message GetAuthTypesResponse {
+    int32 status = 1;
+    string message = 2;
+    repeated authType authTypes = 3;
+}
