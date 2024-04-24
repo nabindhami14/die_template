@@ -1,5 +1,6 @@
 // import AuthTypeForm from './components/auth-types-form'
-import AuthTypes from './components/auth_types'
+// import AuthTypes from './components/auth_types'
+import DynamicForm from './components/dynamic-form'
 // import BulkUploadForm from './components/bulk-upload-form'
 // import MerchantForm from './components/merchant-form'
 // import Merchants from './components/merchants'
@@ -26,9 +27,9 @@ function App() {
 
       <hr />
       <AuthTypeForm />
+      <AuthTypes />
     */}
-    <AuthTypes />
-
+      <DynamicForm />
 
     </>
   )
