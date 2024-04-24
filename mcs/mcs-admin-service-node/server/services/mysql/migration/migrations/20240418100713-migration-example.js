@@ -49,7 +49,7 @@ module.exports = {
         allowNull: false
       },
       authType: {
-        type: Sequelize.ENUM('BASIC', 'OAUTH2', 'JWT'),
+        type: Sequelize.STRING(255),
         allowNull: false
       },
       createdAt: {

@@ -27,3 +27,15 @@ CREATE TABLE auth_type (
     name VARCHAR(255) NOT NULL
 );
 ```
+
+
+```json
+{
+  "id": 10,
+  "name": "BASIC",
+  "parameters": {
+    "username": "string",
+    "password":"string"
+  }
+}
+```

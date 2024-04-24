@@ -3,17 +3,9 @@ syntax = "proto3";
 package cbs.merchant_service;
 
 
-enum AuthType {
-    BASIC = 0;
-    OAUTH2 = 1;
-    JWT = 2;
-} 
-
-
-
 message Merchant {
     string name = 1;
-    AuthType authType = 2;
+    int32 authTypeId = 2;
 
     string username = 3;
     string password = 4;
@@ -23,7 +15,7 @@ message Merchant {
 
 message CreateMerchantRequest {
     string name = 1;
-    AuthType authType = 2;
+    string authType = 2;
 }
 
 message CreateMerchantResponse {
@@ -36,11 +28,10 @@ message CreateMerchantResponse {
 message GMerchant {
     int32 id = 1;
     string name = 2;
-    AuthType authType = 3;
+    string authType = 3;
     string createdAt = 4;
     string updatedAt = 5;
 }
-
 message GetMerchantsRequest {
     int32 id = 1;
 }
@@ -77,7 +68,7 @@ message PaymentCredentials {
 message CreatePaymentRequest {
     int32 merchantId = 1;
     int32 senderId = 2;
-    AuthType authType = 3;
+    string authType = 3;
     PaymentDetails paymentDetails = 4;
     PaymentCredentials credentials = 5;
 }

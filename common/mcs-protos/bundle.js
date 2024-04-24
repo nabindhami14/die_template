@@ -7670,22 +7670,6 @@ $root.cbs = (function() {
             return rpc;
         })();
 
-        /**
-         * AuthType enum.
-         * @name cbs.merchant_service.AuthType
-         * @enum {number}
-         * @property {number} BASIC=0 BASIC value
-         * @property {number} OAUTH2=1 OAUTH2 value
-         * @property {number} JWT=2 JWT value
-         */
-        merchant_service.AuthType = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "BASIC"] = 0;
-            values[valuesById[1] = "OAUTH2"] = 1;
-            values[valuesById[2] = "JWT"] = 2;
-            return values;
-        })();
-
         merchant_service.Merchant = (function() {
 
             /**
@@ -7693,7 +7677,7 @@ $root.cbs = (function() {
              * @memberof cbs.merchant_service
              * @interface IMerchant
              * @property {string|null} [name] Merchant name
-             * @property {cbs.merchant_service.AuthType|null} [authType] Merchant authType
+             * @property {number|null} [authTypeId] Merchant authTypeId
              * @property {string|null} [username] Merchant username
              * @property {string|null} [password] Merchant password
              * @property {string|null} [accessToken] Merchant accessToken
@@ -7724,12 +7708,12 @@ $root.cbs = (function() {
             Merchant.prototype.name = "";
 
             /**
-             * Merchant authType.
-             * @member {cbs.merchant_service.AuthType} authType
+             * Merchant authTypeId.
+             * @member {number} authTypeId
              * @memberof cbs.merchant_service.Merchant
              * @instance
              */
-            Merchant.prototype.authType = 0;
+            Merchant.prototype.authTypeId = 0;
 
             /**
              * Merchant username.
@@ -7789,8 +7773,8 @@ $root.cbs = (function() {
                     writer = $Writer.create();
                 if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                if (message.authType != null && Object.hasOwnProperty.call(message, "authType"))
-                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.authType);
+                if (message.authTypeId != null && Object.hasOwnProperty.call(message, "authTypeId"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.authTypeId);
                 if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.username);
                 if (message.password != null && Object.hasOwnProperty.call(message, "password"))
@@ -7837,7 +7821,7 @@ $root.cbs = (function() {
                         message.name = reader.string();
                         break;
                     case 2:
-                        message.authType = reader.int32();
+                        message.authTypeId = reader.int32();
                         break;
                     case 3:
                         message.username = reader.string();
@@ -7889,15 +7873,9 @@ $root.cbs = (function() {
                 if (message.name != null && message.hasOwnProperty("name"))
                     if (!$util.isString(message.name))
                         return "name: string expected";
-                if (message.authType != null && message.hasOwnProperty("authType"))
-                    switch (message.authType) {
-                    default:
-                        return "authType: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                        break;
-                    }
+                if (message.authTypeId != null && message.hasOwnProperty("authTypeId"))
+                    if (!$util.isInteger(message.authTypeId))
+                        return "authTypeId: integer expected";
                 if (message.username != null && message.hasOwnProperty("username"))
                     if (!$util.isString(message.username))
                         return "username: string expected";
@@ -7927,20 +7905,8 @@ $root.cbs = (function() {
                 var message = new $root.cbs.merchant_service.Merchant();
                 if (object.name != null)
                     message.name = String(object.name);
-                switch (object.authType) {
-                case "BASIC":
-                case 0:
-                    message.authType = 0;
-                    break;
-                case "OAUTH2":
-                case 1:
-                    message.authType = 1;
-                    break;
-                case "JWT":
-                case 2:
-                    message.authType = 2;
-                    break;
-                }
+                if (object.authTypeId != null)
+                    message.authTypeId = object.authTypeId | 0;
                 if (object.username != null)
                     message.username = String(object.username);
                 if (object.password != null)
@@ -7967,7 +7933,7 @@ $root.cbs = (function() {
                 var object = {};
                 if (options.defaults) {
                     object.name = "";
-                    object.authType = options.enums === String ? "BASIC" : 0;
+                    object.authTypeId = 0;
                     object.username = "";
                     object.password = "";
                     object.accessToken = "";
@@ -7975,8 +7941,8 @@ $root.cbs = (function() {
                 }
                 if (message.name != null && message.hasOwnProperty("name"))
                     object.name = message.name;
-                if (message.authType != null && message.hasOwnProperty("authType"))
-                    object.authType = options.enums === String ? $root.cbs.merchant_service.AuthType[message.authType] : message.authType;
+                if (message.authTypeId != null && message.hasOwnProperty("authTypeId"))
+                    object.authTypeId = message.authTypeId;
                 if (message.username != null && message.hasOwnProperty("username"))
                     object.username = message.username;
                 if (message.password != null && message.hasOwnProperty("password"))
@@ -8009,7 +7975,7 @@ $root.cbs = (function() {
              * @memberof cbs.merchant_service
              * @interface ICreateMerchantRequest
              * @property {string|null} [name] CreateMerchantRequest name
-             * @property {cbs.merchant_service.AuthType|null} [authType] CreateMerchantRequest authType
+             * @property {string|null} [authType] CreateMerchantRequest authType
              */
 
             /**
@@ -8037,11 +8003,11 @@ $root.cbs = (function() {
 
             /**
              * CreateMerchantRequest authType.
-             * @member {cbs.merchant_service.AuthType} authType
+             * @member {string} authType
              * @memberof cbs.merchant_service.CreateMerchantRequest
              * @instance
              */
-            CreateMerchantRequest.prototype.authType = 0;
+            CreateMerchantRequest.prototype.authType = "";
 
             /**
              * Creates a new CreateMerchantRequest instance using the specified properties.
@@ -8070,7 +8036,7 @@ $root.cbs = (function() {
                 if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
                 if (message.authType != null && Object.hasOwnProperty.call(message, "authType"))
-                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.authType);
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.authType);
                 return writer;
             };
 
@@ -8109,7 +8075,7 @@ $root.cbs = (function() {
                         message.name = reader.string();
                         break;
                     case 2:
-                        message.authType = reader.int32();
+                        message.authType = reader.string();
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -8150,14 +8116,8 @@ $root.cbs = (function() {
                     if (!$util.isString(message.name))
                         return "name: string expected";
                 if (message.authType != null && message.hasOwnProperty("authType"))
-                    switch (message.authType) {
-                    default:
-                        return "authType: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                        break;
-                    }
+                    if (!$util.isString(message.authType))
+                        return "authType: string expected";
                 return null;
             };
 
@@ -8175,20 +8135,8 @@ $root.cbs = (function() {
                 var message = new $root.cbs.merchant_service.CreateMerchantRequest();
                 if (object.name != null)
                     message.name = String(object.name);
-                switch (object.authType) {
-                case "BASIC":
-                case 0:
-                    message.authType = 0;
-                    break;
-                case "OAUTH2":
-                case 1:
-                    message.authType = 1;
-                    break;
-                case "JWT":
-                case 2:
-                    message.authType = 2;
-                    break;
-                }
+                if (object.authType != null)
+                    message.authType = String(object.authType);
                 return message;
             };
 
@@ -8207,12 +8155,12 @@ $root.cbs = (function() {
                 var object = {};
                 if (options.defaults) {
                     object.name = "";
-                    object.authType = options.enums === String ? "BASIC" : 0;
+                    object.authType = "";
                 }
                 if (message.name != null && message.hasOwnProperty("name"))
                     object.name = message.name;
                 if (message.authType != null && message.hasOwnProperty("authType"))
-                    object.authType = options.enums === String ? $root.cbs.merchant_service.AuthType[message.authType] : message.authType;
+                    object.authType = message.authType;
                 return object;
             };
 
@@ -8470,7 +8418,7 @@ $root.cbs = (function() {
              * @interface IGMerchant
              * @property {number|null} [id] GMerchant id
              * @property {string|null} [name] GMerchant name
-             * @property {cbs.merchant_service.AuthType|null} [authType] GMerchant authType
+             * @property {string|null} [authType] GMerchant authType
              * @property {string|null} [createdAt] GMerchant createdAt
              * @property {string|null} [updatedAt] GMerchant updatedAt
              */
@@ -8508,11 +8456,11 @@ $root.cbs = (function() {
 
             /**
              * GMerchant authType.
-             * @member {cbs.merchant_service.AuthType} authType
+             * @member {string} authType
              * @memberof cbs.merchant_service.GMerchant
              * @instance
              */
-            GMerchant.prototype.authType = 0;
+            GMerchant.prototype.authType = "";
 
             /**
              * GMerchant createdAt.
@@ -8559,7 +8507,7 @@ $root.cbs = (function() {
                 if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
                 if (message.authType != null && Object.hasOwnProperty.call(message, "authType"))
-                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.authType);
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.authType);
                 if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.createdAt);
                 if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
@@ -8605,7 +8553,7 @@ $root.cbs = (function() {
                         message.name = reader.string();
                         break;
                     case 3:
-                        message.authType = reader.int32();
+                        message.authType = reader.string();
                         break;
                     case 4:
                         message.createdAt = reader.string();
@@ -8655,14 +8603,8 @@ $root.cbs = (function() {
                     if (!$util.isString(message.name))
                         return "name: string expected";
                 if (message.authType != null && message.hasOwnProperty("authType"))
-                    switch (message.authType) {
-                    default:
-                        return "authType: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                        break;
-                    }
+                    if (!$util.isString(message.authType))
+                        return "authType: string expected";
                 if (message.createdAt != null && message.hasOwnProperty("createdAt"))
                     if (!$util.isString(message.createdAt))
                         return "createdAt: string expected";
@@ -8688,20 +8630,8 @@ $root.cbs = (function() {
                     message.id = object.id | 0;
                 if (object.name != null)
                     message.name = String(object.name);
-                switch (object.authType) {
-                case "BASIC":
-                case 0:
-                    message.authType = 0;
-                    break;
-                case "OAUTH2":
-                case 1:
-                    message.authType = 1;
-                    break;
-                case "JWT":
-                case 2:
-                    message.authType = 2;
-                    break;
-                }
+                if (object.authType != null)
+                    message.authType = String(object.authType);
                 if (object.createdAt != null)
                     message.createdAt = String(object.createdAt);
                 if (object.updatedAt != null)
@@ -8725,7 +8655,7 @@ $root.cbs = (function() {
                 if (options.defaults) {
                     object.id = 0;
                     object.name = "";
-                    object.authType = options.enums === String ? "BASIC" : 0;
+                    object.authType = "";
                     object.createdAt = "";
                     object.updatedAt = "";
                 }
@@ -8734,7 +8664,7 @@ $root.cbs = (function() {
                 if (message.name != null && message.hasOwnProperty("name"))
                     object.name = message.name;
                 if (message.authType != null && message.hasOwnProperty("authType"))
-                    object.authType = options.enums === String ? $root.cbs.merchant_service.AuthType[message.authType] : message.authType;
+                    object.authType = message.authType;
                 if (message.createdAt != null && message.hasOwnProperty("createdAt"))
                     object.createdAt = message.createdAt;
                 if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
@@ -10138,7 +10068,7 @@ $root.cbs = (function() {
              * @interface ICreatePaymentRequest
              * @property {number|null} [merchantId] CreatePaymentRequest merchantId
              * @property {number|null} [senderId] CreatePaymentRequest senderId
-             * @property {cbs.merchant_service.AuthType|null} [authType] CreatePaymentRequest authType
+             * @property {string|null} [authType] CreatePaymentRequest authType
              * @property {cbs.merchant_service.IPaymentDetails|null} [paymentDetails] CreatePaymentRequest paymentDetails
              * @property {cbs.merchant_service.IPaymentCredentials|null} [credentials] CreatePaymentRequest credentials
              */
@@ -10176,11 +10106,11 @@ $root.cbs = (function() {
 
             /**
              * CreatePaymentRequest authType.
-             * @member {cbs.merchant_service.AuthType} authType
+             * @member {string} authType
              * @memberof cbs.merchant_service.CreatePaymentRequest
              * @instance
              */
-            CreatePaymentRequest.prototype.authType = 0;
+            CreatePaymentRequest.prototype.authType = "";
 
             /**
              * CreatePaymentRequest paymentDetails.
@@ -10227,7 +10157,7 @@ $root.cbs = (function() {
                 if (message.senderId != null && Object.hasOwnProperty.call(message, "senderId"))
                     writer.uint32(/* id 2, wireType 0 =*/16).int32(message.senderId);
                 if (message.authType != null && Object.hasOwnProperty.call(message, "authType"))
-                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.authType);
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.authType);
                 if (message.paymentDetails != null && Object.hasOwnProperty.call(message, "paymentDetails"))
                     $root.cbs.merchant_service.PaymentDetails.encode(message.paymentDetails, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                 if (message.credentials != null && Object.hasOwnProperty.call(message, "credentials"))
@@ -10273,7 +10203,7 @@ $root.cbs = (function() {
                         message.senderId = reader.int32();
                         break;
                     case 3:
-                        message.authType = reader.int32();
+                        message.authType = reader.string();
                         break;
                     case 4:
                         message.paymentDetails = $root.cbs.merchant_service.PaymentDetails.decode(reader, reader.uint32());
@@ -10323,14 +10253,8 @@ $root.cbs = (function() {
                     if (!$util.isInteger(message.senderId))
                         return "senderId: integer expected";
                 if (message.authType != null && message.hasOwnProperty("authType"))
-                    switch (message.authType) {
-                    default:
-                        return "authType: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                        break;
-                    }
+                    if (!$util.isString(message.authType))
+                        return "authType: string expected";
                 if (message.paymentDetails != null && message.hasOwnProperty("paymentDetails")) {
                     var error = $root.cbs.merchant_service.PaymentDetails.verify(message.paymentDetails);
                     if (error)
@@ -10360,20 +10284,8 @@ $root.cbs = (function() {
                     message.merchantId = object.merchantId | 0;
                 if (object.senderId != null)
                     message.senderId = object.senderId | 0;
-                switch (object.authType) {
-                case "BASIC":
-                case 0:
-                    message.authType = 0;
-                    break;
-                case "OAUTH2":
-                case 1:
-                    message.authType = 1;
-                    break;
-                case "JWT":
-                case 2:
-                    message.authType = 2;
-                    break;
-                }
+                if (object.authType != null)
+                    message.authType = String(object.authType);
                 if (object.paymentDetails != null) {
                     if (typeof object.paymentDetails !== "object")
                         throw TypeError(".cbs.merchant_service.CreatePaymentRequest.paymentDetails: object expected");
@@ -10403,7 +10315,7 @@ $root.cbs = (function() {
                 if (options.defaults) {
                     object.merchantId = 0;
                     object.senderId = 0;
-                    object.authType = options.enums === String ? "BASIC" : 0;
+                    object.authType = "";
                     object.paymentDetails = null;
                     object.credentials = null;
                 }
@@ -10412,7 +10324,7 @@ $root.cbs = (function() {
                 if (message.senderId != null && message.hasOwnProperty("senderId"))
                     object.senderId = message.senderId;
                 if (message.authType != null && message.hasOwnProperty("authType"))
-                    object.authType = options.enums === String ? $root.cbs.merchant_service.AuthType[message.authType] : message.authType;
+                    object.authType = message.authType;
                 if (message.paymentDetails != null && message.hasOwnProperty("paymentDetails"))
                     object.paymentDetails = $root.cbs.merchant_service.PaymentDetails.toObject(message.paymentDetails, options);
                 if (message.credentials != null && message.hasOwnProperty("credentials"))

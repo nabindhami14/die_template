@@ -1,12 +1,12 @@
 'use strict';
 
 
-const { mysqlHelperReadonly, keyHelper, mysqlHelper } = require('common/helpers');
+const { keyHelper, mysqlHelper } = require('common/helpers');
 
 module.exports = async (name, authType) => {
     try {
         let response = { data: {} };
-        const query = mysqlHelper.format(`INSERT INTO merchants (name, authType) VALUES (?, ?)`,[name,authType])
+        const query = mysqlHelper.format(`INSERT INTO merchants (name, authType) VALUES (?, ?)`, [name, authType])
 
         let [dbResponse] = await mysqlHelper.query(query);
         if (dbResponse && dbResponse.length > 0) {
