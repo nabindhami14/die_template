@@ -66,16 +66,14 @@ message PaymentCredentials {
 }
 
 message CreatePaymentRequest {
-    int32 merchantId = 1;
-    int32 senderId = 2;
-    string authType = 3;
-    PaymentDetails paymentDetails = 4;
-    PaymentCredentials credentials = 5;
+    string merchantName = 1;
+    map<string, string> parameters = 2;
 }
 
 message CreatePaymentResponse {
     int32 status = 1;
-    bool success = 2;
+    bool success = 2; 
+    string message = 3; 
 }
 
 

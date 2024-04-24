@@ -4,57 +4,52 @@
     const { mysqlHelper } = require('common/helpers');
 
     module.exports = async (call, callback) => {
+        const { merchantName, ...fields } = call.request
 
         try {
-            const { merchantId, senderId, authType, paymentDetails, credentials } = call.request;
-            const { receiverId, amount, remark } = paymentDetails;
-            const { username, password, accessToken, token } = credentials;
+            const param = {};
+            const q = await mysqlHelper.query(`SHOW COLUMNS FROM ${merchantName}`);
 
-            // Retrieve merchant details
-            const merchant = await db.getMerchant(merchantId);
-
-            // Determine columns and values based on authType
-            let columns, values;
-            switch (authType) {
-                case 0: // BASIC
-                    columns = "username,password";
-                    values = [username, password];
-                    break;
-                case 1: // OAUTH2
-                    columns = "accessToken";
-                    values = [accessToken];
-                    break;
-                case 2: // JWT
-                    columns = "token";
-                    values = [token];
-                    break;
-                default:
-                    throw new Error("Invalid authType");
+            // Exclude unwanted fields and populate param object
+            for (const column of q[0]) {
+                if (['id', 'created_at', 'updated_at'].includes(column.Field)) {
+                    continue; // Skip unwanted fields
+                } else if (['senderId', 'receiverId'].includes(column.Field)) {
+                    param[column.Field] = parseInt(fields.parameters[column.Field]);
+                } else if (['amount'].includes(column.Field)) {
+                    param[column.Field] = parseFloat(fields.parameters[column.Field]);
+                } else {
+                    param[column.Field] = fields.parameters[column.Field]
+                }
             }
+            const columns = Object.keys(param).join(', ');
+            const values = Object.values(param).map(value => typeof value === 'number' ? value : `'${value}'`).join(', ');
 
-            // Retrieve sender and receiver details
-            const sender = await sql.getCustomer(senderId);
-            const receiver = await sql.getCustomer(receiverId);
+            const query = `INSERT INTO ${merchantName} (${columns}) VALUES (${values});`;
+
+            const sender = await sql.getCustomer(param['senderId']);
+            const receiver = await sql.getCustomer(param['receiverId']);
 
             // Check if sender has sufficient balance
-            if (sender.data && receiver.data && +sender.data.money > +amount) {
+            if (sender.data && receiver.data && +sender.data.money > param['amount']) {
                 // Begin transaction
                 await mysqlHelper.beginTransaction();
 
                 // Deduct amount from sender and add to receiver
-                await sql.moneyOperation(senderId, amount);
-                await sql.moneyOperation(receiverId, amount, "add");
+                await sql.moneyOperation(param['senderId'], param['amount']);
+                await sql.moneyOperation(param['receiverId'], param['amount'], "add");
+
 
                 // Create payment record
-                await sql.createPayment(merchant.data.name, senderId, receiverId, amount, remark, columns, values);
+                await sql.createPayment(query);
 
                 // Commit transaction
                 await mysqlHelper.commit();
 
-                callback(null, { status: 200, success: true });
-            } else {
-                callback(null, { status: 400, success: false, message: "Insufficient balance" });
+                return callback(null, { status: 200, success: true });
             }
+
+            callback(null, { status: 400, success: false, message: "Insufficient balance" });
         } catch (error) {
             console.error("[PAYMENT: PROCESSING PAYMENT]", error);
             await mysqlHelper.rollback(); // Rollback the transaction

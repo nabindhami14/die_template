@@ -1,11 +1,8 @@
 const { mysqlHelperReadonly, keyHelper } = require('common/helpers');
 
-module.exports = async (merchant, senderId, receiverId, amount, remark, columns, values) => {
+module.exports = async (query) => {
     try {
-        const query = `INSERT INTO ${merchant} (senderId, receiverId, amount, remark, ${columns}) VALUES (?, ?, ?, ?, ${values.map(() => '?').join(',')})`;
-        const params = [senderId, receiverId, amount, remark, ...values];
-
-        const [dbResponse] = await mysqlHelperReadonly.query(query, params);
+        const [dbResponse] = await mysqlHelperReadonly.query(query);
 
         const response = { data: {} };
         if (dbResponse && dbResponse.length > 0) {
