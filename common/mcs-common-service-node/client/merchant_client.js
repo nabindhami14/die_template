@@ -1,11 +1,9 @@
 
-
-
 ((adminServiceClient) => {
   'use strict';
   const helpers = require('common/helpers');
   const configs = require('common/configs');
-
+  
   let _client = Object.create({});
 
   adminServiceClient.init = (version) => {

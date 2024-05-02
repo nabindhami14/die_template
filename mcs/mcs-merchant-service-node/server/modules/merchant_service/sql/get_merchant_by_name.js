@@ -6,7 +6,7 @@ const { mysqlHelperReadonly, keyHelper } = require('common/helpers');
 module.exports = async (name) => {
     try {
         let response = { data: {} };
-        const query = mysqlHelperReadonly.format(`SELECT * FROM merchants WHERE name = ?`, name)
+        const query = mysqlHelperReadonly.format(`SELECT name FROM merchants WHERE name = ?`, name)
 
         let [dbResponse] = await mysqlHelperReadonly.query(query);
         if (dbResponse && dbResponse.length > 0) {

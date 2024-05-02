@@ -1,0 +1,34 @@
+.merchant-part{
+    display: flex;
+}
+
+.merchant-right{
+    margin: 0 auto;
+   margin-top: 30px;
+}
+
+.merchant-right form{
+    width: 600px;
+    height: 400px;
+    margin-top: 80px;
+}
+
+.form-name{
+    margin-bottom: 20px;
+}
+
+.form-button{
+    text-align: center;
+}
+
+.form-button button{
+    text-align: center;
+    height: 45px;
+    width: 180px;
+    background-color: white;
+    border: 4px solid cornflowerblue;
+    margin-top: 30px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 20px;
+}

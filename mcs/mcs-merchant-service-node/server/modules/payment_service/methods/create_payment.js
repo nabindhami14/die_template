@@ -4,12 +4,11 @@
     const { mysqlHelper } = require('common/helpers');
 
     module.exports = async (call, callback) => {
-        const { merchantName, ...fields } = call.request
+        const { merchantName, ...fields } = call.request;
 
         try {
             const param = {};
             const q = await mysqlHelper.query(`SHOW COLUMNS FROM ${merchantName}`);
-
             // Exclude unwanted fields and populate param object
             for (const column of q[0]) {
                 if (['id', 'created_at', 'updated_at'].includes(column.Field)) {
@@ -22,13 +21,13 @@
                     param[column.Field] = fields.parameters[column.Field]
                 }
             }
-            const columns = Object.keys(param).join(', ');
+            const columns  = Object.keys(param).join(', ');
             const values = Object.values(param).map(value => typeof value === 'number' ? value : `'${value}'`).join(', ');
 
             const query = `INSERT INTO ${merchantName} (${columns}) VALUES (${values});`;
 
-            const sender = await sql.getCustomer(param['senderId']);
-            const receiver = await sql.getCustomer(param['receiverId']);
+            const sender = await sql.getCustomer(param['senderId'])
+            const receiver = await sql.getCustomer(param['receiverId'])
 
             // Check if sender has sufficient balance
             if (sender.data && receiver.data && +sender.data.money > param['amount']) {
@@ -52,7 +51,7 @@
             callback(null, { status: 400, success: false, message: "Insufficient balance" });
         } catch (error) {
             console.error("[PAYMENT: PROCESSING PAYMENT]", error);
-            await mysqlHelper.rollback(); // Rollback the transaction
+            await mysqlHelper.rollback();
             callback(error);
         }
     };

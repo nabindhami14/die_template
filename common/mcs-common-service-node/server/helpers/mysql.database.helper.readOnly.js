@@ -22,7 +22,7 @@ const mysql = require('mysql2/promise');
           // user: process.env.MYSQL_DB_USER_READONLY,
           user: "root",
           // password: process.env.MYSQL_DB_PASSWORD_READONLY,
-          password: "password",
+          password: "root",
           // host: process.env.MYSQL_DB_HOST_READONLY,
           host: "localhost",
           port: process.env.MYSQL_DB_MIGRATION_READONLY_PORT,

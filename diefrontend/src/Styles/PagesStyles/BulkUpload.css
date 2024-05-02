@@ -1,0 +1,14 @@
+.upload-part{
+    display: flex;
+    justify-content: space-between;
+}
+
+.upload-right{
+    margin:  0 auto;
+    text-align: center;
+    align-self: center;
+}
+
+.upload-right h1{
+    margin-bottom: 120px;
+}

@@ -6,8 +6,7 @@ module.exports = async (email) => {
 
     try {
         let response = { data: {} };
-        const query = mysqlHelperReadonly.format(`select * from admins where email = ?`, email)
-
+        const query = mysqlHelperReadonly.format(`select email from admins where email = ?`, email);
         let [dbResponse] = await mysqlHelperReadonly.query(query);
         if (dbResponse && dbResponse.length > 0) {
             response.data = keyHelper.keysToCamel(dbResponse[0])

@@ -22,7 +22,7 @@ const mysql = require('mysql2/promise');
       if (!dbClient) {
         dbClient = await mysql.createPool({
           user: process.env.MYSQL_DB_USER || "root",
-          password: process.env.MYSQL_DB_PASSWORD || "passowrd",
+          password: process.env.MYSQL_DB_PASSWORD || "root",
           host: process.env.MYSQL_DB_HOST || "localhost",
           port: process.env.MYSQL_DB_MIGRATION_PORT || 3306,
           database: process.env.MYSQL_DB_NAME || "cbs",

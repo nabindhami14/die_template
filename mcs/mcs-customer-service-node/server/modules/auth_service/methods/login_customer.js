@@ -15,7 +15,6 @@
                 return callback(null, { status: 400, message: "Credentials don't match" })
             }
             const tokens = await jwtHelper.generateTokens({ id: response.data.id, email: response.data.email })
-
             callback(null, { status: 200, tokens })
         } catch (error) {
             callback(error)

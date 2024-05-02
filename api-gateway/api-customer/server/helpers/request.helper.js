@@ -27,7 +27,7 @@ const trimRequestObj = (requestObj) => {
                 req.body = (contentType !== 'application/octet-stream' ? req.body : proto.decode(req.raw))
                 const err = proto.verify(req.body);
                 if (err) {
-                    console.error(req.metaData, 'error form request helper', err)
+                    console.error(req.metaData, 'error from request helper', err)
                     return {
                         status: httpStatus.BAD_REQUEST,
                         message: err,
@@ -38,7 +38,7 @@ const trimRequestObj = (requestObj) => {
             return trimRequestObj(req.body);
         } catch (error) {
             console.log(error);
-            console.error(req.metaData, 'error form request helper', error)
+            console.error(req.metaData, 'error froms request helper', error)
             throw error
         }
     }

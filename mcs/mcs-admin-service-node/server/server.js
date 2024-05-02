@@ -67,11 +67,12 @@ function postHook(err, response, context, request, callBack) {
     try {
         request.metadata = request.metadata ? grpcMetaHelper.getMetadata(request.metadata) : {};
         if (err) {
-            logger.error(request.metadata, `error form ${process.env.MCS_SERVICE_NAME || 'customer-service'}`, err);
+            logger.error(request.metadatazz, `error form ${process.env.MCS_SERVICE_NAME || 'customer-service'}`, err);
             increaseErrorCounter(context)
             return err
         }
-        logger.info(request.metadata, 'response from customer user service');
+        // logger.info(request.metadata, 'response from customer user service');
+        loginCustomer.info()
         return response;
     } catch (error) {
         logger.error(request.metadata, `error form ${process.env.MCS_SERVICE_NAME || 'customer-service'} postHook`, error);

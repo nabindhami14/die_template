@@ -1,0 +1,9 @@
+.registration-part{
+    display: flex;
+
+}
+
+.registration-right{
+    width: 1080px;
+    margin: 0 auto;
+}
